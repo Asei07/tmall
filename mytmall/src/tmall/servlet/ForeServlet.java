@@ -113,8 +113,54 @@ public class ForeServlet extends BaseForeServlet{
 		
 		int cid = Integer.parseInt(req.getParameter("cid"));
 		Category c = categoryDao.get(cid);
+		//データを補充する
 		productDao.fill(c);
-		
+		//選択による並べ替える
+		String sort = req.getParameter("sort");
+		if(sort != null){
+			swich(sort){
+				case "all":
+					Collections.sort(c.getProducts(),new Comporator<Product>(){
+						@override
+						public int compare(Product p1,Product p2){
+							return p2.getReviewCount()*p2.getSaleCount() - p1.getReviewCount()*p1.getSaleCount()
+						}
+					});
+					break;
+				case "review":
+					Collections.sort(c.getProducts(),new Comporator<Product>(){
+						@override
+						public int compare(Product p1,Product p2){
+							return p2.getReviewCount() - p1.getReviewCount();
+						}
+					});
+					break;
+				case "date":
+					Collections.sort(c.getProducts(),new Comporator<Product>(){
+						@override
+						public int compare(Product p1,Product p2){
+							return p2.getCreateDate() - p1.getCreateDate();
+						}
+					});
+					break;
+				case "saleCount":
+					Collections.sort(c.getProducts(),new Comporator<Product>(){
+						@override
+						public int compare(Product p1,Product p2){
+							return p2.getSaleCount() - p1.getSaleCount();
+						}
+					});
+					break;
+				case "price":
+					Collections.sort(c.getProducts(),new Comporator<Product>(){
+						@override
+						public int compare(Product p1,Product p2){
+							return p2.getPrice() - p1.getPrice();
+						}
+					});
+					break;
+			}
+		}
 		req.setAttribute("c",c);
 		return "category.jsp";
 	}
