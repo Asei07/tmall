@@ -93,4 +93,13 @@ public class ForeServlet extends BaseForeServlet{
 		req.setAttribute("reviews", reviews);
 		return "productPage.jsp";
 	}
+	@override
+	public String checkLogin(HttpServletRequest req,HttpServletResponse resp){
+		
+		User user = req.getAttrubute("user");
+		if(user != null){
+			return "%success";
+		}
+		return "%fail";
+	}
 }
