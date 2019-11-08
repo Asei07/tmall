@@ -460,9 +460,28 @@
 		$.get(
 			page,
 			function(result){
-				
+				if(result == "success"){
+					var pid = ${p.id};
+					var num = $(".productNumberSetting").val();
+					var cartPage = "foreaddCart";
+					$.get(
+						cartPage,
+						("pid":pid,"num":num),
+						function(result){
+							if(result == "success"){
+								$(".addButton").html("カートに追加されました");
+								$(".addButton").aatr("disabled","disabled");
+								$(".addButton").css("background-color","lightgray");
+								$(".addButton").css("border-color","lightgray");
+								$(".addButton").css("color","black");
+							}else{}
+						}
+					);
+				}else{
+					$(".loginModal").modal('show');
+				}
 			}
-		)
+		);
 		    return false;
 	    });
             var stock = 66;
