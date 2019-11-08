@@ -204,14 +204,17 @@ public class ProductDao {
 			setSaleAndReviewNumber(p);
 		}
 	}
-
+	
 	public void fill(List<Category> cs) {
 
 		for(Category c : cs ) {
 			c.setProducts(list(c.getId()));
 		}
 	}
-
+	
+	public void fill(Category c){
+		c.setProducts(list(c.getid()));
+	}
 	public void fillByRow(List<Category> cs) {
 
 		int productEachRow = 8;
