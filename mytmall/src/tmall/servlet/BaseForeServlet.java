@@ -24,6 +24,7 @@ public abstract class BaseForeServlet extends HttpServlet {
 	abstract public String login(HttpServletRequest req, HttpServletResponse resp);
 	abstract public String logout(HttpServletRequest req,HttpServletResponse resp);
 	abstract public String product(HttpServletRequest req,HttpServletResponse resp);
+	abstract public String checkLogin(HttpServletRequest req,HttpServletResponse resp);
 
 	CategoryDao categoryDao = new CategoryDao();
 	OrderDao orderDao = new OrderDao();
