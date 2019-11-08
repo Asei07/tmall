@@ -102,4 +102,20 @@ public class ForeServlet extends BaseForeServlet{
 		}
 		return "%fail";
 	}
+	
+	@override
+	public String loginAjax(HttpServletRequest req,HttpServletResponse resp){
+		return null;
+	}
+	
+	@override
+	public String category(HttpServletRequest req,HttpServletResponse resp){
+		
+		int cid = Integer.parseInt(req.getParameter("cid"));
+		Category c = categoryDao.get(cid);
+		productDao.fill(c);
+		
+		req.setAttribute("c",c);
+		return "category.jsp";
+	}
 }
