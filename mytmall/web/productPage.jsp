@@ -440,7 +440,31 @@
             //         }
             //     });
             // });
-
+	    $(".buyLink").click(function(){
+	    	var page = "forecheckLogin";
+		$.get(
+			page,
+			function(result){
+				if(result == "success"){
+					var num = $(".productNumberSetting").val();
+					location.href = $(".buyLink").attr("href") + "&num" + num;
+				}else{
+					$(".loginModal").modal('show');
+				}
+			}
+		)
+		    return false;
+	    });
+	    $(".addLink").click(function(){
+	    	var page = "forecheckLogin";
+		$.get(
+			page,
+			function(result){
+				
+			}
+		)
+		    return false;
+	    });
             var stock = 66;
             $(".increaseNumber").click(function () {
                 var num = $(".productNumberSetting").val();
