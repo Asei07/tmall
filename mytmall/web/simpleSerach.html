@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="study/js/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+    <style>
+        div.simpleSearch{
+            margin:40px 200px 0px 0px;
+        }
+        div.smallSearch{
+            background-color: #C40000;
+            height: 39px;
+            width: 300px;
+            padding: 2px;
+        }
+        div.smallSearch input{
+            width: 225px;
+            height:35px;
+            outline: none;
+        }
+        div.smallSearch button{
+           width: 60px;
+           background-color: #C40000;
+           color: white;
+           /* font-weight: bold; */
+           border: transparent;
+        }
+        div.smallSearchBelow {
+            margin-top: 5px; 
+            margin-left: -20px;
+        }
+        div.smallSearchBelow a{
+            margin: 0px 20px 0px 20px;
+            color: #999
+        }
+        div.smallSearchBelow span{
+            color: #999;
+        }
+        a:hover{
+            color: #C40000;
+            text-decoration: none;
+        }
+        div.simpleSearch img.smallLogo{
+            position: absolute;
+            width: 140px;
+            left: 200px;
+            top:60px;
+        }
+        
+    </style>
+<body>
+    <div class="simpleSearch">
+        <a href=""><img class="smallLogo" src="img/site/simpleLogo.png" alt=""></a>
+        <div class="pull-right smallSearch">
+            <input type="text" placeholder="平衡车 原汁机">
+            <button class="" type="submit"  value="搜索">搜索</button>
+            <div class="smallSearchBelow" >
+                <a href="">冰箱</a><span>|</span>
+                <a href="">空调</a><span>|</span>
+                <a href="">女表</a><span>|</span>
+                <a href="">男表</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

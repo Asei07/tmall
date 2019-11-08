@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="study/js/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/topWithSimpleSearch.css">
+    <style>
+        .order {
+            max-width: 1013px;
+            margin: 100px auto 0px auto;
+        }
+
+        /* note
+            the order of title */
+        .orderTitle div {
+            float: left;
+            border-bottom: 2px solid #e8e8e8;
+        }
+
+        .orderTitle a {
+            display: inline-block;
+            border-right: 1px solid #e8e8e8;
+            margin-bottom: 10px;
+            padding: 0px 20px;
+            color: black;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .lastOrderTitle {
+            overflow: hidden;
+            float: none !important;
+        }
+
+        .noRightLine {
+            border-right: 0px !important;
+        }
+
+        .selectOrder {
+            border-bottom: 2px solid #c40000 !important;
+        }
+
+        .selectOrder a {
+            color: #c40000;
+        }
+
+        .orderListTitleTable {
+            margin-top: 20px;
+            width: 100%;
+            background: #f5f5f5;
+            height: 40px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* note
+            the order of info */
+        .orderListItem {
+            margin: 20px 0px;
+            /* border: 1px solid; */
+        }
+
+        .orderListItemTB {
+            margin: 20px 0px;
+            border: 2px solid #ececec;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .orderListItemTB td {
+            /* border: 1px solid; */
+            padding: 10px;
+        }
+
+        .orderItemFirstTR {
+            background-color: #f1f1f1;
+            /* border: 1px solid; */
+        }
+
+        .orderItemDelete {
+            text-align: right;
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .wwGif {
+            display: inline-block;
+            background-image: url(img/site/wangwang.gif);
+            height: 22px;
+            width: 70px;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            background-attachment: scroll;
+        }
+
+        .orderItemLinkDiv {
+            position: relative;
+            height: 80px;
+        }
+
+        .orderItemLink {
+            color: black;
+        }
+
+        .orderItemLink:hover {
+            color: #c40000;
+            text-decoration: none;
+        }
+
+        .orderItemInsure {
+            position: absolute;
+            bottom: 0px;
+        }
+
+        .orderOriginalPrice {
+            display: block;
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .orderPromotePrice {
+            font-size: 14px;
+        }
+
+        .orderItemNumber {
+            display: block;
+            text-align: center;
+        }
+
+        .orderTotalPrice {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            /* text-align: center; */
+        }
+
+        .orderItemTD {
+            border: 1px solid #ececec;
+            text-align: center;
+        }
+
+        .orderButtonReview {
+            padding: 5px 10px;
+            border: 1px solid #dcdcdc;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            outline: none;
+            border-radius: 2px;
+        }
+
+        .orderButtonReview:hover {
+            border: 1px solid #c40000;
+            color: #c40000;
+        }
+
+        .orderButtonConfirm {
+            border: 1px solid;
+            color: white;
+            background-color: #66b6ff;
+            padding: 5px 10px;
+            border-radius: 2px;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .orderButtonConfirm:hover {
+            background-color: #118adb;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("a[orderStatus]").click(function () {
+                var status = $(this).attr("orderStatus");
+                if (status == 'all') {
+                    $("table[orderStatus]").show();
+                } else {
+                    $("table[orderStatus]").hide();
+                    $("table[orderStatus=" + status + "]").show();
+                }
+                $(".orderTitle div").removeClass("selectOrder");
+                $(this).parent("div").addClass("selectOrder");
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <!-- <img src="img/site/wangwang.gif" alt=""> -->
+    <nav class="top">
+        <a href="${contextPath}">
+            <span class="glyphicon glyphicon-home redColor"></span>
+            天猫首页
+        </a>
+        <span>欢迎来天猫</span>
+        <a href="">请登录</a>
+        <a href="">免费注册</a>
+        <span class="pull-right">
+            <a href="">
+                オーダー</a>
+            <a href="">
+                <span class="glyphicon glyphicon-shopping-cart redColor"></span>
+                ショッピングカート<strong>0</strong>件
+            </a>
+        </span>
+    </nav>
+    <div class="simpleSearch">
+        <a href=""><img class="smallLogo" src="img/site/simpleLogo.png" alt=""></a>
+        <div class="pull-right smallSearch">
+            <input type="text" placeholder="平衡车 原汁机">
+            <button class="" type="submit" value="搜索">搜索</button>
+            <div class="smallSearchBelow">
+                <a href="">冰箱</a><span>|</span>
+                <a href="">空调</a><span>|</span>
+                <a href="">女表</a><span>|</span>
+                <a href="">男表</a>
+            </div>
+        </div>
+    </div>
+    <div class="order">
+        <div class="orderTitle">
+            <div class="selectOrder"><a href="" orderStatus="all">所有订单</a></div>
+            <div><a href="#nowhere" orderStatus="waitPay">待付款</a></div>
+            <div><a href="#nowhere" orderStatus="waitDelivery">待发货</a></div>
+            <div><a href="#nowhere" orderStatus="waitConfirm">待收货</a></div>
+            <div><a href="#nowhere" class="noRightLine" orderStatus="waitReview">待评价</a></div>
+            <div class="lastOrderTitle"><a href="" style="visibility: hidden">2</a></div>
+        </div>
+        <div style="clear:both"></div>
+        <div class="orderListTitle">
+            <table class="orderListTitleTable">
+                <tbody>
+                    <td>宝贝</td>
+                    <td width="100">单价</td>
+                    <td width="100">数量</td>
+                    <td width="120">实付款</td>
+                    <td width="100">交易操作</td>
+                </tbody>
+            </table>
+        </div>
+        <div class="orderListItem">
+            <table class="orderListItemTB" orderStatus="waitConfirm">
+                <tbody>
+                    <tr class="orderItemFirstTR">
+                        <td colspan="2">
+                            <b>2016-09-12 17:00:41</b>
+                            <span>订单号: 20160912170041674794</span>
+                        </td>
+                        <td colspan="2">
+                            <img src="img/site/orderItemTmall.png" alt="" width="13px">
+                            <span>天猫商场</span>
+                        </td>
+                        <td>
+                            <a href="" class="wwLink"><span class="wwGif"></span></a>
+                        </td>
+                        <td class="orderItemDelete">
+                            <a href="" class="orderItemDeleteLink">
+                                <span class="glyphicon glyphicon-trash orderItemDelete"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="orderItemInfo">
+                        <td>
+                            <img src="img/productSingle_middle/3796.jpg" alt="" class="orderItemImg" height="80px"
+                                width="80px">
+                        </td>
+                        <td>
+                            <div class="orderItemLinkDiv">
+                                <a href="" class="orderItemLink">依然美佳欧式布艺沙发组合可拆洗新款实木雕花大户型奢华别墅家具</a>
+                                <div class="orderItemInsure">
+                                    <img src="img/site/creditcard.png" alt="" title="支持信用卡支付">
+                                    <img src="img/site/7day.png" alt="" title="消费者保障服务,承诺7天退货">
+                                    <img src="img/site/promise.png" alt="" title="消费者保障服务,承诺如实描述">
+                                </div>
+                            </div>
+                        </td>
+                        <td width="100px">
+                            <span class="orderOriginalPrice">￥10,012.00</span>
+                            <span class="orderPromotePrice">￥7,008.40</span>
+                        </td>
+                        <td width="100px" class="orderItemTD">
+                            <span class="orderItemNumber">1</span>
+                        </td>
+                        <td width="120px" class="orderItemTD">
+                            <span class="orderTotalPrice">￥7,008.40</span>
+                            <span>(含运费：￥0.00)</span>
+                        </td>
+                        <td width="100px" class="orderItemTD">
+                            <a href=""><button class="orderButtonConfirm">确认收货</button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="orderListItemTB" orderStatus="waitReview">
+                <tbody>
+                    <tr class="orderItemFirstTR">
+                        <td colspan="2">
+                            <b>2016-09-12 17:00:41</b>
+                            <span>订单号: 20160912170041674794</span>
+                        </td>
+                        <td colspan="2">
+                            <img src="img/site/orderItemTmall.png" alt="" width="13px">
+                            <span>天猫商场</span>
+                        </td>
+                        <td>
+                            <a href="" class="wwLink"><span class="wwGif"></span></a>
+                        </td>
+                        <td class="orderItemDelete">
+                            <a href="" class="orderItemDeleteLink">
+                                <span class="glyphicon glyphicon-trash orderItemDelete"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="orderItemInfo">
+                        <td>
+                            <img src="img/productSingle_middle/3796.jpg" alt="" class="orderItemImg" height="80px"
+                                width="80px">
+                        </td>
+                        <td>
+                            <div class="orderItemLinkDiv">
+                                <a href="" class="orderItemLink">依然美佳欧式布艺沙发组合可拆洗新款实木雕花大户型奢华别墅家具</a>
+                                <div class="orderItemInsure">
+                                    <img src="img/site/creditcard.png" alt="" title="支持信用卡支付">
+                                    <img src="img/site/7day.png" alt="" title="消费者保障服务,承诺7天退货">
+                                    <img src="img/site/promise.png" alt="" title="消费者保障服务,承诺如实描述">
+                                </div>
+                            </div>
+                        </td>
+                        <td width="100px;">
+                            <span class="orderOriginalPrice">￥10,012.00</span>
+                            <span class="orderPromotePrice">￥7,008.40</span>
+                        </td>
+                        <td width="100px" class="orderItemTD">
+                            <span class="orderItemNumber">1</span>
+                        </td>
+                        <td width="120px" class="orderItemTD">
+                            <span class="orderTotalPrice">￥7,008.40</span>
+                            <span style="text-align: center">(含运费：￥0.00)</span>
+                        </td>
+                        <td width="100px" class="orderItemTD">
+                            <a href=""><button class="orderButtonReview">评价</button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="ensureImg"><a href=""><img src="img/site/ensure.png" alt=""></a></div>
+        <div class="footerColumn">
+            <div class="column">
+                <span>買い物ガイド</span>
+                <a href="">無料登録</a>
+                <a href="">PayPay申請</a>
+                <a href="">PayPayチャージ</a>
+            </div>
+            <div class="column">
+                <span>Tmall保証</span>
+                <a href="">請求書保証</a>
+                <a href="">アフターサービス</a>
+                <a href="">在庫切れ補償</a>
+            </div>
+            <div class="column">
+                <span>支払方法</span>
+                <a href="">すぐ払い</a>
+                <a href="">クレジットカード</a>
+                <a href="">PayPay</a>
+                <a href="">代金引換</a>
+            </div>
+            <div class="column">
+                <span>ビジネスサービス</span>
+                <a href="">Tmallルール</a>
+                <a href="">ビジネスプレースメント</a>
+                <a href="">ビジネスセンター</a>
+                <a href="">Tmallシンクタンク</a>
+                <a href="">物流サービス</a>
+                <a href="">運用サービス</a>
+            </div>
+            <div class="column">
+                <span>携帯Tmall</span>
+                <a href=""><img src="img/site/ma.png" alt=""></a>
+            </div>
+        </div>
+        <img class="catEar" src="img/site/cateye.png" alt="">
+        <div class="copyright">
+            <div class="whiteLink">
+                <a href="#nowhere">Tmallについて</a>
+                <a href="#nowhere">ヘルプセンター</a>
+                <a href="#nowhere">オープンプラットフォーム</a>
+                <a href="#nowhere">採用情報</a>
+                <a href="#nowhere">問い合わせ</a>
+                <a href="#nowhere">サイト協力</a>
+                <a href="#nowhere">法的通知</a>
+                <a href="#nowhere">知的財産権</a>
+                <a href="#nowhere">プライバシーポリシー</a>
+            </div>
+            <div class="whiteLink">
+                <a href="#nowhere">Alibaba Group</a><span class="slash">|</span>
+                <a href="#nowhere">Taobao</a><span class="slash">|</span>
+                <a href="#nowhere">Tmall </a><span class="slash">|</span>
+                <a href="#nowhere">セール</a><span class="slash">|</span>
+                <a href="#nowhere">グローバルAliExpress</a><span class="slash">|</span>
+                <a href="#nowhere">アリババ国際市場</a><span class="slash">|</span>
+                <a href="#nowhere">1688</a><span class="slash">|</span>
+                <a href="#nowhere">アリママ</a><span class="slash">|</span>
+                <a href="#nowhere">Ali Travel・Go</a><span class="slash">|</span>
+                <a href="#nowhere">Alibaba Cloud</a><span class="slash">|</span>
+                <a href="#nowhere">Ali Communications</a><span class="slash">|</span>
+                <a href="#nowhere"> YunOS </a><span class="slash">|</span>
+                <a href="#nowhere"> Wanwang </a><span class="slash">|</span>
+                <a href="#nowhere"> ゴールド </a><span class="slash">|</span>
+                <a href="#nowhere"> ビジョン </a><span class="slash">|</span>
+                <a href="#nowhere"> 連携 </a><span class="slash">|</span>
+                <a href="#nowhere"> エビ音楽 </a><span class="slash">|</span>
+                <a href="#nowhere"> 毎日リスリング </a><span class="slash">|</span>
+                <a href="#nowhere"> 旅行 </a><span class="slash">|</span>
+                <a href="#nowhere"> ネイル </a><span class="slash">|</span>
+                <a href="#nowhere"> アリペイ </a>
+            </div>
+            <div class="license">
+                <span>付加価値通信ビジネスライセンス： 浙B2-20110446</span>
+                <span>ネットワーク文化ビジネスライセンス：浙ネット[2015]0295-065号</span>
+                <span>インターネットヘルスケア情報サービス レビュー同意書 セキュリティネットワークレビュー[2018] No. 6 </span>
+                <span>インターネット医薬品情報サービス資格証明書番号：浙-（经营性）-2012-0005</span>
+                <div class="copyRightYear">© 2003-2016 TMALL.COM 著作権</div>
+                <div>
+                    <img src="img/site/copyRight1.jpg">
+                    <img src="img/site/copyRight2.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

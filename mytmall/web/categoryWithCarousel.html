@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="study/js/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <style>
+        .categoryWithCarousel {
+            width: 100%;
+            /* position: relative; */
+        }
+
+        .header {
+            background-color: #dd2727;
+        }
+        .head {
+            width: 200px;
+            background-color: #c60a0a;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 36px;
+            margin-left: 20px;
+            display: inline-block;
+        }
+        .head span{
+            margin-left: 10px;
+        }
+        .rightMenu {
+            display: inline-block;
+        }
+
+        .rightMenu a {
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .rightMenu span {
+            margin: 0px 20px;
+        }
+
+        .rightMenu img {
+            height: 30px;
+        }
+
+        .carouselProduct {
+            height:510px;
+            width: 1024px;
+            margin:0px auto ;
+        }
+        .carouselImage {
+            height: 510px !important;
+        }
+
+        .carouselBackgroundDiv {
+            width: 100%;
+            height: 510px;
+            background-color:#e8e8e8;
+            position: absolute;
+            top: 36px;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="categoryWithCarousel">
+        <div class="header">
+            <div class="head">
+                <span class="glyphicon glyphicon-th-list"></span>
+                <span>商品分類</span>
+            </div>
+            <div class="rightMenu">
+                <span><a href=""><img src="img/site/chaoshi.png" alt=""></a></span>
+                <span><a href=""><img src="img/site/guoji.png" alt=""></a></span>
+                <span><a href="">平板电视</a></span>
+                <span><a href="">电热水器</a></span>
+            </div>
+        </div>
+        <div class="carouselProduct carousel slide" id="carousel" data-interval="1000" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-slide-to="0" data-target="#carousel" class="active"></li>
+                <li data-slide-to="1" data-target="#carousel" ></li>
+                <li data-slide-to="2" data-target="#carousel"></li>
+                <li data-slide-to="3" data-target="#carousel"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active"><img src="img/lunbo/1.jpg" alt="" class="carousel carouselImage"></div>
+                <div class="item"><img src="img/lunbo/2.jpg" alt="" class="carouselImage"></div>
+                <div class="item"><img src="img/lunbo/3.jpg" alt="" class="carouselImage"></div>
+                <div class="item"><img src="img/lunbo/4.jpg" alt="" class="carouselImage"></div>
+            </div>
+        </div>
+        <div class="carouselBackgroundDiv"></div>
+    </div>
+</body>
+
+</html>

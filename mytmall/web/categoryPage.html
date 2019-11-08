@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="study/js/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/topWithSearch.css">
+    <style>
+        /* note
+        sort and price */
+        body {
+            font-size: 12px;
+            min-width: 1013px;
+        }
+
+        .categoryPage {
+            max-width: 1013px;
+            margin: 100px auto 0px auto;
+        }
+
+        .sortBar {
+            background-color: #faf9f9;
+            margin: 40px 20px 20px 20px;
+        }
+
+        .sortBarTable {
+            display: inline-block;
+        }
+
+        .glyphicon {
+            font-size: 10px;
+        }
+
+        .sortBarTable td {
+            font-size: 12px;
+            border: 1px solid #cccccc;
+            padding: 3px;
+            margin: 2px;
+        }
+
+        .sortBarTable td:hover {
+            background-color: #f1edec;
+        }
+
+        td.grayColum {
+            background-color: #f1edec;
+        }
+
+        .sortBarTable a {
+            color: #806f66;
+        }
+
+        .sortBarTable a:hover {
+            color: #c40000;
+            text-decoration: none;
+        }
+
+        .sortBarTable input {
+            border-width: 0px;
+            width: 50px;
+            height: 15px;
+        }
+
+        .priceMiddleColum {
+            color: #cccccc;
+        }
+
+        /* note
+        product of category */
+
+        .categoryProducts {
+            padding: 0px 20px 40px 20px;
+        }
+
+        .productUnit {
+            float: left;
+            width: 225px;
+            height: 330px;
+            margin: 12px 5px;
+            /* 鼠标悬停时候增加了边框 若不事先添加边框改变大小会影响布局且画面抖动 */
+            border: 1px solid #fff;
+        }
+
+        .productUnitFrame {
+            border: 1px solid #eee;
+            height: 100%;
+        }
+
+        .productUnitFrame:hover {
+            border: 1px solid #c40000;
+        }
+
+        .productUnit:hover {
+            border: 1px solid #c40000;
+        }
+
+        .unitImg {
+            width: 100%;
+            height: 190px;
+        }
+
+        .unitPrice {
+            display: block;
+            font-size: 20px;
+            margin-left: 3px;
+            color: #c40000;
+        }
+
+        .unitLink {
+            display: block;
+            color: #333333;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .unitLink:hover {
+            color: #c40000;
+        }
+
+        .unitTM {
+            display: block;
+            margin-top: 10px;
+            color: #999999;
+        }
+
+        .unitTM:hover {
+            color: #c40000;
+        }
+
+        .unitInfo {
+            margin-top: 10px;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #eeeeee;
+            color: #999999;
+        }
+
+        .monthDealNumber {
+            font-weight: bold;
+            color: #B57C5B;
+            margin-left: 3px;
+        }
+
+        .productReview {
+            border-left-style: solid;
+            border-left-color: #eeeeee;
+            border-left-width: 1px;
+            border-right-style: solid;
+            border-right-color: #eeeeee;
+            border-right-width: 1px;
+        }
+
+        .monthDeal,
+        .productReview {
+            display: inline-block;
+            height: 23px;
+            width: 90px;
+            padding-top: 5px;
+            padding-left: 5px;
+        }
+
+        .productReviewNumber {
+            font-weight: bold;
+            color: #3388bb;
+        }
+
+        .wangwang img {
+            padding-left: 2px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $(".sortBarPrice").keyup(function () {
+                var num = $(this).val();
+                if (num.length == 0) {
+                    $(".productUnit").show();
+                    return;
+                }
+                if (isNaN(num)) {
+                    num = 1;
+                }
+                if (num <= 0) {
+                    num = 1;
+                }
+                $(this).val(num);
+                var beginPrice = $(".beginPrice").val();
+                var endPrice = $(".endPrice").val();
+                $(".productUnit").each(function () {
+                    var price = $(this).attr("price");
+                    price = new Number(price);
+                    // document.write(typeof price);
+                    $(this).hide();
+                    if (price >= beginPrice && price <= endPrice) {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="top">
+        <a href="${contextPath}">
+            <span class="glyphicon glyphicon-home redColor"></span>
+            ホームページ
+        </a>
+        <span>Tmallへようこそ</span>
+        <a href="">ログイン</a>
+        <a href="">無料登録</a>
+        <span class="pull-right">
+            <a href="">
+                オーダー</a>
+            <a href="">
+                    <span class="glyphicon glyphicon-shopping-cart redColor"></span>
+                <span>ショッピングカート<strong>0</strong>件</span>
+            </a>
+        </span>
+    </nav>
+    <div>
+        <a href=""><img class="logo" src="img/site/logo.gif" alt=""></a>
+        <div class="searchDiv">
+            <input type="text" placeholder="キーワードから捜す">
+            <button class="searchButton" type="submit" value="搜索">検索</button>
+            <div class="searchBelow">
+                <a href="">冷蔵庫</a><span>|</span>
+                <a href="">本</a><span>|</span>
+                <a href="">スマホ</a><span>|</span>
+                <a href="">PC</a>
+            </div>
+        </div>
+    </div>
+    <div class="categoryPage">
+        <img src="img/category/72.jpg" alt="">
+        <div class="sortBar">
+            <table class="sortBarTable">
+                <tbody>
+                    <tr>
+                        <td class="grayColum"><a href="#nowhere">総合<span
+                                    class="glyphicon glyphicon-arrow-down"></span></a></td>
+                        <td><a href="#nowhere">人気<span class="glyphicon glyphicon-arrow-down"></span></a></td>
+                        <td><a href="#nowhere">新品<span class="glyphicon glyphicon-arrow-down"></span></a></td>
+                        <td><a href="#nowhere">売上<span class="glyphicon glyphicon-arrow-down"></span></a></td>
+                        <td><a href="#nowhere">価格<span class="glyphicon glyphicon-resize-vertical"></span></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="sortBarTable">
+                <tbody>
+                    <tr>
+                        <td><input type="text" placeholder="" class="sortBarPrice beginPrice"></td>
+                        <td class="grayColum priceMiddleColum">-</td>
+                        <td><input type="text" placeholder="" class="sortBarPrice endPrice"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="categoryProducts">
+            <div price="799.2" class="productUnit">
+                <div class="productUnitFrame">
+                    <a href=""><img width="100px" src="img/productSingle_middle/7058.jpg" alt="" class="unitImg"></a>
+                    <span class="unitPrice">799.2</span>
+                    <a href="" class="unitLink">MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮</a>
+                    <a href="" class="unitTM">天猫专卖</a>
+                    <div class="unitInfo">
+                        <span class="monthDeal">月成交<span class="monthDealNumber">16笔</span></span>
+                        <span class="productReview">评价<span class="productReviewNumber">14</span></span>
+                        <span class="wangwang">
+                            <a href=""><img src="img/site/wangwang.png" alt="" "></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div price=" 511.2" class="productUnit">
+                                <div class="productUnitFrame">
+                                    <a href=""><img width="100px" src="img/productSingle_middle/7047.jpg" alt=""
+                                            class="unitImg"></a>
+                                    <span class="unitPrice">511.2</span>
+                                    <a href="" class="unitLink">宾度 男士手包真皮大容量手拿包牛皮个性潮男包手抓包软皮信封包</a>
+                                    <a href="" class="unitTM">天猫专卖</a>
+                                    <div class="unitInfo">
+                                        <span class="monthDeal">月成交<span class="monthDealNumber">49笔</span></span>
+                                        <span class="productReview">评价<span class="productReviewNumber">18</span></span>
+                                        <span class="wangwang">
+                                            <a href=""><img src="img/site/wangwang.png" alt=""></a>
+                                        </span>
+                                    </div>
+                                </div>
+                    </div>
+                    <div price="488.2" class="productUnit">
+                        <div class="productUnitFrame">
+                            <a href=""><img width="100px" src="img/productSingle_middle/7036.jpg" alt=""
+                                    class="unitImg"></a>
+                            <span class="unitPrice">488.2</span>
+                            <a href="" class="unitLink">唯美诺新款男士手包男包真皮大容量小羊皮手拿包信封包软皮夹包潮</a>
+                            <a href="" class="unitTM">天猫专卖</a>
+                            <div class="unitInfo">
+                                <span class="monthDeal">月成交<span class="monthDealNumber">49笔</span></span>
+                                <span class="productReview">评价<span class="productReviewNumber">18</span></span>
+                                <span class="wangwang">
+                                    <a href=""><img src="img/site/wangwang.png" alt=""></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div price="620.2" class="productUnit">
+                        <div class="productUnitFrame">
+                            <a href=""><img width="100px" src="img/productSingle_middle/7025.jpg" alt=""
+                                    class="unitImg"></a>
+                            <span class="unitPrice">620.2</span>
+                            <a href="" class="unitLink">英伦邦纹男士手包牛皮大容量真皮手拿包手抓包双拉链商务正品软皮</a>
+                            <a href="" class="unitTM">天猫专卖</a>
+                            <div class="unitInfo">
+                                <span class="monthDeal">月成交<span class="monthDealNumber">49笔</span></span>
+                                <span class="productReview">评价<span class="productReviewNumber">18</span></span>
+                                <span class="wangwang">
+                                    <a href=""><img src="img/site/wangwang.png" alt=""></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div price="157.2" class="productUnit">
+                        <div class="productUnitFrame">
+                            <a href=""><img width="100px" src="img/productSingle_middle/7014.jpg" alt=""
+                                    class="unitImg"></a>
+                            <span class="unitPrice">157.2</span>
+                            <a href="" class="unitLink"> 劳迪莱斯男士手包休闲手拿包牛皮大容量钱包男包软面小包包手抓包</a>
+                            <a href="" class="unitTM">天猫专卖</a>
+                            <div class="unitInfo">
+                                <span class="monthDeal">月成交<span class="monthDealNumber">49笔</span></span>
+                                <span class="productReview">评价<span class="productReviewNumber">18</span></span>
+                                <span class="wangwang">
+                                    <a href=""><img src="img/site/wangwang.png" alt=""></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div price="268.2" class="productUnit">
+                        <div class="productUnitFrame">
+                            <a href=""><img width="100px" src="img/productSingle_middle/7003.jpg" alt=""
+                                    class="unitImg"></a>
+                            <span class="unitPrice">268.2</span>
+                            <a href="" class="unitLink">帕朗尼男士手拿包真皮手包商务休闲头层牛皮软牛皮大容量休闲钱包</a>
+                            <a href="" class="unitTM">天猫专卖</a>
+                            <div class="unitInfo">
+                                <span class="monthDeal">月成交<span class="monthDealNumber">49笔</span></span>
+                                <span class="productReview">评价<span class="productReviewNumber">18</span></span>
+                                <span class="wangwang">
+                                    <a href=""><img src="img/site/wangwang.png" alt=""></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div price="233.2" class="productUnit">
+                        <div class="productUnitFrame">
+                            <a href=""><img width="100px" src="img/productSingle_middle/6992.jpg" alt=""
+                                    class="unitImg"></a>
+                            <span class="unitPrice">233.2</span>
+                            <a href="" class="unitLink"> 编织手包手拿包男信封大容量手抓包真皮韩版潮商务休闲牛皮男包</a>
+                            <a href="" class="unitTM">天猫专卖</a>
+                            <div class="unitInfo">
+                                <span class="monthDeal">月成交<span class="monthDealNumber">49笔</span></span>
+                                <span class="productReview">评价<span class="productReviewNumber">18</span></span>
+                                <span class="wangwang">
+                                    <a href=""><img src="img/site/wangwang.png" alt=""></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div price="950.2" class="productUnit">
+                        <div class="productUnitFrame">
+                            <a href=""><img width="100px" src="img/productSingle_middle/6981.jpg" alt=""
+                                    class="unitImg"></a>
+                            <span class="unitPrice">950.2</span>
+                            <a href="" class="unitLink">犟牛男士手包真皮手拿包头层牛皮商务大容量手抓包软皮夹包信封包</a>
+                            <a href="" class="unitTM">天猫专卖</a>
+                            <div class="unitInfo">
+                                <span class="monthDeal">月成交<span class="monthDealNumber">49笔</span></span>
+                                <span class="productReview">评价<span class="productReviewNumber">18</span></span>
+                                <span class="wangwang">
+                                    <a href=""><img src="img/site/wangwang.png" alt=""></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="footer">
+                <div class="ensureImg"><a href=""><img src="img/site/ensure.png" alt=""></a></div>
+                <div class="footerColumn">
+                    <div class="column">
+                        <span>買い物ガイド</span>
+                        <a href="">無料登録</a>
+                        <a href="">PayPay申請</a>
+                        <a href="">PayPayチャージ</a>
+                    </div>
+                    <div class="column">
+                        <span>Tmall保証</span>
+                        <a href="">請求書保証</a>
+                        <a href="">アフターサービス</a>
+                        <a href="">在庫切れ補償</a>
+                    </div>
+                    <div class="column">
+                        <span>支払方法</span>
+                        <a href="">すぐ払い</a>
+                        <a href="">クレジットカード</a>
+                        <a href="">PayPay</a>
+                        <a href="">代金引換</a>
+                    </div>
+                    <div class="column">
+                        <span>ビジネスサービス</span>
+                        <a href="">Tmallルール</a>
+                        <a href="">ビジネスプレースメント</a>
+                        <a href="">ビジネスセンター</a>
+                        <a href="">Tmallシンクタンク</a>
+                        <a href="">物流サービス</a>
+                        <a href="">運用サービス</a>
+                    </div>
+                    <div class="column">
+                        <span>携帯Tmall</span>
+                        <a href=""><img src="img/site/ma.png" alt=""></a>
+                    </div>
+                </div>
+                <img class="catEar" src="img/site/cateye.png" alt="">
+                <div class="copyright">
+                    <div class="whiteLink">
+                        <a href="#nowhere">Tmallについて</a>
+                        <a href="#nowhere">ヘルプセンター</a>
+                        <a href="#nowhere">オープンプラットフォーム</a>
+                        <a href="#nowhere">採用情報</a>
+                        <a href="#nowhere">問い合わせ</a>
+                        <a href="#nowhere">サイト協力</a>
+                        <a href="#nowhere">法的通知</a>
+                        <a href="#nowhere">知的財産権</a>
+                        <a href="#nowhere">プライバシーポリシー</a>
+                    </div>
+                    <div class="whiteLink">
+                        <a href="#nowhere">Alibaba Group</a><span class="slash">|</span>
+                        <a href="#nowhere">Taobao</a><span class="slash">|</span>
+                        <a href="#nowhere">Tmall </a><span class="slash">|</span>
+                        <a href="#nowhere">セール</a><span class="slash">|</span>
+                        <a href="#nowhere">グローバルAliExpress</a><span class="slash">|</span>
+                        <a href="#nowhere">アリババ国際市場</a><span class="slash">|</span>
+                        <a href="#nowhere">1688</a><span class="slash">|</span>
+                        <a href="#nowhere">アリママ</a><span class="slash">|</span>
+                        <a href="#nowhere">Ali Travel・Go</a><span class="slash">|</span>
+                        <a href="#nowhere">Alibaba Cloud</a><span class="slash">|</span>
+                        <a href="#nowhere">Ali Communications</a><span class="slash">|</span>
+                        <a href="#nowhere"> YunOS </a><span class="slash">|</span>
+                        <a href="#nowhere"> Wanwang </a><span class="slash">|</span>
+                        <a href="#nowhere"> ゴールド </a><span class="slash">|</span>
+                        <a href="#nowhere"> ビジョン </a><span class="slash">|</span>
+                        <a href="#nowhere"> 連携 </a><span class="slash">|</span>
+                        <a href="#nowhere"> エビ音楽 </a><span class="slash">|</span>
+                        <a href="#nowhere"> 毎日リスリング </a><span class="slash">|</span>
+                        <a href="#nowhere"> 旅行 </a><span class="slash">|</span>
+                        <a href="#nowhere"> ネイル </a><span class="slash">|</span>
+                        <a href="#nowhere"> アリペイ </a>
+                    </div>
+                    <div class="license">
+                        <span>付加価値通信ビジネスライセンス： 浙B2-20110446</span>
+                        <span>ネットワーク文化ビジネスライセンス：浙ネット[2015]0295-065号</span>
+                        <span>インターネットヘルスケア情報サービス レビュー同意書 セキュリティネットワークレビュー[2018] No. 6 </span>
+                        <span>インターネット医薬品情報サービス資格証明書番号：浙-（经营性）-2012-0005</span>
+                        <div class="copyRightYear">© 2003-2016 TMALL.COM 著作権</div>
+                        <div>
+                            <img src="img/site/copyRight1.jpg">
+                            <img src="img/site/copyRight2.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
