@@ -440,50 +440,7 @@
             //         }
             //     });
             // });
-	    $(".buyLink").click(function(){
-	    	var page = "forecheckLogin";
-		$.get(
-			page,
-			function(result){
-				if(result == "success"){
-					var num = $(".productNumberSetting").val();
-					location.href = $(".buyLink").attr("href") + "&num" + num;
-				}else{
-					$(".loginModal").modal('show');
-				}
-			}
-		)
-		    return false;
-	    });
-	    $(".addLink").click(function(){
-	    	var page = "forecheckLogin";
-		$.get(
-			page,
-			function(result){
-				if(result == "success"){
-					var pid = ${p.id};
-					var num = $(".productNumberSetting").val();
-					var cartPage = "foreaddCart";
-					$.get(
-						cartPage,
-						("pid":pid,"num":num),
-						function(result){
-							if(result == "success"){
-								$(".addButton").html("カートに追加されました");
-								$(".addButton").aatr("disabled","disabled");
-								$(".addButton").css("background-color","lightgray");
-								$(".addButton").css("border-color","lightgray");
-								$(".addButton").css("color","black");
-							}else{}
-						}
-					);
-				}else{
-					$(".loginModal").modal('show');
-				}
-			}
-		);
-		    return false;
-	    });
+
             var stock = 66;
             $(".increaseNumber").click(function () {
                 var num = $(".productNumberSetting").val();
@@ -600,7 +557,7 @@
             </div>
             <div class="buyDiv">
                 <a href="forebuyOne?pid=${p.id}" class="buyLink"><button class="buyButton">立即购买</button></a>
-                <a href="foreaddToCart?pid=${p.id}" class="addLink"><button class="addButton"><span
+                <a href="foreaddCart?pid=${p.id}" class="addLink"><button class="addButton"><span
                             class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
             </div>
         </div>
