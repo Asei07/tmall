@@ -223,4 +223,41 @@ public class ForeServlet extends BaseForeServlet{
 		
 		return "confirmPage.jsp";
 	}
+	
+	@override
+	public String addCart(HttpServletRequest req,HttpServletResponse resp){
+		
+		int pid = Integer.parseInt(req.getParameter("pid"));
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		Product p = productDao.get(pid);
+		User u = req.getAttrubute("user");
+		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
+		boolean found = false;
+		for(OrderItem oi : ois){
+			if(pid == oi.getProduct().getId()){
+				oi.setNumber(oi.getNumber + num);
+				orderItemDao.update(oi);
+				found = true;
+				break;
+			}
+		}
+		if(!found){
+			OrderItem oi = new OrderItem();
+			oi.setProduct(p);
+			oi.setUser(u);
+			oi.setNumber(number);
+			orderItemDao.add(oi);			
+		}	
+		return "%success";
+	}	
+	@override
+	public String cart(HttpServletRequest req,HttpServletResponse resp){
+		
+		User u = req.getAttribute("user");
+		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
+		req.setAttribute("ois",ois);
+		
+		return "shoppingCart.jsp";
+	}
 }
