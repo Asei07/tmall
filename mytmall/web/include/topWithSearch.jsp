@@ -22,9 +22,9 @@
         	<a href="register.jsp">免费注册</a>
         </c:if>
         <span class="pull-right">
-            <a href=""><span class="glyphicon glyphicon-shopping-cart redColor"></span>
+            <a href="foreorder"><span class="glyphicon glyphicon-shopping-cart redColor"></span>
                 我的订单</a>
-            <a href="">
+            <a href="forecart">
                 <span>购物车<strong>0</strong>件</span>
             </a>
         </span>
