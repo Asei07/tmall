@@ -164,4 +164,15 @@ public class ForeServlet extends BaseForeServlet{
 		req.setAttribute("c",c);
 		return "category.jsp";
 	}
+	
+	@override
+	public String search(HttpServletRequest req,HttpServletResponse resp){
+		
+		String keyword = req.getParameter("keyword");
+		List<Products> products = productDao.search(keyword,0,20);
+		productDao.setSaleAndReviewNumber(products);
+		req.setAttrubite("ps", ps);
+		
+		return "searchPage.jsp";
+	}
 }
