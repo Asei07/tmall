@@ -1,13 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="study/js/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
-    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/top.css">
     <style>
@@ -219,6 +220,7 @@
                 </span>
             </nav>
     <div class="confirmDiv">
+        <form action="createOrder" method="post">
         <div class="confirmFlow">
             <img src="img/site/simpleLogo.png" alt="" class="pull-left">
             <img src="img/site/buyflow.png" alt="" class="pull-right">
@@ -272,40 +274,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="confirmItemTr">
-                            <td class="confirmImgTd orderFirstTd"><img src="img/productSingle_middle/4206.jpg" alt=""
-                                    class="confirmOrderImg"></td>
-                            <td class="confirmOrderItem">
-                                <a href="" class="orderItemLink">Philips/飞利浦 HR1897/30破壁微榨原汁机 多功能家用果汁榨汁机</a>
-                                <img src="img/site/creditcard.png" alt="">
-                                <img src="img/site/7day.png" alt="">
-                                <img src="img/site/promise.png" alt="">
-                            </td>
-                            <td>￥3,514.05</td>
-                            <td>2</td>
-                            <td class="confirmItemPrice">￥7,028.10</td>
-                            <td rowspan="10" class="orderLastTd">
-                                <input type="radio" checked>
-                                普通配送
-                                <select class="distributionMethod">
-                                    <option value="">快递 免邮费</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="confirmItemTr">
-                            <td class="confirmImgTd orderFirstTd"><img src="img/productSingle_middle/4206.jpg" alt=""
-                                    class="confirmOrderImg"></td>
-                            <td class="confirmOrderItem">
-                                <a href="" class="orderItemLink">Philips/飞利浦 HR1897/30破壁微榨原汁机 多功能家用果汁榨汁机</a>
-                                <img src="img/site/creditcard.png" alt="">
-                                <img src="img/site/7day.png" alt="">
-                                <img src="img/site/promise.png" alt="">
-                            </td>
-                            <td>￥3,514.05</td>
-                            <td>2</td>
-                            <td class="confirmItemPrice">￥7,028.10</td>
-
-                        </tr>
+                      <c:forEach itmes="${ois}" var="oi" varStatus="st">
+                                <tr class="confirmItemTr">
+                                        <td class="confirmImgTd orderFirstTd"><img src="img/productSingle_middle/${oi.prouct.firstProductImage.id}.jpg" alt=""
+                                                class="confirmOrderImg"></td>
+                                        <td class="confirmOrderItem">
+                                            <a href="" class="orderItemLink">${oi.product.name}</a>
+                                            <img src="img/site/creditcard.png" alt="">
+                                            <img src="img/site/7day.png" alt="">
+                                            <img src="img/site/promise.png" alt="">
+                                        </td>
+                                        <td>${oi.product.promotePrice}</td>
+                                        <td>${oi.number}</td>
+                                        <td class="confirmItemPrice">${oi.product.promotePrice * oi.number}</td>
+                                        <c:if test="${st.count == 1}">
+                                        <td rowspan="10" class="orderLastTd">
+                                            <input type="radio" checked>
+                                            普通配送
+                                            <select class="distributionMethod">
+                                                <option value="">快递 免邮费</option>
+                                            </select>
+                                        </td>
+                                        </c:if>
+                                    </tr>                           
+                        </c:forEach>      
                     </tbody>
                 </table>
             </div>
@@ -318,18 +310,19 @@
                         <div class="typeText">还可输入200字符</div>
                     </span>
                 </div>
-                <div class="pull-right"> <span>店铺合计(含运费): ￥12,704.05</span></div>
+                <div class="pull-right"> <span>店铺合计(含运费): ￥${total}</span></div>
                 <div style="clear: both"></div>
             </div>
             <div class="confirmPrice">
                 <div class="pull-right">
                     <span>实付款：</span>
-                    <span class="confirmPriceDigit">￥12,704.05 </span>
+                    <span class="confirmPriceDigit">￥${total} </span>
                 </div>
             </div>
             <div style="clear: both"></div>
             <div><button class="confirmButton pull-right">提交订单</button></div>
         </div>
+        </form>
     </div>
     <div style="clear: both;"></div>
     <div class="footer">
