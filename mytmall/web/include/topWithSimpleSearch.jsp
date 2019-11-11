@@ -35,7 +35,7 @@
     </nav>
     <div>
         <a href="#nowhere"><img class="smallLogo" src="img/site/simpleLogo.png" alt=""></a>
-        <form method="POST">
+        <form action="foresearch" method="POST">
             <div class="simpleSearch">
                 <div class="pull-right smallSearch">
                     <input type="text" placeholder="キーワードから捜す"">
