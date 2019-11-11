@@ -599,7 +599,7 @@
                 </span>
             </div>
             <div class="buyDiv">
-                <a href="forebuy?pid=${p.id}" class="buyLink"><button class="buyButton">立即购买</button></a>
+                <a href="forebuyOne?pid=${p.id}" class="buyLink"><button class="buyButton">立即购买</button></a>
                 <a href="foreaddToCart?pid=${p.id}" class="addLink"><button class="addButton"><span
                             class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
             </div>
