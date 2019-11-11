@@ -175,4 +175,52 @@ public class ForeServlet extends BaseForeServlet{
 		
 		return "searchPage.jsp";
 	}
+	
+	@override
+	public String buyOne(HttpServletRequest req,HttpServletResponse resp){
+		
+		int pid = Integer.parseInt(req.getParameter("pid"));
+		int num = Integer.parseInt(req.getParameter("num"));
+		int oiid = 0;
+		
+		Product p = productDao.get(pid);
+		User u = req.getAttrubute("user");
+		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
+		boolean found = false;
+		for(OrderItem oi : ois){
+			if(pid == oi.getProduct().getId()){
+				oi.setNumber(oi.getNumber + num);
+				orderItemDao.update(oi);
+				found = true;
+				break;
+			}
+		}
+		if(!found){
+			OrderItem oi = new OrderItem();
+			oi.setProduct(p);
+			oi.setUser(u);
+			oi.setNumber(number);
+			orderItemDao.add(oi);
+			oiid = oi.getId();
+		}	
+		return "@forebuy?oiid=" + oiid;
+	}
+	
+	@override
+	public String buy(HttpServletRequest req,HttpServletResponse resp){
+		
+		String[] oiids = req.getParameterValues("oiid");
+		List<OrderItem> ois = new ArrayList();
+		int total = 0;
+		for(String strId : oiids){
+			int oiid = Integer.parseInt(strId);
+			OrderItem oi = orderItemDao.get(oiid);
+			total += oi.getProduct().getPromotePrice() * oi.getNumber();
+			ois.add(oi);
+		}
+		req.setAttribute("ois",ois);
+		req.setAttribute("total",total);
+		
+		return "confirmPage.jsp";
+	}
 }
