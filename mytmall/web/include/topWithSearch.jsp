@@ -30,8 +30,9 @@
         </span>
     </nav>
       <a href=""><img class="logo" src="img/site/logo.gif" alt=""></a>
+    <form action="foresearch" method="post">
     <div class="searchDiv">
-        <input type="text" placeholder="时尚男鞋 太阳镜">
+        <input type="text" name="keyword" value="${param.keyword}" placeholder="时尚男鞋 太阳镜">
         <button class="searchButton" type="submit" value="搜索">検索</button>
         <div class="searchBelow">
         	<c:forEach items="${cs }" var="c" varStatus="st">
@@ -46,5 +47,6 @@
         	</c:forEach>
         </div>
     </div>
+    </form>        
 </body>
 </html>
