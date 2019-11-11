@@ -230,4 +230,46 @@ public class ProductDao {
 			c.setProductsByRow(productsByRow);
 		}
 	}
+	
+	public List<Product> search(String keyword, int start, int end){
+		
+		List<Product> products = new ArrayList();
+		if(keyword == null || keyword.trim().length() == 0)
+			return products;
+		String sql = "select * from product where name like ? limit ?,?";
+		
+		try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.preparedStatement(sql)){
+			ps.setString(1, "%"+keyword.trim()+"%");
+			ps.setInt(2,start);
+			ps.setInt(3.end);
+			
+			ResulteSet rs = ps.excuteQuery();
+			while(rs.next()){
+				Product p = new Product();
+				int id = rs.getInt("id");
+				int cid = rs.getInt("cid");
+				String name = rs.getString("name");
+				String subTitle = rs.getString("subTitle");
+				float originalPrice = rs.getFloat("orignalPrice");
+				float promotePrice = rs.getFloat("promotePrice");
+				int stock = rs.getInt("stock");
+				Date createDate = rs.getDate("createDate");
+				Category c = new CategoryDao().get(cid);
+				
+				p.setId(id);
+				p.setName(name);
+				p.setSubTitle(subTitle);
+				p.setOrignalPrice(originalPrice);
+				p.setPromotePrice(promotePrice);
+				p.setCategory(c);
+				p.setStock(stock);
+				p.setCreateDate(createDate);
+				sertFirstProductImage(p);
+				products.add(p);
+			}
+		}catch(SQLexception e){
+			e.printStackTrace();
+		}
+		return products;
+	}
 }
