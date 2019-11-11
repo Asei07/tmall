@@ -31,6 +31,7 @@
     </nav>
       <a href=""><img class="logo" src="img/site/logo.gif" alt=""></a>
     <div class="searchDiv">
+        <form action="foresearch" method="post">
         <input type="text" placeholder="时尚男鞋 太阳镜">
         <button class="searchButton" type="submit" value="搜索">検索</button>
         <div class="searchBelow">
@@ -45,6 +46,7 @@
         		</c:if>
         	</c:forEach>
         </div>
+        </from>
     </div>
 </body>
 </html>
