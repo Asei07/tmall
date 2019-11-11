@@ -178,7 +178,10 @@
                         </div>
                     </div>
                 </c:if>
-            </c:forEach>                                                                                                        
+            </c:forEach>  
+            <c:if test = "${empty ps}">
+                <div class="noMatch">該当する商品は見つかりませんでした</div>
+            </c:if>
          </div>
         </div>
             <div style="clear: both;"></div>
