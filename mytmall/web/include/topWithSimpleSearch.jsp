@@ -35,10 +35,10 @@
     </nav>
     <div>
         <a href="#nowhere"><img class="smallLogo" src="img/site/simpleLogo.png" alt=""></a>
-        <form method="POST">
+        <form action="foresearch" method="POST">
             <div class="simpleSearch">
                 <div class="pull-right smallSearch">
-                    <input type="text" placeholder="キーワードから捜す"">
+                    <input type="text" name="keyword" value="${param.keyword}" placeholder="キーワードから捜す"">
                     <button class="" type=" submit" value="搜索">検索</button>
                     <div class="smallSearchBelow">
                     	<c:forEach items="${cs }" var="c" varStatus="st">
