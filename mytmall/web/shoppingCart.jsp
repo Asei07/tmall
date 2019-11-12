@@ -354,6 +354,19 @@
                     )                   
                 }          
             });
+            
+            $(".orderButton").click(function(){
+                   var params = "";
+                   $(".cartItemSelect").each(function(){
+                        if($(this).attr("select") == "selected"){
+                            var oiid = $(this).attr("oiid");
+                            params += "&oiid=" + oiid; 
+                        } 
+                   })
+                    params = params.substring(1);
+                    location.href = "forebuy?" + params;
+              });
+            
         });
     </script>
 </head>
