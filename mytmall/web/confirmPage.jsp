@@ -306,7 +306,7 @@
                     <span class="leaveMessageText">给卖家留言:</span>
                     <span class="leaveMessageImg"><img src="img/site/leaveMessage.png" alt=""></span>
                     <span class="leaveMessage" style="display: none;">
-                        <textarea name="" id=""  class="leaveMessageTextArea"></textarea>
+                        <textarea name="message" id=""  class="leaveMessageTextArea"></textarea>
                         <div class="typeText">还可输入200字符</div>
                     </span>
                 </div>
