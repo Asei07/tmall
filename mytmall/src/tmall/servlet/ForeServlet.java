@@ -279,4 +279,16 @@ public class ForeServlet extends BaseForeServlet{
 		}
 		return "%success";
 	}
+	
+	@override
+	public String deleteOrderItem(HttpServletRequest req,HttpServletResponse resp){
+		
+		User user = req.getAttribute("user");
+		if(user == null)
+			return "%fail";
+		int oiid = Integer.parsInt(req.getParameter("oiid"));
+		orderItemDao.delete(oiid);
+		
+		return "%success";
+	}
 }
