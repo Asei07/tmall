@@ -291,4 +291,37 @@ public class ForeServlet extends BaseForeServlet{
 		
 		return "%success";
 	}
+	
+	@override
+	public String createOrder(HttpServletRequest req,HttpServletResponse resp){
+		
+		User user = req.getSession().getAttribute("user");
+		String address = req.getParameter("address");
+		String post = req.getParameter("post");
+		String name = req.getParameter("name");
+		String mobile = req.getParameter("mobile");
+		String message = req.getParameter("message");
+		String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()) + Random.nextInt(10000);
+		
+		Order order = new Order();
+		order.setOrderCode(orderCode);
+	    	order.setAddress(address);
+	   	order.setPost(post);
+	    	order.setReceiver(receiver);
+	    	order.setMobile(mobile);
+	    	order.setUserMessage(userMessage);
+	   	order.setCreateDate(new Date());
+	    	order.setUser(user);
+	    	order.setStatus(OrderDAO.waitPay);
+		orderDao.add(order);
+		
+		List<orderItem> ois = req.getSession().getAttribute("ois");
+		int total = req.getSession().getAttribute("total");
+		for(orderItem oi : ois){
+			oi.setOrder(order);
+			orderItemDao.update(oi);
+		}
+		req.setAttribute("oid",order.getId());
+		return "payPage.jsp";
+	}
 }
