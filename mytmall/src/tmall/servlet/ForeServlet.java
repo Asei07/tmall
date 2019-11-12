@@ -260,4 +260,23 @@ public class ForeServlet extends BaseForeServlet{
 		
 		return "shoppingCart.jsp";
 	}
+	
+	@override
+	public String changeOrderItem(HttpServletRequest req,HttpServletResponse resp){
+		
+		User user = req.getAttribute("user");
+		if(user == null)
+			return "%fail";
+		int pid = Integer.parsInt(req.getParameter("pid"));
+		int num = Integer.parsint(req.getParameter("num"));
+		List<OrderItem> ois = orderItemDao.list(user.getId());
+		for(OrderItem oi : ois){
+			if(oi.getProduct().getId() == pid){
+				oi.setNumber(num);
+				orderItemDao.update(oi);
+				break;
+			}
+		}
+		return "%success";
+	}
 }
