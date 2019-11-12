@@ -358,7 +358,7 @@
                     <tr class="eachCartItem">
                         <td>
                             <img src="img/site/cartNotSelected.png" alt="" select="false" class="cartItemSelect"
-                                oiid="1">
+                                oiid="${oi.id}">
                             <img src="img/productSingle_middle/3665.jpg" alt="" class="cartItemImg" width="40px">
                         </td>
                         <td>
