@@ -219,7 +219,7 @@ public class ForeServlet extends BaseForeServlet{
 			ois.add(oi);
 		}
 		req.setAttribute("ois",ois);
-		req.setAttribute("total",total);
+		req.getSession().setAttribute("total",total);
 		
 		return "confirmPage.jsp";
 	}
@@ -323,5 +323,18 @@ public class ForeServlet extends BaseForeServlet{
 		}
 		req.setAttribute("oid",order.getId());
 		return "payPage.jsp";
+	}
+	
+	@override
+	public String payed(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parseInt(req.getParameter("oid"));
+		Order order = orderDao.get(oid);
+		order.setStatus(orderDao.waitDelivery);
+		order.setPayDate(new Date());
+		orderDao.update(order);
+		
+		req.setAttribute("o",order);
+		return "payedPage.jsp";		
 	}
 }
