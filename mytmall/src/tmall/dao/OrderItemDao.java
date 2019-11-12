@@ -129,4 +129,16 @@ public class OrderItemDao {
 		}
 		return ois;
 	}
+	public List<OrderItem> listByOrder(int oid){
+		
+	}
+	public List<OrderItem> listByOrder(int oid, int start, int count){
+		
+		List<OrderItem> beans = new ArrayList();
+		String sql = "select * from orderItem where oid = ? "
+	}
+	public void fill(Order o){
+		
+		String sql = "select * from orderItem where oid =" + o.getId():
+	}
 }
