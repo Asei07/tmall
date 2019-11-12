@@ -100,14 +100,14 @@
         </div>
         <div class="payedAddressInfo">
             <ul class="payedAddress">
-                <li>收货地址： 北京市 朝阳区 天安门 3栋 2单元 402室</li>
-                <li>实付款：<span class="payedPrice">￥2,124.15</span></li>
+                <li>收货地址： ${o.address} ${o.receiver} ${o.mobile}</li>
+                <li>实付款：<span class="payedPrice">￥${total}</span></li>
                 <li>预计08月08日送达</li>
             </ul>
             <div class="payedLink">
                 <span>您可以</span>
-                <a href="">查看已买到的宝贝</a>
-                <a href="">查看交易详情</a>
+                <a href="forebought">查看已买到的宝贝</a>
+                <a href="forebought">查看交易详情</a>
             </div>
         </div>
         <div class="payedSplitLine"></div>
