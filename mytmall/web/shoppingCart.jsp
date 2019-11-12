@@ -292,6 +292,16 @@
                 if (num > stock)
                     num = stock;
                 syncPrice(pid, num, price);
+                var page = "forechangeOrderItem";
+                $.post(
+                    page,
+                    {"pid":pid, "num":num},
+                    function(result){
+                        if(result != "seccess"){
+                            location.href = "login.jsp";
+                        }
+                    }
+                )
             });
             $(".cartNumberDecrease").click(function () {
                 var pid = $(this).attr("pid");
@@ -302,6 +312,16 @@
                 if (num < 1)
                     num = 1;
                 syncPrice(pid, num, price);
+                var page = "forechangeOrderItem";
+                $.post(
+                    page,
+                    {"pid":pid, "num":num},
+                    function(result){
+                        if(result != "seccess"){
+                            location.href = "login.jsp";
+                        }
+                    }
+                )
             });
             $(".cartNumberSet").keyup(function () {
                 var num = $(this).val();
@@ -321,13 +341,19 @@
             $(".cartItemDelete").click(function () {
                 var r = confirm("are you sure")
                 var oiid = $(this).attr("oiid");
+                var page = "foredeleteOrderItem";
                 if (r) {
-                    $(this).parents(".eachCartItem").hide();
-                    $(".cartItemSelect[oiid=" + oiid + "]").attr("select", "false");
-                    cartPriceAndNumber();
-                }
-            })
-
+                    $.post(
+                        page,
+                        {"oiid":oiid},
+                        function(resulte == "success"){
+                            $(this).parents(".eachCartItem").hide();
+                            $(".cartItemSelect[oiid=" + oiid + "]").attr("select", "false");
+                            cartPriceAndNumber();
+                        }
+                    )                   
+                }          
+            });
         });
     </script>
 </head>
