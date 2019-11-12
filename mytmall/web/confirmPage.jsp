@@ -220,7 +220,7 @@
                 </span>
             </nav>
     <div class="confirmDiv">
-        <form action="createOrder" method="post">
+        <form action="forecreateOrder" method="post">
         <div class="confirmFlow">
             <img src="img/site/simpleLogo.png" alt="" class="pull-left">
             <img src="img/site/buyflow.png" alt="" class="pull-right">
