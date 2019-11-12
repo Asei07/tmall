@@ -71,13 +71,13 @@
         </div>
         <div>
             <span class="aliPayText">扫一扫付款（元）</span>
-            <span class="aliPayPrice">￥1,359.20</span>
+            <span class="aliPayPrice">￥${total}</span>
         </div>
         <div>
             <img src="img/site/alipay2wei.png" alt="" class="">
         </div>
         <div>
-            <a href="">
+            <a href="forepayed?oid=${oid}&total=${total}">
                 <button class="confirmPay">确认支付</button>
             </a>
         </div>
