@@ -188,6 +188,22 @@
                 $(".orderTitle div").removeClass("selectOrder");
                 $(this).parent("div").addClass("selectOrder");
             });
+            
+            $(".orderDeleteLink").click(function(){
+                var page = "foredeleteOrder";
+                var oid = $(this).attr("oid");
+                $.post(
+                    page,
+                    {"oid":oid},
+                    function(result){
+                        if(result == "success"){
+                            $(".orderListItemTB[oid="+oid+"]").hide();
+                        }else{
+                            location.href = "login.jsp";
+                        }
+                    }
+                )
+            });
         });
 
     </script>
@@ -219,7 +235,7 @@
         </div>
         <div class="orderListItem">
             <c:forEach items="${os}" var="o">
-            <table class="orderListItemTB" orderStatus="${o.status}">
+            <table class="orderListItemTB" orderStatus="${o.status}" oid="${o.id}">
                 <tbody>
                     <tr class="orderItemFirstTR">
                         <td colspan="2">
@@ -234,7 +250,7 @@
                             <a href="" class="wwLink"><span class="wwGif"></span></a>
                         </td>
                         <td class="orderItemDelete">
-                            <a href="" class="orderItemDeleteLink">
+                            <a href="" class="orderDeleteLink" oid="${o.id}">
                                 <span class="glyphicon glyphicon-trash orderItemDelete"></span>
                             </a>
                         </td>
