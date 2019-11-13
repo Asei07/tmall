@@ -348,4 +348,15 @@ public class ForeServlet extends BaseForeServlet{
 		req.setAttribute("os",os);
 		return "orderPage.jsp";
 	}
+	
+	@override
+	public String receive(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parsInt(req.getparameter("oid"));
+		Order o = orderDao.get(oid);
+		orderItemDao.fill(o);
+		
+		req.setAttribute("o",o);
+		return "receivePage.jsp";
+	}
 }
