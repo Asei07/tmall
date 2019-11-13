@@ -111,6 +111,7 @@ public class OrderItemDao {
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
 				OrderItem oi = new OrderItem();
+				int id = rs.getInt("id");
 				int pid = rs.getInt("pid");
 				int oid = rs.getInt("oid");
 				int number = rs.getInt("number");
@@ -118,6 +119,7 @@ public class OrderItemDao {
 				User u = new UserDao().get(uid);
 				Order o = new OrderDao().get(oid);
 				
+				oi.setId(id);
 				oi.setProduct(p);
 				oi.setUser(u);
 				oi.setOrder(o);
@@ -137,8 +139,36 @@ public class OrderItemDao {
 		List<OrderItem> beans = new ArrayList();
 		String sql = "select * from orderItem where oid = ? "
 	}
+	public void fill(Order[] orders){
+		for(Order o : orders){
+			fill(o);
+		}
+	}
 	public void fill(Order o){
 		
+		List<OrderItem> ois = new ArrayList();
 		String sql = "select * from orderItem where oid =" + o.getId():
+		
+		try(Connection c = DBUtil.getConnection(); Statement s = c.createStatement()){
+			
+			ResultSet rs = s.execute();
+			while(rs.next()){
+				OrderItem oi = new OrderItem();
+				int id = rs.getInt("id");
+				int number = rs.getInt("number");
+				int uid = rs.getInt("uid");
+				int pid = rs.getInt("pid");
+				User u = new UserDao().get(uid);
+				Product p = new ProductDao().get(pid);
+				
+				oi.setId(id);
+				oi.setNumber(number);
+				oi.setUser(u);
+				oi.setProduct(p);
+				oi.setOrder(o);
+				ois.add(oi);
+			}
+		}
+		o.setOrderItem(ois);
 	}
 }
