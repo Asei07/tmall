@@ -11,7 +11,7 @@
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/fore/footer.css">
     <link rel="stylesheet" href="css/fore/topWithSimpleSearch.css">
-	<link rel="stylesheet" href="css/fore/register.css">
+    <link rel="stylesheet" href="css/fore/register.css">
     <title>Document</title>
 	<script>
 		$(function(){
