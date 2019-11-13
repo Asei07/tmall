@@ -2,6 +2,13 @@ package tmall.dao;
 
 public class OrderDao {
     
+    public static final String waitPay = "waitPay";
+    public static final String waitDelivery = "waitDelivery";
+    public static final String waitConfirm = "waitConfirm";
+    public static final String waitReview = "waitReview";
+    public static final String finish = "finish";
+    public static final String delete = "delete";
+    
     public int getTotal(){
         
       total = 0;
@@ -106,13 +113,73 @@ public class OrderDao {
                 Date confirmDate = new Date(rs.getDateStape("confirmDate").getTime());
                 int uid = rs.getInt("uid");
                 
+                o.setId(id);
                 o.setOrderCode(orderCode);
                 o.setAddress(address);
                 o.setPost(post);
+                o.setReceiver(receiver);
+                o.setMobile(mobile);
+                o.setUserMessage(userMessage);
+                o.setStatus(status);
+                o.setCreateDate(createDate);
+                o.setPayDate(payDate);
+                o.setDeliveryDate(deliveryDate);
+                o.setConfirmDate(confirmDate);
+                User u = new UserDao().get(uid);
+                o.setUser(u);
             }
             
         }catch(SQLException e){
             e.printStackTrace();
         }
+        return o;
+    }
+    
+    public List<Order> list(int uid, String statu){
+        
+        List<Order> os = new ArrayList();
+        String sql = "select * from order where uid = ? and status != ?";
+        try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.preparedStatement(sql)){
+            
+            ps.setInt(1,uid);
+            ps.setString(2,statu);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Order o = new Order();
+                int id = rs.getInt("id");
+                String orderCode = rs.getString("orderCode");
+                String address = rs.getString("address");
+                String post = rs.getString("post");
+                String receiver = rs.getString("receiver");
+                String mobile = rs.getString("mobile");
+                String userMessage = rs.getString("userMessage");
+                String status = rs.getString("status");
+                Date createDate = new Date(rs.getDateStape("createDate").getTime());
+                Date payDate = new Date(rs.getDateStape("payDate").getTime());
+                Date deliveryDate = new Date(rs.getDateStape("deliveryDate").getTime());
+                Date confirmDate = new Date(rs.getDateStape("confirmDate").getTime());
+                
+                o.setId(id);
+                o.setOrderCode(orderCode);
+                o.setAddress(address);
+                o.setPost(post);
+                o.setReceiver(receiver);
+                o.setMobile(mobile);
+                o.setUserMessage(userMessage);
+                o.setStatus(status);
+                o.setCreateDate(createDate);
+                o.setPayDate(payDate);
+                o.setDeliveryDate(deliveryDate);
+                o.setConfirmDate(confirmDate);
+                User u = new UserDao().get(uid);
+                o.setUser(u);
+                
+                os.add(o);
+            }
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return os;
     }
 }
