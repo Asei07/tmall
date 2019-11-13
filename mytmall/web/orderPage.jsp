@@ -269,12 +269,12 @@
                         </td>
                             <c:if test="${o.status == 'waitConfirm'}">
                                 <td width="100px" class="orderItemTD">
-                                <a href=""><button class="orderButtonConfirm">受取確認</button></a>
+                                <a href="forereceive?oid=${o.id}"><button class="orderButtonConfirm">受取確認</button></a>
                                 </td>
                             </c:if>
                             <c:if test="${o.status == 'waitPay'}">
                                 <td width="100px" class="orderItemTD">
-                                <a href=""><button class="orderButtonConfirm">支払い</button></a>
+                                <a href="forepay?oid=${o.id}&total=${o.total}"><button class="orderButtonConfirm">支払い</button></a>
                                 </td>
                             </c:if>
                             <c:if test="${o.status == 'waitDelivery'}">
