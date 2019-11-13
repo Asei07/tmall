@@ -241,7 +241,7 @@
         </div>
         <div class="receiveConfirm">
             <div class="receiveConfirmText">请收到货后，再确认收货！否则您可能钱货两空！</div>
-            <a href="forefinish?oid=${o.id}"><button class="receiveConfirmButton">确认支付</button></a>
+            <a href="foreorderFinish?oid=${o.id}"><button class="receiveConfirmButton">确认支付</button></a>
         </div>
     </div>
     <%@include file="include/footer.jsp">
