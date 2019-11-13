@@ -1,15 +1,17 @@
+  
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="study/js/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
-    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/topWithSimpleSearch.css">
+    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/fore/footer.css">
+    <link rel="stylesheet" href="css/fore/topWithSimpleSearch.css">
     <style>
         body {
             font-size: 12px;
@@ -63,36 +65,7 @@
 </head>
 
 <body>
-    <nav class="top">
-        <a href="${contextPath}">
-            <span class="glyphicon glyphicon-home redColor"></span>
-            天猫首页
-        </a>
-        <span>欢迎来天猫</span>
-        <a href="">请登录</a>
-        <a href="">免费注册</a>
-        <span class="pull-right">
-            <a href="">
-                オーダー</a>
-            <a href="">
-                <span class="glyphicon glyphicon-shopping-cart redColor"></span>
-                ショッピングカート<strong>0</strong>件
-            </a>
-        </span>
-    </nav>
-    <div class="simpleSearch">
-        <a href=""><img class="smallLogo" src="img/site/simpleLogo.png" alt=""></a>
-        <div class="pull-right smallSearch">
-            <input type="text" placeholder="平衡车 原汁机">
-            <button class="" type="submit" value="搜索">搜索</button>
-            <div class="smallSearchBelow">
-                <a href="">冰箱</a><span>|</span>
-                <a href="">空调</a><span>|</span>
-                <a href="">女表</a><span>|</span>
-                <a href="">男表</a>
-            </div>
-        </div>
-    </div>
+    <%@include file="include/topWithSimpleSearch.jsp">
     <div class="payedDiv">
         <div class="payedTextInfo">
             <img src="img/site/paySuccess.png" alt="">
