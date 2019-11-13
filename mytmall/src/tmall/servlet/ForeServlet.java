@@ -371,4 +371,15 @@ public class ForeServlet extends BaseForeServlet{
 		
 		return "orderFinish.jsp";
 	}
+	
+	@override
+	public String deleteOrder(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parsInt("oid");
+		Order o = orderDao.get(oid);
+		o.setStatus(orderDao.delete);
+		orderDao.update(o);
+		
+		return "%success";
+	}
 }
