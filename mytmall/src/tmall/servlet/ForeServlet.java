@@ -337,4 +337,15 @@ public class ForeServlet extends BaseForeServlet{
 		req.setAttribute("o",order);
 		return "payedPage.jsp";		
 	}
+	
+	@override
+	public String bought(HttpServletRequest req,HttpServletResponse resp){
+		
+		User u = req.getSession().getParameter("user");
+		List<Order> os = orderDao.list(u.getId(),orderDao.delete);
+		orderItem.fill(os);
+		
+		req.setAttribute("os",os);
+		return "orderPage.jsp";
+	}
 }
