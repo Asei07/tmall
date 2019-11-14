@@ -398,4 +398,25 @@ public class ForeServlet extends BaseForeServlet{
 		req.setAttribute("p",p);
 		return "reviewPage.jsp";
 	}
+	
+	@override
+	public String doReview(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parsInt("oid");
+		int pid = Integer.parsInt("pid");
+		Order o = orderDao.get(oid);
+		o.setStatus(orderDao.finish);
+		orderDao.update(o);
+		
+		String content = req.getParameter("reviewContent");
+		Review r = new Review();
+		r.setContent(content);
+		r.setCreateDate(new Date());
+		r.setUser(u);
+		r.setProduct(p);
+		reviewDao.add(r);
+		
+		return "@forereview?oid=" + oid + "&showonly=true";
+		
+	}
 }
