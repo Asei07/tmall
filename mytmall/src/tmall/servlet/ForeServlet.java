@@ -382,4 +382,19 @@ public class ForeServlet extends BaseForeServlet{
 		
 		return "%success";
 	}
+	
+	@override
+	public String review(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parsInt("oid");
+		Order o = orderDao.get(oid);
+		//オーダーにアイテムを補充する
+		orderitemDao.fill(o);
+		List<OrderItem> ois = o.getOrderItems();
+		Product p = ois[0].getProduct();
+		productDao.setSaleAndReviewNumber(p);
+		
+		req.setAttribute("p",p);
+		return "reviewPage.jsp";
+	}
 }
