@@ -394,6 +394,7 @@ public class ForeServlet extends BaseForeServlet{
 		Product p = ois[0].getProduct();
 		productDao.setSaleAndReviewNumber(p);
 		
+		req.setAttribute("o",o);
 		req.setAttribute("p",p);
 		return "reviewPage.jsp";
 	}
