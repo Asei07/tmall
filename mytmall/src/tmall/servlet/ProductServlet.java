@@ -121,4 +121,15 @@ public class ProductServlet extends BaseBackServlet{
 		req.setAttribute("pts",pts);
 		return "admin/editPropertyValue.jsp";
 	}
+	
+	public String updatePropertyValue(HttpServletRequest request, HttpServletResponse response, Page page){
+		
+		int pvId = Integer.parsInt(req.getParameter("pvId"));
+		String pvValue = req.getParameter("pvValue");
+		PropertyValue pv = propertyValueDao.get(pvId);
+		pv.setValue(pvValue);
+		propertyValueDao.update(pv);
+		
+		return "%success";
+	}
 }
