@@ -110,5 +110,15 @@ public class ProductServlet extends BaseBackServlet{
 		return "@admin_product_list?cid=" + cid;
 	}
 
-
+	public String editPropertyValue(HttpServletRequest request, HttpServletResponse response, Page page){
+		
+		int pid = Integer.parsInt("pid");
+		Product p = productDao.get(pid);
+		propertyValueDao.init(p);
+		List<Property> pts = propertyDao.list(p.getCategory().getId());
+		
+		req.setAttribute("p",p);
+		req.setAttribute("pts",pts);
+		return "admin/editPropertyValue.jsp";
+	}
 }
