@@ -148,6 +148,8 @@ public class OrderItemDao {
 		
 		List<OrderItem> ois = new ArrayList();
 		String sql = "select * from orderItem where oid =" + o.getId():
+		int totalNumber = 0;
+		int totalPrice = 0;
 		
 		try(Connection c = DBUtil.getConnection(); Statement s = c.createStatement()){
 			
@@ -169,6 +171,13 @@ public class OrderItemDao {
 				ois.add(oi);
 			}
 		}
+		//数と総額とる
+		for(OrderItem oi : ois){
+			totalNumber += oi.getNumber();
+			totalPrice += oi.getNumber() * oi.getProduct().getPromotePrice();
+		}
+		o.setTotalNumber(totalNumber);
+		o.setTotalPrice(totalPrice);
 		o.setOrderItem(ois);
 	}
 }
