@@ -25,7 +25,11 @@
         	<a href="register.jsp">免费注册</a>
         </c:if>
         <span class="pull-right">
+<<<<<<< HEAD
             <a href="foreorder">
+=======
+            <a href="forebought">
+>>>>>>> edit-version
                 オーダー</a>
             <a href="forecart">
                 <span class="glyphicon glyphicon-shopping-cart redColor"></span>
@@ -38,7 +42,7 @@
         <form action="foresearch" method="POST">
             <div class="simpleSearch">
                 <div class="pull-right smallSearch">
-                    <input type="text" placeholder="キーワードから捜す"">
+                    <input type="text" name="keyword" value="${param.keyword}" placeholder="キーワードから捜す"">
                     <button class="" type=" submit" value="搜索">検索</button>
                     <div class="smallSearchBelow">
                     	<c:forEach items="${cs }" var="c" varStatus="st">
