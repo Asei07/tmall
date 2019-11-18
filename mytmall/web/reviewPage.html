@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script src="study/js/jquery/2.0.0/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/topWithSimpleSearch.css">
+    <style>
+        body {
+            font-size: 12px;
+        }
+
+        .reviewDiv {
+            max-width: 1013px;
+            margin: 100px auto 0px auto;
+
+        }
+
+        .reviewImg {
+            float: left;
+            border: 1px solid #e7e7e7;
+        }
+
+        .reviewImg img {
+            width: 400px;
+            height: 400px;
+            padding: 0px 20px;
+        }
+
+        .reviewProductInfo {
+            overflow: hidden;
+            border-top: 1px solid #e7e7e7;
+            padding: 30px 30px;
+        }
+
+        .reviewProductTitle {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .reviewTB td {
+            color: #999;
+            width: 80px;
+        }
+
+        .reviewTB .reviewSecendTd {
+            width: 200px;
+        }
+
+        .reviewPriceDigit,
+        .reviewSaleNumber {
+            color: #c40000;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .productBottomDiv {
+            border: 1px solid #f6f5f3;
+            height: 160px;
+            margin: 20px 10px;
+            background-color: #fdfbfa;
+        }
+
+        .productBottomInfo {
+            margin: 10px 60px;
+
+        }
+
+        .productBottomInfo span {
+            border: 1px solid #e1e1e1;
+            display: inline-block;
+            width: 200px;
+            position: absolute;
+
+        }
+
+        .productBottomInfo img {
+            border: 1px solid #e1e1e1;
+            height: 36px;
+        }
+
+        /* note
+            reviewTotal and makeReview */
+        .reviewTotalDiv {
+            margin-top: 20px;
+        }
+
+        .reviewTotalLeft {
+            float: left;
+            width: 180px;
+        }
+
+        .reviewTotalLeftTop {
+            border: 3px solid #c40000;
+        }
+
+        .reviewTotalLeftMiddle {
+            text-align: center;
+            font-weight: bold;
+            border-left: 1px solid #d5d4d4;
+            border-right: 1px solid #d5d4d6;
+            /* border: 1px solid; */
+            line-height: 30px;
+            font-size: 13px;
+            background-color: #f6f5f1;
+        }
+
+        .reviewTotalLeftFoot {
+            height: 6px;
+            border-left: 1px solid #d5d4d6;
+            border-bottom: 1px solid #d5d4d6;
+            background-color: #f6f5f1;
+        }
+
+        .reviewTotalRightEmpty {
+            height: 35px;
+        }
+
+        .reviewTotalRightFoot {
+            height: 6px;
+            border: 1px solid #d5d4d4;
+            background-color: #f6f5f1;
+        }
+
+        .makeReviewDiv {
+            border: 1px solid #d1ccc8;
+            background-color: #efefef;
+            margin: 20px 0px;
+        }
+
+        .makeReviewText {
+            margin: 20px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .makeReviewTB {
+            border: 1px solid #e7e7e7;
+            margin-left: 30px;
+            font-size: 12px;
+            background-color: white;
+        }
+
+        .makeReviewTB td {
+            /* border-right: 1px solid #e7e7e7; */
+            background-color: white;
+            padding: 5px;
+        }
+
+        .makeReviewTBFirstTD {
+            border-right: 1px solid #e7e7e7;
+        }
+
+        .makeReviewContent {
+            border-width: 0px;
+            resize: none;
+            width: 420px;
+            height: 120px;
+        }
+
+        .makeReviewButtonDiv {
+            background-color: white;
+            margin: 18px 0px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .makeReviewButtonDiv button {
+            height: 26px;
+            width: 72px;
+            margin-top: 10px;
+            border-width: 0px;
+            color: white;
+            background-color: #c40000;
+            border-radius: 2px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top">
+        <a href="${contextPath}">
+            <span class="glyphicon glyphicon-home redColor"></span>
+            ホームページ
+        </a>
+        <span>Tmallへようこそ</span>
+        <a href="">ログイン</a>
+        <a href="">無料登録</a>
+        <span class="pull-right">
+            <a href="">
+                オーダー</a>
+            <a href="">
+                <span class="glyphicon glyphicon-shopping-cart redColor"></span>
+                ショッピングカート<strong>0</strong>件
+            </a>
+        </span>
+    </nav>
+    <div>
+        <a href="#nowhere"><img class="smallLogo" src="img/site/simpleLogo.png" alt=""></a>
+        <form method="POST">
+            <div class="simpleSearch">
+                <div class="pull-right smallSearch">
+                    <input type="text" placeholder="キーワードから捜す"">
+                    <button class="" type=" submit" value="搜索">検索</button>
+                    <div class="smallSearchBelow">
+                        <a href="">冷蔵庫</a><span>|</span>
+                        <a href="">本</a><span>|</span>
+                        <a href="">スマホ</a><span>|</span>
+                        <a href="">PC</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="reviewDiv">
+        <div class="reviewImg">
+            <img src="img/productSingle/8619.jpg" alt="">
+        </div>
+        <div class="reviewProductInfo">
+            <div class="reviewProductTitle">依然美佳欧式布艺沙发组合可拆洗新款实木雕花大户型奢华别墅家具</div>
+            <table class="reviewTB">
+                <tbody>
+                    <tr>
+                        <td>价格</td>
+                        <td class="reviewSecendTd"><span class="reviewPriceDigit"> ￥10,012.00</span>元</td>
+                    </tr>
+                    <tr>
+                        <td>配送</td>
+                        <td clsas="reviewSecendTd">快递: 0.00</td>
+                    </tr>
+                    <tr>
+                        <td>月销量</td>
+                        <td class="reviewSecendTd"><span class="reviewSaleNumber">15</span>件</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="productBottomDiv">
+                <div class="productBottomInfo">
+                    <img src="img/site/reviewLight.png" alt="">
+                    <span>现在查看的是 您所购买商品的信息 于2016年11月22下单购买了此商品</span>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="reviewTotalDiv">
+            <div class="reviewTotalLeft">
+                <div class="reviewTotalLeftTop"></div>
+                <div class="reviewTotalLeftMiddle">累计评价<span class="reviewTotalDigit">13</span></div>
+                <div class="reviewTotalLeftFoot"></div>
+            </div>
+            <div class="reviewTotalRight">
+                <div class="reviewTotalRightEmpty"></div>
+                <div class="reviewTotalRightFoot"></div>
+            </div>
+        </div>
+        <div class="makeReviewDiv">
+            <div class="makeReviewText">其他买家，需要你得建议哦！</div>
+            <table class="makeReviewTB">
+                <tbody>
+                    <tr>
+                        <td class="makeReviewTBFirstTD">评价商品</td>
+                        <td><textarea class="makeReviewContent" cols="30" rows="8"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="makeReviewButtonDiv">
+                <button>提交评价</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="ensureImg"><a href=""><img src="img/site/ensure.png" alt=""></a></div>
+        <div class="footerColumn">
+            <div class="column">
+                <span>買い物ガイド</span>
+                <a href="">無料登録</a>
+                <a href="">PayPay申請</a>
+                <a href="">PayPayチャージ</a>
+            </div>
+            <div class="column">
+                <span>Tmall保証</span>
+                <a href="">請求書保証</a>
+                <a href="">アフターサービス</a>
+                <a href="">在庫切れ補償</a>
+            </div>
+            <div class="column">
+                <span>支払方法</span>
+                <a href="">すぐ払い</a>
+                <a href="">クレジットカード</a>
+                <a href="">PayPay</a>
+                <a href="">代金引換</a>
+            </div>
+            <div class="column">
+                <span>ビジネスサービス</span>
+                <a href="">Tmallルール</a>
+                <a href="">ビジネスプレースメント</a>
+                <a href="">ビジネスセンター</a>
+                <a href="">Tmallシンクタンク</a>
+                <a href="">物流サービス</a>
+                <a href="">運用サービス</a>
+            </div>
+            <div class="column">
+                <span>携帯Tmall</span>
+                <a href=""><img src="img/site/ma.png" alt=""></a>
+            </div>
+        </div>
+        <img class="catEar" src="img/site/cateye.png" alt="">
+        <div class="copyright">
+            <div class="whiteLink">
+                <a href="#nowhere">Tmallについて</a>
+                <a href="#nowhere">ヘルプセンター</a>
+                <a href="#nowhere">オープンプラットフォーム</a>
+                <a href="#nowhere">採用情報</a>
+                <a href="#nowhere">問い合わせ</a>
+                <a href="#nowhere">サイト協力</a>
+                <a href="#nowhere">法的通知</a>
+                <a href="#nowhere">知的財産権</a>
+                <a href="#nowhere">プライバシーポリシー</a>
+            </div>
+            <div class="whiteLink">
+                <a href="#nowhere">Alibaba Group</a><span class="slash">|</span>
+                <a href="#nowhere">Taobao</a><span class="slash">|</span>
+                <a href="#nowhere">Tmall </a><span class="slash">|</span>
+                <a href="#nowhere">セール</a><span class="slash">|</span>
+                <a href="#nowhere">グローバルAliExpress</a><span class="slash">|</span>
+                <a href="#nowhere">アリババ国際市場</a><span class="slash">|</span>
+                <a href="#nowhere">1688</a><span class="slash">|</span>
+                <a href="#nowhere">アリママ</a><span class="slash">|</span>
+                <a href="#nowhere">Ali Travel・Go</a><span class="slash">|</span>
+                <a href="#nowhere">Alibaba Cloud</a><span class="slash">|</span>
+                <a href="#nowhere">Ali Communications</a><span class="slash">|</span>
+                <a href="#nowhere"> YunOS </a><span class="slash">|</span>
+                <a href="#nowhere"> Wanwang </a><span class="slash">|</span>
+                <a href="#nowhere"> ゴールド </a><span class="slash">|</span>
+                <a href="#nowhere"> ビジョン </a><span class="slash">|</span>
+                <a href="#nowhere"> 連携 </a><span class="slash">|</span>
+                <a href="#nowhere"> エビ音楽 </a><span class="slash">|</span>
+                <a href="#nowhere"> 毎日リスリング </a><span class="slash">|</span>
+                <a href="#nowhere"> 旅行 </a><span class="slash">|</span>
+                <a href="#nowhere"> ネイル </a><span class="slash">|</span>
+                <a href="#nowhere"> アリペイ </a>
+            </div>
+            <div class="license">
+                <span>付加価値通信ビジネスライセンス： 浙B2-20110446</span>
+                <span>ネットワーク文化ビジネスライセンス：浙ネット[2015]0295-065号</span>
+                <span>インターネットヘルスケア情報サービス レビュー同意書 セキュリティネットワークレビュー[2018] No. 6 </span>
+                <span>インターネット医薬品情報サービス資格証明書番号：浙-（经营性）-2012-0005</span>
+                <div class="copyRightYear">© 2003-2016 TMALL.COM 著作権</div>
+                <div>
+                    <img src="img/site/copyRight1.jpg">
+                    <img src="img/site/copyRight2.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

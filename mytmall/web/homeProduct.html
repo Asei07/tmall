@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="study/js/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="study/css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/topWithSearch.css">
+    <style>
+        /* each categoryProduct */
+        .categoryProduct {
+            background-color: #f5f5f5;
+            padding: 50px 10px 50px 10px;
+            max-width: 1013px;
+            margin:  auto;
+        }
+
+        .eachCategoryProduct {
+            margin-bottom: 40px;
+        }
+
+        .productItem {
+            float: left;
+            width: 189px;
+            height: 285px;
+            background-color: white;
+            margin: 8px 4px;
+            border: 1px white solid;
+        }
+
+        .productItemInfo {
+            display: block;
+            color: #666666;
+            font-size: 12px;
+            padding: 14px;
+        }
+
+        .productItemPrice {
+            color: red;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+
+        .productItemImg {
+            width: 189px;
+            height: 185px;
+
+        }
+
+        .productItem img:hover {
+            opacity: 0.7;
+        }
+
+        .leftMark {
+            display: inline-block;
+            width: 5px;
+            height: 20px;
+            background-color: #19c8a9;
+            vertical-align: top;
+        }
+
+        .categoryName {
+            font-weight: bold;
+            font-size: 16px;
+            color: #646464;
+            margin-left: 30px;
+        }
+
+        .endPng {
+            display: block;
+            margin: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="categoryProduct">
+        <div class="eachCategoryProduct">
+            <div class="leftMark"></div>
+            <span class="categoryName">太阳镜</span>
+            <!-- span行内标签 产品浮动后会跟在浮动元素后 新建块级标签使元素在新行浮动 -->
+            <div></div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/9543.jpg" alt="" width="100px" class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        好先生同款墨镜孙红雷偏光男士太阳镜韩明星</span></a>
+                <span class="productItemPrice">888</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/9532.jpg" alt="" width="100px" class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        陌森太阳眼镜男女2016偏光定制驾驶近视</span></a>
+                <span class="productItemPrice">777</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/9521.jpg" alt="" width="100px" class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        帕莎Prsr太阳镜女偏光镜潮范冰冰同款女</span></a>
+                <span class="productItemPrice">170.00</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/9510.jpg" alt="" width="100px" class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        变色眼镜男女款半框太阳镜大框潮流防辐射防</span></a>
+                <span class="productItemPrice">300.00</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/9499.jpg" alt="" width="100px" class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        新款男士偏光太阳镜日夜两用墨镜潮运动开车</span></a>
+                <span class="productItemPrice">551.00</span>
+            </div>
+            <!-- 清除浮动使mark不包围产品 -->
+            <div style="clear: both"></div>
+        </div>
+        <div class="eachCategoryProduct">
+            <div class="leftMark"></div>
+            <span class="categoryName">安全座椅</span>
+            <div></div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/10192.jpg" alt="" width="100px"
+                        class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        新生儿婴儿提篮式安全座椅汽车用车载儿童安</span></a>
+                <span class="productItemPrice">666</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/10181.jpg" alt="" width="100px"
+                        class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        REEBABY汽车儿童安全座椅ISOFI</span></a>
+                <span class="productItemPrice">555</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/10170.jpg" alt="" width="100px"
+                        class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        好孩子汽车儿童安全座椅goodbaby9</span></a>
+                <span class="productItemPrice">444</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/9543.jpg" alt="" width="100px" class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        REEBABY儿童安全座椅9个月-12岁</span></a>
+                <span class="productItemPrice">333</span>
+            </div>
+            <div class="productItem">
+                <a href=""><img src="img/productSingle_middle/10159.jpg" alt="" width="100px"
+                        class="productItemImg"></a>
+                <a href="" class="productItemInfo"><span>[热销]
+                        好孩子汽车儿童安全座椅goodbaby9</span></a>
+                <span class="productItemPrice">222</span>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <img src="img/site/end.png" alt="" class="endPng">
+    </div>
+    <div class="footer">
+        <div class="ensureImg"><a href=""><img src="img/site/ensure.png" alt=""></a></div>
+        <div class="footerColumn">
+            <div class="column">
+                <span>買い物ガイド</span>
+                <a href="">無料登録</a>
+                <a href="">PayPay申請</a>
+                <a href="">PayPayチャージ</a>
+            </div>
+            <div class="column">
+                <span>Tmall保証</span>
+                <a href="">請求書保証</a>
+                <a href="">アフターサービス</a>
+                <a href="">在庫切れ補償</a>
+            </div>
+            <div class="column">
+                <span>支払方法</span>
+                <a href="">すぐ払い</a>
+                <a href="">クレジットカード</a>
+                <a href="">PayPay</a>
+                <a href="">代金引換</a>
+            </div>
+            <div class="column">
+                <span>ビジネスサービス</span>
+                <a href="">Tmallルール</a>
+                <a href="">ビジネスプレースメント</a>
+                <a href="">ビジネスセンター</a>
+                <a href="">Tmallシンクタンク</a>
+                <a href="">物流サービス</a>
+                <a href="">運用サービス</a>
+            </div>
+            <div class="column">
+                <span>携帯Tmall</span>
+                <a href=""><img src="img/site/ma.png" alt=""></a>
+            </div>
+        </div>
+        <img class="catEar" src="img/site/cateye.png" alt="">
+        <div class="copyright">
+            <div class="whiteLink">
+                <a href="#nowhere">Tmallについて</a>
+                <a href="#nowhere">ヘルプセンター</a>
+                <a href="#nowhere">オープンプラットフォーム</a>
+                <a href="#nowhere">採用情報</a>
+                <a href="#nowhere">問い合わせ</a>
+                <a href="#nowhere">サイト協力</a>
+                <a href="#nowhere">法的通知</a>
+                <a href="#nowhere">知的財産権</a>
+                <a href="#nowhere">プライバシーポリシー</a>
+            </div>
+            <div class="whiteLink">
+                <a href="#nowhere">Alibaba Group</a><span class="slash">|</span>
+                <a href="#nowhere">Taobao</a><span class="slash">|</span>
+                <a href="#nowhere">Tmall </a><span class="slash">|</span>
+                <a href="#nowhere">セール</a><span class="slash">|</span>
+                <a href="#nowhere">グローバルAliExpress</a><span class="slash">|</span>
+                <a href="#nowhere">アリババ国際市場</a><span class="slash">|</span>
+                <a href="#nowhere">1688</a><span class="slash">|</span>
+                <a href="#nowhere">アリママ</a><span class="slash">|</span>
+                <a href="#nowhere">Ali Travel・Go</a><span class="slash">|</span>
+                <a href="#nowhere">Alibaba Cloud</a><span class="slash">|</span>
+                <a href="#nowhere">Ali Communications</a><span class="slash">|</span>
+                <a href="#nowhere"> YunOS </a><span class="slash">|</span>
+                <a href="#nowhere"> Wanwang  </a><span class="slash">|</span>
+                <a href="#nowhere"> ゴールド </a><span class="slash">|</span>
+                <a href="#nowhere"> ビジョン </a><span class="slash">|</span>
+                <a href="#nowhere"> 連携 </a><span class="slash">|</span>
+                <a href="#nowhere"> エビ音楽 </a><span class="slash">|</span>
+                <a href="#nowhere"> 毎日リスリング </a><span class="slash">|</span>
+                <a href="#nowhere"> 旅行 </a><span class="slash">|</span>
+                <a href="#nowhere"> ネイル </a><span class="slash">|</span>
+                <a href="#nowhere"> アリペイ </a>
+            </div>
+            <div class="license">
+                <span>付加価値通信ビジネスライセンス： 浙B2-20110446</span>
+                <span>ネットワーク文化ビジネスライセンス：浙ネット[2015]0295-065号</span>
+                <span>インターネットヘルスケア情報サービス レビュー同意書 セキュリティネットワークレビュー[2018] No. 6 </span>
+                <span>インターネット医薬品情報サービス資格証明書番号：浙-（经营性）-2012-0005</span>
+                <div class="copyRightYear">© 2003-2016 TMALL.COM 著作権</div>
+                <div>
+                    <img src="img/site/copyRight1.jpg">
+                    <img src="img/site/copyRight2.jpg"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
