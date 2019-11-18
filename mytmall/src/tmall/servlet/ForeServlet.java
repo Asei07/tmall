@@ -150,7 +150,7 @@ public class ForeServlet extends BaseForeServlet{
 			}
 		}
 		req.setAttribute("c",c);
-		return "categorPage.jsp";
+		return "categoryPage.jsp";
 	}
 	public String search(HttpServletRequest req,HttpServletResponse resp) throws UnsupportedEncodingException{
 
