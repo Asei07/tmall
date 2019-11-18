@@ -97,8 +97,10 @@ public abstract class BaseBackServlet extends HttpServlet {
 				FileItem item = (FileItem) iterator.next();
 				System.out.println(item);
 				if (!item.isFormField()) {
+					//写真の場合
 					is = item.getInputStream();
 				} else {
+					//パラメータマップに入れる
 					String paramName = item.getFieldName();
 					String paramValue = item.getString();
 					paramValue = new String(paramValue.getBytes("ISO-8859-1"),"UTF-8");

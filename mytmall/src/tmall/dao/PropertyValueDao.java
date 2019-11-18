@@ -141,4 +141,47 @@ public class PropertyValueDao {
 		}
 		return pvList;
 	}
+	
+	public PropertyValue get(int ptid, int pid){
+		
+		PropertyValue ptv = null;
+		String sql = "select * from propertyValue where ptid = ? and pid = ?";
+		
+		try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.preparedStatement(sql)){
+			
+			ps.setInt(1,ptid);
+			ps.setInt(2,pid);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				ptv = new PropertyValue();
+				int id = rs.getInt("id");
+				String value = rs.getString("value");
+				Property pt = new PropertyDao().get(ptid);
+				Product p = new ProductDao().get(pid);
+				
+				ptv.setId(id);
+				ptv.setValue(value);
+				ptv.setProperty(pt);
+				ptv.setProduct(p);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return ptv;
+	}
+	
+	public void init(Product p){
+		//商品を通して属性情報を取得　商品からカテゴリー取れる
+		List<Property> pts = new PropertyDao.list(p.getCategory().getId());
+		for(Property pt : pts){
+			//商品IDと属性IDによって属性値とる
+			PropertyValue pv = get(p.getId(),pt.getId());
+			if(pv == null){
+				pv = new PropertyValue();
+				pv.setProduct(p);
+				pv.setProperty(pt);
+				this.add(pv);
+			}
+		}
+	}
 }
