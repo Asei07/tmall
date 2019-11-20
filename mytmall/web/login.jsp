@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap/3.3.6/bootstrap.min.css">
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/fore/footer.css">
-    <style>
+    <style> 
     	body{
     		font-size:12px;
     	}
