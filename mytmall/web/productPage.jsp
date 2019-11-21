@@ -441,7 +441,7 @@
             //     });
             // });
 
-            var stock = 66;
+            var stock = ${p.stock};
             $(".increaseNumber").click(function () {
                 var num = $(".productNumberSetting").val();
                 num++;
@@ -482,6 +482,57 @@
                 $(".productDetailDiv").show();
                 $(".productReviewDiv").hide();
             })
+    		$(".addButton").click(function(){
+       	 		var page = "forecheckLogin";
+       	 		alert(22);
+       			 $.get(
+               		 page,
+               		 function(result){
+                    	if("success"==result){
+                        var pid = ${p.id};
+                        var num= $(".productNumberSetting").val();
+                        var addCartpage = "foreaddCart";
+                        $.get(
+                                addCartpage,
+                                {"pid":pid,"num":num},
+                                function(result){
+                                    if("success"==result){
+                                        $(".addButton").html("追加されました");
+                                        $(".addButton").attr("disabled","disabled");
+                                        $(".addButton").css("background-color","lightgray")
+                                        $(".addButton").css("border-color","lightgray")
+                                        $(".addButton").css("color","black")
+                                          
+                                    }
+                                    else{
+                                          
+                                    }
+                                }
+                        );                         
+                    }
+                    else{
+                        $("#loginModal").modal('show');                    
+                    }
+                }
+        );     
+        return false;
+    });
+            $(".buyLink").click(function(){
+                var page = "forecheckLogin";
+                $.get(
+                        page,
+                        function(result){
+                            if("success"==result){
+                                var num = $(".productNumberSetting").val();
+                                location.href= $(".buyLink").attr("href")+"&num="+num;
+                            }
+                            else{
+                                $("#loginModal").modal('show');                    
+                            }
+                        }
+                );     
+                return false; 
+            });
         });
     </script>
 </head>
@@ -514,7 +565,7 @@
                         <span>全天猫实物商品通用</span>
                     </div>
                     <div class="originalPriceDiv">
-                        <span class="originalPriceDesc">价格</span>
+                        <span class="originalPriceDesc">価格</span>
                         <span class="originalPriceYuan">¥</span>
                         <span class="originalPrice">${p.orignalPrice } </span>
                     </div>
@@ -556,7 +607,7 @@
                 </span>
             </div>
             <div class="buyDiv">
-                <a href="" class="buyLink"><button class="buyButton">立即购买</button></a>
+                <a href="forebuyOne?pid=${p.id}" class="buyLink"><button class="buyButton">立即购买</button></a>
                 <a href="" class="addLink"><button class="addButton"><span
                             class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
             </div>

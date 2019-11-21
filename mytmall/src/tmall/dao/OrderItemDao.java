@@ -20,7 +20,7 @@ public class OrderItemDao {
 	public int getSaleCount(int pid) {
 
 		int count = 0;
-		String sql =  "select count(*) from orderItem where pid=" + pid;
+		String sql =  "select count(*) from orderItem where pid='" + pid +"'";
 
 		try(Connection c = DBUtil.getConnection(); Statement st = c.createStatement()){
 
@@ -53,7 +53,7 @@ public class OrderItemDao {
 
 	public void add(OrderItem bean){
 
-		String sql = "insert into orderItem values(null.?,?,?,?)";
+		String sql = "insert into orderItem values(null,?,?,?,?)";
 
 		try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
 
@@ -64,12 +64,12 @@ public class OrderItemDao {
 				ps.setInt(2,bean.getOrder().getId());
 			}
 			ps.setInt(3,bean.getUser().getId());
-			ps.setInt(4,bean.getNumber());
+			ps.setInt(4,1);
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
-				int id = rs.getInt("id");
+				int id = rs.getInt(1);
 				bean.setId(id);
 			}
 		}catch(SQLException e){
@@ -79,7 +79,7 @@ public class OrderItemDao {
 
 	public void delete(int id){
 
-		String sql = "delete from orderItem where id=" + id;
+		String sql = "delete from orderItem where id='" + id +"'";
 
 		try(Connection c = DBUtil.getConnection(); Statement s = c.createStatement()){
 			s.execute(sql);
@@ -112,7 +112,7 @@ public class OrderItemDao {
 	public List<OrderItem> listByUser(int uid){
 
 		List<OrderItem> ois = new ArrayList();
-		String sql = "select * from orderItem where uid =" + uid;
+		String sql = "select * from orderItem where uid ='" + uid +"'";
 
 		try(Connection c = DBUtil.getConnection(); Statement st = c.createStatement()){
 
@@ -139,4 +139,38 @@ public class OrderItemDao {
 		}
 		return ois;
 	}
+	public OrderItem get(int id) {
+        OrderItem bean = new OrderItem();
+  
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement();) {
+  
+            String sql = "select * from OrderItem where id = '" + id +"'";
+  
+            ResultSet rs = s.executeQuery(sql);
+  
+            if (rs.next()) {
+                int pid = rs.getInt("pid");
+                int oid = rs.getInt("oid");
+                int uid = rs.getInt("uid");
+                int number = rs.getInt("number");
+                Product product = new ProductDao().get(pid);
+                User user = new UserDao().get(uid);
+                bean.setProduct(product);
+                bean.setUser(user);
+                bean.setNumber(number);
+                 
+                if(-1!=oid){
+                    Order order= new OrderDao().get(oid);
+                    bean.setOrder(order);                  
+                }
+                 
+                bean.setId(id);
+            }
+  
+        } catch (SQLException e) {
+  
+            e.printStackTrace();
+        }
+        return bean;
+    }
 }

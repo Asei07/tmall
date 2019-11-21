@@ -53,7 +53,7 @@ public abstract class BaseForeServlet extends HttpServlet {
 			if(redirect.startsWith("@")) {
 				response.sendRedirect(redirect.substring(1));
 			}else if(redirect.startsWith("%")) {
-
+				response.getWriter().print(redirect.substring(1));
 			}else {
 				request.getRequestDispatcher(redirect).forward(request, response);
 			}

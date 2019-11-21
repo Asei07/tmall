@@ -18,16 +18,16 @@
         <span>Tmallへようこそ</span>
         <c:if test="${!empty user }">
         	<a href="login.jsp">${user.name }</a>
-        	<a href="">退出</a>
+        	<a href="forelogout">ログアウト</a>
         </c:if>
         <c:if test="${empty user }">
-       		<a href="login.jsp">请登录</a>
-        	<a href="register.jsp">免费注册</a>
+       		<a href="login.jsp">ログイン</a>
+        	<a href="register.jsp">無料登録</a>
         </c:if>
         <span class="pull-right">
             <a href="">
                 オーダー</a>
-            <a href="">
+            <a href="forecart">
                 <span class="glyphicon glyphicon-shopping-cart redColor"></span>
                 ショッピングカート<strong>0</strong>件
             </a>

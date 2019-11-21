@@ -1,6 +1,7 @@
 package tmall.servlet;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tmall.bean.Category;
+import tmall.bean.OrderItem;
 import tmall.bean.Product;
 import tmall.bean.ProductImage;
 import tmall.bean.PropertyValue;
@@ -17,6 +19,7 @@ import tmall.bean.User;
 
 public class ForeServlet extends BaseForeServlet{
 
+	private Object getNumber;
 	@Override
 	public String home(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -61,7 +64,7 @@ public class ForeServlet extends BaseForeServlet{
 			req.setAttribute("errorMessage", "パスワードが一致しません");
 			return "login.jsp";
 		}else {
-			req.setAttribute("user", user);
+			req.getSession().setAttribute("user", user);
 		}
 
 		return "@forehome";
@@ -70,7 +73,7 @@ public class ForeServlet extends BaseForeServlet{
 	@Override
 	public String logout(HttpServletRequest req, HttpServletResponse resp) {
 
-		req.removeAttribute("user");
+		req.getSession().removeAttribute("user");
 
 		return "@forehome";
 	}
@@ -208,5 +211,97 @@ public class ForeServlet extends BaseForeServlet{
 		req.setAttribute("ps", ps);
 
 		return "searchPage.jsp";
+	}
+	
+	public String checkLogin(HttpServletRequest req,HttpServletResponse resp){
+		
+		User u = (User) req.getSession().getAttribute("user");
+		if(u != null){
+			System.out.println("u:" + u);
+			return "%success";
+		}
+		return "%fail";
+	}
+	public String buyOne(HttpServletRequest req,HttpServletResponse resp){
+
+		int pid = Integer.parseInt(req.getParameter("pid"));
+		int num = Integer.parseInt(req.getParameter("num"));
+		int oiid = 0;
+		
+		Product p = productDao.get(pid);
+		User u = (User) req.getSession().getAttribute("user");
+		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
+		boolean found = false;
+		for(OrderItem oi : ois){
+			if(pid == oi.getProduct().getId()){
+				oi.setNumber(oi.getNumber() + num);
+				oiid = oi.getId();
+				orderItemDao.update(oi);
+				found = true;
+				break;
+			}
+		}
+		if(!found){
+			OrderItem oi = new OrderItem();
+			oi.setProduct(p);
+			oi.setUser(u);
+			oi.setNumber(num);
+			orderItemDao.add(oi);
+			oiid = oi.getId();
+		}	
+		System.out.println("num:" + num +",oiid:" + oiid);
+		return "@forebuy?oiid=" + oiid;
+	}
+	public String buy(HttpServletRequest req,HttpServletResponse resp){
+		
+		String[] oiids = req.getParameterValues("oiid");
+		List<OrderItem> ois = new ArrayList();
+		int total = 0;
+		for(String strId : oiids){
+			int oiid = Integer.parseInt(strId);
+			OrderItem oi = orderItemDao.get(oiid);
+			total += oi.getProduct().getPromotePrice() * oi.getNumber();
+			ois.add(oi);
+		}
+		req.setAttribute("ois",ois);
+		req.getSession().setAttribute("total",total);
+
+		return "confirmPage.jsp";
+	}
+	
+	public String addCart(HttpServletRequest req,HttpServletResponse resp){
+
+		int pid = Integer.parseInt(req.getParameter("pid"));
+		int num = Integer.parseInt(req.getParameter("num"));
+
+		Product p = productDao.get(pid);
+		User u = (User) req.getSession().getAttribute("user");
+		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
+		boolean found = false;
+		for(OrderItem oi : ois){
+			if(pid == oi.getProduct().getId()){
+				oi.setNumber(oi.getNumber() + num);
+				orderItemDao.update(oi);
+				found = true;
+				break;
+			}
+		}
+		if(!found){
+			OrderItem oi = new OrderItem();
+			oi.setProduct(p);
+			oi.setUser(u);
+			oi.setNumber(num);
+			orderItemDao.add(oi);			
+		}	
+		return "%success";
+	}
+	
+	public String cart(HttpServletRequest req,HttpServletResponse resp){
+
+		User u = (User)req.getSession().getAttribute("user");
+		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
+		req.setAttribute("ois",ois);
+
+		return "shoppingCart.jsp";
 	}
 }

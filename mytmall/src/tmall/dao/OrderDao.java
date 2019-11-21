@@ -15,7 +15,7 @@ public class OrderDao {
 	public Order get(int id){
 
         Order o = new Order();
-        String sql = "select * from order where id = " + id;
+        String sql = "select * from order_ where id = " + id ;
         try(Connection c = DBUtil.getConnection(); Statement s = c.createStatement()){
 
             ResultSet rs = s.executeQuery(sql);
