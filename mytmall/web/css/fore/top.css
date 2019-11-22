@@ -1,0 +1,41 @@
+    /* top */
+        body {
+			font-size:12px;
+            min-width: 1024px;
+        }
+
+        a {
+            color: #999;
+        }
+
+        .redColor {
+            color: #C40000 !important;
+        }
+
+        .top {
+            background-color: #f2f2f2;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e7e7e7;
+        }
+
+        .top span,
+        .top a {
+            color: #999;
+            margin: 0px 10px 0px 10px;
+        }
+
+        .top a:hover {
+            color: #C40000;
+            text-decoration: none;
+        }
+        
+        body {
+            font-size: 12px;
+            min-width: 1013px;
+        }
+
+        .confirmDiv {
+            max-width: 1013px;
+            margin: 20px auto;
+        }

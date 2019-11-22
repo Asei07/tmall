@@ -46,7 +46,6 @@ public class ForeAutoFilter implements Filter{
 			if(!Arrays.asList(noNeedAutoPage).contains(method)){
 				User user = (User) req.getSession().getAttribute("user");
 				if(user == null){
-					System.out.println("user is null");
 					 resp.sendRedirect("login.jsp");
 					 return;
 				}

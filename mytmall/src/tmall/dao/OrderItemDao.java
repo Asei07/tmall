@@ -50,6 +50,24 @@ public class OrderItemDao {
 		}
 		return total;
 	}
+	
+	/*public int getTotalByUser(int id){
+		
+		int total = 0;
+		String sql = "select count(*) from orderItem where uid = '" + id +"'";
+		
+		try(Connection c = DBUtil.getConnection(); Statement s = c.createStatement()){
+			
+			ResultSet rs = s.executeQuery(sql);
+			if(rs.next()){
+				total = rs.getInt(1);
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return total;
+	}*/
 
 	public void add(OrderItem bean){
 
@@ -173,4 +191,60 @@ public class OrderItemDao {
         }
         return bean;
     }
+	
+//	public List<OrderItem> listByOrder(int oid){
+//		listByOrder(oid,0,Short.MAX_VALUE);
+//	}
+//	public List<OrderItem> listByOrder(int oid, int start, int count){
+//
+//		List<OrderItem> beans = new ArrayList();
+//		String sql = "select * from orderItem where oid = ? ";
+//	}
+	public void fill(List<Order> orders){
+		for(Order o : orders){
+			fill(o);
+		}
+	}
+	public void fill(Order o){
+
+		List<OrderItem> ois = listByOrder(o);
+		float totalPrice = 0;
+		int totalNum = 0;
+		for(OrderItem oi : ois){
+			totalPrice += oi.getNumber() * oi.getProduct().getPromotePrice();
+			totalNum += oi.getNumber();
+		}
+		o.setTotalNum(totalNum);
+		o.setTotalPrice(totalPrice);
+		o.setOrderItems(ois);
+	}
+	
+	public List<OrderItem> listByOrder(Order o) {
+		List<OrderItem> ois = new ArrayList();
+		String sql = "select * from orderItem where oid =" + o.getId();
+
+		try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+
+			ResultSet rs = s.executeQuery(sql);
+			while (rs.next()) {
+				OrderItem oi = new OrderItem();
+				int id = rs.getInt("id");
+				int number = rs.getInt("number");
+				int uid = rs.getInt("uid");
+				int pid = rs.getInt("pid");
+				User u = new UserDao().get(uid);
+				Product p = new ProductDao().get(pid);
+
+				oi.setId(id);
+				oi.setNumber(number);
+				oi.setUser(u);
+				oi.setProduct(p);
+				oi.setOrder(o);
+				ois.add(oi);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ois;
+	}
 }

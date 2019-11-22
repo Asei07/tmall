@@ -93,7 +93,7 @@
         }
 
         .eachCartItem td {
-            border: 1px solid #eeeeee;
+            /* border: 1px solid #eeeeee; */
             padding: 20px;
 
         }
@@ -235,15 +235,25 @@
                 var num = $(".cartNumberSet[oiid=" + oiid + "]").val();
                 totalNumber += new Number(num);
             });
-            $(".cartTopPrice").html(formatMoney(sum));
-            $(".cartFootPrice").html(formatMoney(sum));
+            $(".cartTopPrice").html("￥"  + formatMoney( sum));
+            $(".cartFootPrice").html("￥"  + formatMoney(sum));
             $(".cartProductNumber").html(totalNumber);
         }
-        function syncPrice(pid, num, price) {
+        function syncPrice(pid, num, price,oiid) {
             var itemPrice = formatMoney(num * price);
             $(".cartNumberSet[pid=" + pid + "]").val(num);
             $(".cartItemPrice[pid=" + pid + "]").html("￥" + itemPrice);
             cartPriceAndNumber();
+            var page = "forechangeOrderItem";
+            $.post(
+                page,
+                {"oiid":oiid, "num":num},
+                function(result){
+                    if(result != "seccess"){
+                         location.href = "login.jsp"; 
+                    }
+                }
+            )
         }
 
         $(function () {
@@ -285,7 +295,9 @@
                 syncOrderButton();
                 cartPriceAndNumber();
             });
+            
             $(".cartNumberIncrease").click(function () {
+                var oiid = $(this).attr("oiid");
                 var pid = $(this).attr("pid");
                 var num = $(".cartNumberSet[pid=" + pid + "]").val();
                 var stock = $(".productStock[pid=" + pid + "]").text();
@@ -293,19 +305,11 @@
                 num++;
                 if (num > stock)
                     num = stock;
-                syncPrice(pid, num, price);
-                var page = "forechangeOrderItem";
-                $.post(
-                    page,
-                    {"pid":pid, "num":num},
-                    function(result){
-                        if(result != "seccess"){
-                            location.href = "login.jsp";
-                        }
-                    }
-                )
+                syncPrice(pid, num, price,oiid);
             });
+            
             $(".cartNumberDecrease").click(function () {
+                var oiid = $(this).attr("oiid");
                 var pid = $(this).attr("pid");
                 var num = $(".cartNumberSet[pid=" + pid + "]").val();
                 var stock = $(".productStock[pid=" + pid + "]").text();
@@ -313,21 +317,13 @@
                 num--;
                 if (num < 1)
                     num = 1;
-                syncPrice(pid, num, price);
-                var page = "forechangeOrderItem";
-                $.post(
-                    page,
-                    {"pid":pid, "num":num},
-                    function(result){
-                        if(result != "seccess"){
-                            location.href = "login.jsp";
-                        }
-                    }
-                )
+                syncPrice(pid, num, price,oiid);
             });
+            
             $(".cartNumberSet").keyup(function () {
                 var num = $(this).val();
                 var pid = $(this).attr("pid");
+                var oiid = $(this).attr("oiid");
                 var stock = $(".productStock[pid=" + pid + "]").text();
                 var price = $(".productPromotePrice[pid=" + pid + "]").text();
                 num = parseInt(num);
@@ -337,11 +333,11 @@
                 }
                 if (num < 1 || isNaN(num))
                     num = 1;
-                syncPrice(pid, num, price);
+                syncPrice(pid, num, price,oiid);
             });
 
             $(".cartItemDelete").click(function () {
-                var r = confirm("are you sure");
+                var r = confirm("削除しますか？");
                 var oiid = $(this).attr("oiid");
                 var page = "foredeleteOrderItem";
                 if (r) {
@@ -350,9 +346,9 @@
                         {"oiid":oiid},
                         function(result){
                         	if(result == "success"){
-                        		$(this).parents(".eachCartItem").hide();
-                                $(".cartItemSelect[oiid=" + oiid + "]").attr("select", "false");
-                                cartPriceAndNumber();	
+                        		$(".eachCartItem[oiid="+oiid+"]").remove();
+                              /*   $(".cartItemSelect[oiid=" + oiid + "]").attr("select", "false");
+                                cartPriceAndNumber();	 */
                         	}
                         }
                     )         
@@ -398,7 +394,7 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${ois}" var="oi" >
-                    <tr class="eachCartItem">
+                    <tr class="eachCartItem"  oiid=${oi.id }>
                         <td>
                             <img src="img/site/cartNotSelected.png" alt="" select="false" class="cartItemSelect"
                                 oiid="${oi.id}">
@@ -422,9 +418,9 @@
                             <div class="cartChangeNumber">
                                 <span class="productStock hidden" pid="${oi.product.id}">${oi.product.stock}</span>
                                 <span class="productPromotePrice hidden" pid="${oi.product.id}">${oi.product.promotePrice}</span>
-                                <a href="#nowhere" class="cartNumberDecrease" pid="${oi.product.id}">-</a>
+                                <a href="#nowhere" class="cartNumberDecrease" pid="${oi.product.id}" oiid="${oi.id }">-</a>
                                 <input type="text" class="cartNumberSet" value="${oi.number}" oiid="${oi.id}" pid="${oi.product.id}">
-                                <a href="#nowhere" class="cartNumberIncrease" pid="${oi.product.id}">+</a>
+                                <a href="#nowhere" class="cartNumberIncrease" pid="${oi.product.id}" oiid="${oi.id }">+</a>
                             </div>
                         </td>
                         <td>

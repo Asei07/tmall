@@ -22,10 +22,11 @@
         	<a href="register.jsp">無料登録</a>
         </c:if>
         <span class="pull-right">
-            <a href=""><span class="glyphicon glyphicon-shopping-cart redColor"></span>
-                オーダー</a>
+          <a href="forebought">
+                マイオーダー</a>
             <a href="forecart">
-                <span>ショッピングカート<strong>0</strong>件</span>
+                <span class="glyphicon glyphicon-shopping-cart redColor"></span>
+                ショッピングカート<strong> ${0 + itemNum }</strong>件
             </a>
         </span>
     </nav>

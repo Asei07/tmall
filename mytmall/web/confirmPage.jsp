@@ -236,50 +236,50 @@
 <body>
 	<%@include file="include/top.jsp" %>
     <div class="confirmDiv">
-        <form action="createOrder" method="post">
+        <form action="forecreateOrder" method="post">
         <div class="confirmFlow">
             <img src="img/site/simpleLogo.png" alt="" class="pull-left">
             <img src="img/site/buyflow.png" alt="" class="pull-right">
         </div>
         <div style="clear: both"></div>
         <div class="address">
-            <div class="addressTip">输入收货地址</div>
+            <div class="addressTip">住所確認</div>
             <table class="addressTB">
                 <tbody>
                     <tr>
-                        <td>详细地址<span class="redStar">*</span></td>
+                        <td>住所<span class="redStar">*</span></td>
                         <td><textarea name="address" id=""></textarea></td>
                     </tr>
                     <tr>
-                        <td>邮政编码<span class="redStar">*</span></td>
+                        <td>郵便番号<span class="redStar">*</span></td>
                         <td><input type="text" placeholder="" name="post"></td>
                     </tr>
                     <tr>
-                        <td>收货人姓名<span class="redStar">*</span></td>
+                        <td>名前<span class="redStar">*</span></td>
                         <td><input type="text" placeholder="" name="name"></td>
                     </tr>
                     <tr>
-                        <td>手机号码<span class="redStar">*</span></td>
+                        <td>携帯番号<span class="redStar">*</span></td>
                         <td><input type="text" placeholder="" name="mobile"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="confirmOrderDiv">
-            <div class="confirmText">确认订单信息</div>
+            <div class="confirmText">オーダー詳細</div>
             <div class="confirmOrderInfo">
                 <table class="confirmOrderTB">
                     <thead>
                         <tr>
                             <th colspan="2" class="firstTh">
                                 <img src="img/site/tmallbuy.png" alt="" class="tmallImg" width="15px">
-                                <a href="">店铺：天猫店铺</a>
+                                <a href="">店舗：Tmall店舗</a>
                                 <a href=""><span class="wwGif"></span></a>
                             </th>
-                            <th>单价</th>
+                            <th>単価</th>
                             <th>数量</th>
-                            <th>小计</th>
-                            <th>配送方式</th>
+                            <th>小計</th>
+                            <th>配送方法</th>
                         </tr>
                         <tr class="blueLine">
                             <td colspan="2"></td>

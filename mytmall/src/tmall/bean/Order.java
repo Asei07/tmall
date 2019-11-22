@@ -18,8 +18,8 @@ public class Order {
 	private Date confirmDate;
 	private User user;
 	private List<OrderItem> orderItems;
-	private float total;
-	private int totalNumber;
+	private float totalPrice;
+	private int totalNum;
 	private String status;
 
 
@@ -95,23 +95,24 @@ public class Order {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<OrderItem> getOrderItem() {
+	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
-	public void setOrderItem(List<OrderItem> orderItem) {
+	public void setOrderItems(List<OrderItem> orderItem) {
 		this.orderItems = orderItem;
 	}
-	public float getTotal() {
-		return total;
+	
+	public float getTotalPrice() {
+		return totalPrice;
 	}
-	public void setTotal(float total) {
-		this.total = total;
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
 	}
-	public int getTotalNumber() {
-		return totalNumber;
+	public int getTotalNum() {
+		return totalNum;
 	}
-	public void setTotalNumber(int totalNumber) {
-		this.totalNumber = totalNumber;
+	public void setTotalNum(int totalNum) {
+		this.totalNum = totalNum;
 	}
 	public String getStatus() {
 		return status;

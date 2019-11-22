@@ -484,7 +484,6 @@
             })
     		$(".addButton").click(function(){
        	 		var page = "forecheckLogin";
-       	 		alert(22);
        			 $.get(
                		 page,
                		 function(result){

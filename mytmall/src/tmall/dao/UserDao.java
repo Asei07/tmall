@@ -130,7 +130,7 @@ public class UserDao {
 	public User getByName(String name) {
 
 		User user = null;
-		String sql = "select * from user where name = " + name;
+		String sql = "select * from user where name = '" +name+"'";
 
 		try (Connection conn = DBUtil.getConnection(); Statement stat = conn.createStatement()) {
 
