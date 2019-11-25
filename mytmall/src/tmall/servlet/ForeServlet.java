@@ -275,6 +275,54 @@ public class ForeServlet extends BaseForeServlet {
 
 		return "confirmPage.jsp";
 	}
+	
+	public String createOrder(HttpServletRequest req, HttpServletResponse resp) {
+
+		User user = (User) req.getSession().getAttribute("user");
+		String address = req.getParameter("address");
+		String post = req.getParameter("post");
+		String name = req.getParameter("name");
+		String mobile = req.getParameter("mobile");
+		String message = req.getParameter("message");
+		String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()) + RandomUtils.nextInt(10000);
+
+		Order order = new Order();
+		order.setOrderCode(orderCode);
+		order.setAddress(address);
+		order.setPost(post);
+		order.setReceiver(name);
+		order.setMobile(mobile);
+		order.setUserMessage(message);
+		order.setCreateDate(new Date());
+		order.setUser(user);
+		order.setStatus(orderDao.waitPay);
+		orderDao.add(order);
+
+		List<OrderItem> ois = (List<OrderItem>) req.getSession().getAttribute("ois");
+		float total = (float) req.getSession().getAttribute("total");
+		for (OrderItem oi : ois) {
+			oi.setOrder(order);
+			orderItemDao.update(oi);
+		}
+		//页面通过url取值 因为直接购买的话不付款也会加入购物车，添加订单项时候 设置了session金额
+		//不通过页面取值的话之后从我的订单里付款时候会拿到session里的金额
+		return "@forepay?oid="+order.getId()+"&total="+total;
+	}
+	public String pay(HttpServletRequest req,HttpServletResponse resp){
+		return "payPage.jsp";
+	}
+	
+	public String payed(HttpServletRequest req,HttpServletResponse resp){
+
+		int oid = Integer.parseInt(req.getParameter("oid"));
+		Order order = orderDao.get(oid);
+		order.setStatus(orderDao.waitDelivery);
+		order.setPayDate(new Date());
+		orderDao.update(order);
+
+		req.setAttribute("o",order);
+		return "payedPage.jsp";		
+	}
 
 	public String addCart(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -326,7 +374,7 @@ public class ForeServlet extends BaseForeServlet {
 
 		return "%seccess";
 	}
-
+	
 	public String deleteOrderItem(HttpServletRequest req, HttpServletResponse resp) {
 
 		User user = (User) req.getSession().getAttribute("user");
@@ -334,60 +382,23 @@ public class ForeServlet extends BaseForeServlet {
 			return "%fail";
 		int oiid = Integer.parseInt(req.getParameter("oiid"));
 		orderItemDao.delete(oiid);
+		
+		return "%success";
+	}
+	
+	public String deleteOrder(HttpServletRequest req, HttpServletResponse resp) {
 
+		User user = (User) req.getSession().getAttribute("user");
+		if (user == null)
+			return "%fail";
+		int oid = Integer.parseInt(req.getParameter("oid"));
+		Order o = orderDao.get(oid);
+		o.setStatus(orderDao.delete);
+		orderDao.update(o);
+		
 		return "%success";
 	}
 
-	public String createOrder(HttpServletRequest req, HttpServletResponse resp) {
-
-		User user = (User) req.getSession().getAttribute("user");
-		String address = req.getParameter("address");
-		String post = req.getParameter("post");
-		String name = req.getParameter("name");
-		String mobile = req.getParameter("mobile");
-		String message = req.getParameter("message");
-		String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()) + RandomUtils.nextInt(10000);
-
-		Order order = new Order();
-		order.setOrderCode(orderCode);
-		order.setAddress(address);
-		order.setPost(post);
-		order.setReceiver(name);
-		order.setMobile(mobile);
-		order.setUserMessage(message);
-		order.setCreateDate(new Date());
-		order.setUser(user);
-		order.setStatus(orderDao.waitPay);
-		orderDao.add(order);
-
-		List<OrderItem> ois = (List<OrderItem>) req.getSession().getAttribute("ois");
-		float total = (float) req.getSession().getAttribute("total");
-		for (OrderItem oi : ois) {
-			oi.setOrder(order);
-			orderItemDao.update(oi);
-		}
-		//页面通过url取值 因为直接购买的话不付款也会加入购物车，添加订单项时候 设置了session金额
-		//不通过页面取值的话之后从我的订单里付款时候会拿到session里的金额
-		return "@forepay?oid="+order.getId()+"&total="+total;
-	}
-	public String pay(HttpServletRequest req,HttpServletResponse resp){
-		return "payPage.jsp";
-	}
-	
-	public String payed(HttpServletRequest req,HttpServletResponse resp){
-
-		int oid = Integer.parseInt(req.getParameter("oid"));
-		Order order = orderDao.get(oid);
-		order.setStatus(orderDao.waitDelivery);
-		order.setPayDate(new Date());
-		System.out.println(new Date());
-		orderDao.update(order);
-		
-
-		req.setAttribute("o",order);
-		return "payedPage.jsp";		
-	}
-	
 	public String bought(HttpServletRequest req,HttpServletResponse resp){
 
 		User u = (User) req.getSession().getAttribute("user");

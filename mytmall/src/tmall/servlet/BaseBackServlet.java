@@ -19,24 +19,29 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import tmall.dao.CategoryDao;
+import tmall.dao.OrderDao;
+import tmall.dao.OrderItemDao;
 import tmall.dao.ProductDao;
 import tmall.dao.ProductImageDao;
 import tmall.dao.PropertyDao;
+import tmall.dao.UserDao;
 import tmall.util.Page;
 
 public abstract class BaseBackServlet extends HttpServlet {
 
-	public abstract String list(HttpServletRequest request, HttpServletResponse response, Page page);
-	public abstract String add(HttpServletRequest request, HttpServletResponse response, Page page);
-	public abstract String delete(HttpServletRequest request, HttpServletResponse response, Page page);
-	public abstract String edit(HttpServletRequest request, HttpServletResponse response, Page page);
-	public abstract String update(HttpServletRequest request, HttpServletResponse response, Page page);
+	public abstract String list(HttpServletRequest req, HttpServletResponse resp, Page page);
+	public abstract String add(HttpServletRequest req, HttpServletResponse resp, Page page);
+	public abstract String delete(HttpServletRequest req, HttpServletResponse resp, Page page);
+	public abstract String edit(HttpServletRequest req, HttpServletResponse resp, Page page);
+	public abstract String update(HttpServletRequest req, HttpServletResponse resp, Page page);
 
 	CategoryDao categoryDao = new CategoryDao();
 	PropertyDao propertyDao = new PropertyDao();
 	ProductDao productDao = new ProductDao();
 	ProductImageDao productImageDao = new ProductImageDao();
-
+	OrderDao orderDao =new OrderDao();
+	OrderItemDao orderItemDao = new OrderItemDao();
+	UserDao userDao = new UserDao();
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response)

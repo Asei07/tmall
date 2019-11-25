@@ -64,7 +64,7 @@
             <img src="img/site/alipay2wei.png" alt="" class="">
         </div>
         <div>
-            <a href="forepayed?oid=${prama.oid}&total=${param.total}">
+            <a href="forepayed?oid=${param.oid}&total=${param.total}">
                 <button class="confirmPay">支払確認</button>
             </a>
         </div>

@@ -18,11 +18,11 @@
 	<nav>
 		<ul class= "pagination">
 			<li <c:if test = "${!page.hasPrevious }">class = "disabled"</c:if>>
-				<a href="?page.start=0${page.param }">首页</a>
+				<a href="?page.start=0${page.param }">トップ</a>
 			</li>
 
 			<li <c:if test = "${!page.hasPrevious }">class = "disabled"</c:if>>
-				<a href="?page.start=${page.start - page.count}${page.param}">上一页</a>
+				<a href="?page.start=${page.start - page.count}${page.param}">前のページ</a>
 			</li>
 
 
@@ -36,11 +36,11 @@
 
 
 			<li <c:if test = "${!page.hasNext }">class = "disabled"</c:if>>
-				<a href="?page.start=${page.start + page.count}${page.param}">下一页</a>
+				<a href="?page.start=${page.start + page.count}${page.param}">次のページ</a>
 			</li>
 
 			<li <c:if test = "${!page.hasNext }">class = "disabled"</c:if>>
-				 <a href="?page.start=${page.last }${page.param}">末页</a>
+				 <a href="?page.start=${page.last }${page.param}">最後</a>
 			</li>
 		</ul>
 	</nav>

@@ -36,14 +36,31 @@
 		<servlet-name>CategoryServlet</servlet-name>
 		<url-pattern>/categoryServlet</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>OrderServlet</servlet-name>
+		<servlet-class>tmall.servlet.OrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderServlet</servlet-name>
+		<url-pattern>/orderServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserServlet</servlet-name>
+		<servlet-class>tmall.servlet.UserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserServlet</servlet-name>
+		<url-pattern>/userServlet</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>foreServlet</servlet-name>
 		<servlet-class>tmall.servlet.ForeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>foreServlet</servlet-name>
-		>
 		<url-pattern>/foreServlet</url-pattern>
 	</servlet-mapping>
 

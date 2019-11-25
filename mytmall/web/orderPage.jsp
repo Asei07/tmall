@@ -69,7 +69,7 @@
 
         .orderListItemTB {
             margin: 20px 0px;
-            border: 2px solid #ececec;
+        /*     border: 2px solid #ececec; */
             width: 100%;
             font-size: 12px;
         }
@@ -140,7 +140,9 @@
             font-weight: bold;
             /* text-align: center; */
         }
-
+		.orderItemInfo{
+			border:1px solid  #ececec;
+		}
         .orderItemTD {
             border: 1px solid #ececec;
             text-align: center;
@@ -190,20 +192,28 @@
             });
             
             $(".orderDeleteLink").click(function(){
+            	var con = confirm("削除しますか？");
                 var page = "foredeleteOrder";
                 var oid = $(this).attr("oid");
+                if(con){
                 $.post(
                     page,
                     {"oid":oid},
                     function(result){
                         if(result == "success"){
-                            $(".orderListItemTB[oid="+oid+"]").hide();
+                            $(".orderListItemTB[oid="+oid+"]").remove();
                         }else{
                             location.href = "login.jsp";
                         }
                     }
                 )
+            }
             });
+            
+            $("#urge").click(function(){
+            	alert("催促しました")
+            });
+            
         });
 
     </script>
@@ -276,30 +286,31 @@
                             <span class="orderPromotePrice">￥${oi.product.promotePrice}</span>
                         </td>
                         <c:if test="${st.count == 1}">
-                        <td width="100px" class="orderItemTD">
+                        <td width="100px" class="orderItemTD"  rowspan="10" >
                             <span class="orderItemNumber">${o.totalNum}</span>
                         </td>
-                        <td width="120px" class="orderItemTD">
+                        <td width="120px" class="orderItemTD" rowspan="10">
                             <span class="orderTotalPrice">￥${o.totalPrice}</span>
                             <span>(含运费：￥0.00)</span>
                         </td>
-                            <c:if test="${o.status == 'waitConfirm'}">
-                                <td width="100px" class="orderItemTD">
+                            <c:if test="${o.status == 'waitConfirm'}" >
+                                <td width="100px" class="orderItemTD"  rowspan="10"> 
                                 <a href="forereceive?oid=${o.id}"><button class="orderButtonConfirm">受取確認</button></a>
                                 </td>
                             </c:if>
                             <c:if test="${o.status == 'waitPay'}">
-                                <td width="100px" class="orderItemTD">
+                                <td width="100px" class="orderItemTD" rowspan="10" >
                                 <a href="forepay?oid=${o.id}&total=${o.totalPrice}"><button class="orderButtonConfirm">支払い</button></a>
                                 </td>
                             </c:if>
                             <c:if test="${o.status == 'waitDelivery'}">
-                                <td width="100px" class="orderItemTD">
-                                <a href=""><button class="orderButtonConfirm">配達待ち</button></a>
+                                <td width="100px" class="orderItemTD" rowspan="10">
+                                配達待ち
+                                <button class="orderButtonConfirm" id="urge">催促</button>
                                 </td>
                             </c:if>
                             <c:if test="${o.status == 'waitReview'}">
-                                <td width="100px" class="orderItemTD">
+                                <td width="100px" class="orderItemTD" rowspan="10">
                                 <a href="forereview?oid=${o.id}"><button class="orderButtonConfirm">評価</button></a>
                                 </td>
                             </c:if>
@@ -309,58 +320,6 @@
                 </tbody>
             </table>
             </c:forEach>
-<!--             <table class="orderListItemTB" orderStatus="waitReview">
-                <tbody>
-                    <tr class="orderItemFirstTR">
-                        <td colspan="2">
-                            <b>2016-09-12 17:00:41</b>
-                            <span>订单号: 20160912170041674794</span>
-                        </td>
-                        <td colspan="2">
-                            <img src="img/site/orderItemTmall.png" alt="" width="13px">
-                            <span>天猫商场</span>
-                        </td>
-                        <td>
-                            <a href="" class="wwLink"><span class="wwGif"></span></a>
-                        </td>
-                        <td class="orderItemDelete">
-                            <a href="" class="orderItemDeleteLink">
-                                <span class="glyphicon glyphicon-trash orderItemDelete"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="orderItemInfo">
-                        <td>
-                            <img src="img/productSingle_middle/3796.jpg" alt="" class="orderItemImg" height="80px"
-                                width="80px">
-                        </td>
-                        <td>
-                            <div class="orderItemLinkDiv">
-                                <a href="" class="orderItemLink">依然美佳欧式布艺沙发组合可拆洗新款实木雕花大户型奢华别墅家具</a>
-                                <div class="orderItemInsure">
-                                    <img src="img/site/creditcard.png" alt="" title="支持信用卡支付">
-                                    <img src="img/site/7day.png" alt="" title="消费者保障服务,承诺7天退货">
-                                    <img src="img/site/promise.png" alt="" title="消费者保障服务,承诺如实描述">
-                                </div>
-                            </div>
-                        </td>
-                        <td width="100px;">
-                            <span class="orderOriginalPrice">￥10,012.00</span>
-                            <span class="orderPromotePrice">￥7,008.40</span>
-                        </td>
-                        <td width="100px" class="orderItemTD">
-                            <span class="orderItemNumber">1</span>
-                        </td>
-                        <td width="120px" class="orderItemTD">
-                            <span class="orderTotalPrice">￥7,008.40</span>
-                            <span style="text-align: center">(含运费：￥0.00)</span>
-                        </td>
-                        <td width="100px" class="orderItemTD">
-                            <a href=""><button class="orderButtonReview">评价</button></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
         </div>
     </div>
     <%@include file="include/footer.jsp"%>

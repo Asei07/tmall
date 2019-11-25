@@ -59,7 +59,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="page">
+	<div class="pageDiv">
 		<%@include file="../include/admin/adminPage.jsp" %>
 	</div>
 	<div class="panel panel-warning addDiv">

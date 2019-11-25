@@ -3,6 +3,8 @@ package tmall.bean;
 import java.util.Date;
 import java.util.List;
 
+import tmall.dao.OrderDao;
+
 public class Order {
 
 	private int id;
@@ -22,7 +24,32 @@ public class Order {
 	private int totalNum;
 	private String status;
 
-
+    public String getStatusDesc(){
+        String desc ="未知";
+        switch(status){
+            case OrderDao.waitPay:
+                desc="支払待ち";
+                break;
+            case OrderDao.waitDelivery:
+                desc="配達待ち";
+                break;
+            case OrderDao.waitConfirm:
+                desc="受取待ち";
+                break;
+            case OrderDao.waitReview:
+                desc="評価待ち";
+                break;
+            case OrderDao.finish:
+                desc="完成";
+                break;
+            case OrderDao.delete:
+                desc="刪除";
+                break;
+            default:
+                desc="未知";
+        }
+        return desc;
+    }
 	public int getId() {
 		return id;
 	}

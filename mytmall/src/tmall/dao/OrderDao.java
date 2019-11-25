@@ -195,4 +195,53 @@ public class OrderDao {
 	        }
 	        return os;
 	    }
+	 
+	 public List<Order> list(int start, int count){
+
+	        List<Order> os = new ArrayList();
+	        String sql = "select * from order_ order by id desc limit  ?,?";
+	        try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
+	        	
+	        	ps.setInt(1, start);
+	        	ps.setInt(2, count);
+	            ResultSet rs = ps.executeQuery();
+	            while(rs.next()){
+	                Order o = new Order();
+	                int id = rs.getInt("id");
+	                int uid = rs.getInt("uid");
+	                String orderCode = rs.getString("orderCode");
+	                String address = rs.getString("address");
+	                String post = rs.getString("post");
+	                String receiver = rs.getString("receiver");
+	                String mobile = rs.getString("mobile");
+	                String userMessage = rs.getString("userMessage");
+	                String status = rs.getString("status");
+	                Date createDate = DateUtil.t2d(rs.getTimestamp("createDate"));
+	                Date payDate = DateUtil.t2d(rs.getTimestamp("payDate"));
+	                Date deliveryDate = DateUtil.t2d(rs.getTimestamp("deliveryDate"));
+	                Date confirmDate = DateUtil.t2d(rs.getTimestamp("confirmDate"));
+
+	                o.setId(id);
+	                o.setOrderCode(orderCode);
+	                o.setAddress(address);
+	                o.setPost(post);
+	                o.setReceiver(receiver);
+	                o.setMobile(mobile);
+	                o.setUserMessage(userMessage);
+	                o.setStatus(status);
+	                o.setCreateDate(createDate);
+	                o.setPayDate(payDate);
+	                o.setDeliveryDate(deliveryDate);
+	                o.setConfirmDate(confirmDate);
+	                User u = new UserDao().get(uid);
+	                o.setUser(u);
+
+	                os.add(o);
+	            }
+
+	        }catch(SQLException e){
+	            e.printStackTrace();
+	        }
+	        return os;
+	    }
 }

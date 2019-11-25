@@ -29,7 +29,7 @@
                 <span><a href=""><img src="img/site/guoji.png" alt=""></a></span>
                 <c:forEach items="${cs }" var="c" varStatus="st">
                 	<c:if test="${st.count <= 4 }">
-                		<span><a href="forecategory">${c.name }</a></span>
+                		<span><a href="forecategory?cid=${c.id }">${c.name }</a></span>
                 	</c:if>
                 </c:forEach>
 

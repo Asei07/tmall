@@ -82,7 +82,7 @@ public class OrderItemDao {
 				ps.setInt(2,bean.getOrder().getId());
 			}
 			ps.setInt(3,bean.getUser().getId());
-			ps.setInt(4,1);
+			ps.setInt(4,bean.getNumber());
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();

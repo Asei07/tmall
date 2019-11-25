@@ -56,8 +56,8 @@
 			</table>
 		</div>
 		<!-- original -->
-		<div class="">
-			<%-- <%@include file = "../include/admin/adminPage.jsp" %> --%>
+		<div class="pageDiv">
+			 <%@include file = "../include/admin/adminPage.jsp" %> 
 		</div>
 	</div>
 	<div class="workingArea">

@@ -104,7 +104,7 @@ public class UserDao {
 	public List<User> list(int start, int count) {
 
 		List<User> uList = new ArrayList();
-		String sql = "select * from user order by desc limit ?,?";
+		String sql = "select * from user order by id desc limit ?,?";
 
 		try (Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
