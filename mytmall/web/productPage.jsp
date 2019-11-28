@@ -566,12 +566,16 @@
                     <div class="originalPriceDiv">
                         <span class="originalPriceDesc">価格</span>
                         <span class="originalPriceYuan">¥</span>
-                        <span class="originalPrice">${p.orignalPrice } </span>
+                        <span class="originalPrice">
+                        	<fmt:formatNumber type="number" value="${p.orignalPrice}" minFractionDigits="2"/>
+                        </span>
                     </div>
                     <div class="promotePriceDiv">
                         <span class="promotePriceDesc">促销价</span>
                         <span class="promotePriceYuan">¥</span>
-                        <span class="promotePrice">${p.promotePrice }</span>
+                        <span class="promotePrice">
+                        	<fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -637,38 +641,21 @@
     <div class="productReviewDiv" style="display: none;">
         <div class="reviewTop">
             <a href="#nowhere" class="reviewDetailLink">商品详情</a>
-            <a href="#nowhere" class="reviewSelected">累计评价<span class="reviewSelectedNumber">18</span></a>
+            <a href="#nowhere" class="reviewSelected">累计评价<span class="reviewSelectedNumber"></span></a>
         </div>
         <div class="reviewContents">
         	<c:forEach items="${reviews }" var="r">
         		<div class="reviewItem">
                 <div class="reviewContent">
                    	${r.content }
-                    <div class="reviewData">${r.createDate }</div>
+                    <div class="reviewData">
+                    	<fmt:formatDate value="${r.createDate }"  pattern="yyyy-MM-dd HH:ss:mm"/>
+                    </div>
                 </div>
                 <div class="reviewName">${r.user.anonymousName }<span class="nameGray">（匿名）</span></div>
                 <div style="clear: both"></div>
             </div>
         	</c:forEach>
-
-            <div class="reviewItem">
-                <div class="reviewContent">
-                    不错的购物，包装很精细，布料也不错舒服，因为之前一直购买品牌装，很好的一次网购，生完宝宝刚刚一个多月我一百五十斤穿2XL不错
-                    <div class="reviewData">2016-08-10</div>
-                </div>
-                <div class="reviewName">哀****莉<span class="nameGray">（匿名）</span></div>
-                <div style="clear: both"></div>
-            </div>
-            <div class="reviewItem">
-                <div class="reviewContent">
-                    不强烈推荐，我的天，质量也太好了，让我情何以堪，大爱啊。说说我的体格吧，162.105斤，腰围大概是22，
-                    穿m码刚刚好。快递那么快，特地跟店家说10号要外出店家也尽心备注的很好。真的特别感动，
-                    我收藏店铺了，下次还来你们家。衣服比雪纺舒服，薄薄的，现在穿刚好，我配了高跟鞋和小白鞋都很完美。店家还送了无痕肩带，真的太细心了，给一百个好评，赞。衣服我看了没有线头，薄薄的。不说了，我赶紧发给我姐让她看看。
-                    <div class="reviewData">2016-08-10</div>
-                </div>
-                <div class="reviewName">孤*****爱<span class="nameGray">（匿名）</span></div>
-                <div style="clear: both"></div>
-            </div>
         </div>
     </div>
   	<%@include file="include/footer.jsp" %>

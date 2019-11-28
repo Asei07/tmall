@@ -256,12 +256,14 @@
                     <div price="${p.promotePrice}" class="productUnit">
                         <div class="productUnitFrame">
                                 <a href="foreproduct?pid=${p.id}"><img width="100px" src="img/productSingle_middle/${p.firstProductImage.id}.jpg" alt="" class="unitImg"></a>
-                                <span class="unitPrice">${p.promotePrice}</span>
+                                <span class="unitPrice">
+                                <fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>
+                                </span>
                                 <a href="foreproduct?pid=${p.id}" class="unitLink">${fn:substring(p.name,0,50)}</a>
-                                <a href="foreproduct?pid=${p.id}" class="unitTM">天猫专卖</a>
+                                <a href="foreproduct?pid=${p.id}" class="unitTM">Tmall独占</a>
                                 <div class="unitInfo">
-                                    <span class="monthDeal">月成交<span class="monthDealNumber">${p.saleCount}笔</span></span>
-                                    <span class="productReview">评价<span class="productReviewNumber">${p.reviewCount}</span></span>
+                                    <span class="monthDeal">月売上<span class="monthDealNumber">${p.saleCount}回</span></span>
+                                    <span class="productReview">評価<span class="productReviewNumber">${p.reviewCount}</span></span>
                                     <span class="wangwang">
                                         <a href=""><img src="img/site/wangwang.png" alt="" "></a>
                                     </span>

@@ -28,7 +28,7 @@
 	<%@include file="include/topWithSimpleSearch.jsp"%>
 
 	<div class="registerSuccessDiv">
-		<img src="img/site/registerSuccess.png"> 恭喜注册成功
+		<img src="img/site/registerSuccess.png"> 登録しました
 	</div>
 
 	<%@include file="include/footer.jsp"%>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap/3.3.6/bootstrap.min.css">
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/fore/footer.css">
-    <link rel="stylesheet" href="css/fore/topWithSimpleSearch.css">
+    <link rel="stylesheet" href="css/fore/topWithSearch.css">
     <style>
         /* note
         sort and price */
@@ -175,6 +175,12 @@
         .wangwang img {
             padding-left: 2px;
         }
+        .serachMessage{
+        	font-size:20px;
+        	margin:100px auto;
+        	width:200px;
+        	color: #888;
+        }
     </style>
     <script>
         $(function () {
@@ -208,41 +214,11 @@
 </head>
 
 <body>
-    <%@include file="include/topWithSimpleSearch.jsp" %>
+    <%@include file="include/topWithSearch.jsp" %>
 
     <div class="categoryPage">
-        <img src="img/category/72.jpg" alt="">
-       <%--  <div class="sortBar">
-            <table class="sortBarTable">
-                <tbody>
-                    <tr>
-                        <td <c:if test="${param.sort == 'all' || empty param.sort}">class="grayColum"</c:if>>
-                            <a href="?ps=${ps}&sort=all">総合<span class="glyphicon glyphicon-arrow-down"></span></a>
-                        </td>
-                        <td <c:if test="${param.sort == 'review'}">class="grayColum"</c:if>>
-                            <a href="?ps=${ps}&sort=review">人気<span class="glyphicon glyphicon-arrow-down"></span></a>
-                        </td>
-                        <td <c:if test="${param.sort == 'date'}">class="grayColum"</c:if>>
-                            <a href="?ps=${ps}&sort=date">新品<span class="glyphicon glyphicon-arrow-down"></span></a>
-                        </td>
-                        <td <c:if test="${param.sort == 'saleCount'}">class="grayColum"</c:if>>
-                            <a href="?ps=${ps}&sort=saleCount">売上<span class="glyphicon glyphicon-arrow-down"></span></a>
-                        </td>
-                        <td <c:if test="${param.sort == 'price'}">class="grayColum"</c:if>>
-                            <a href="?ps=${ps}&sort=price">価格<span class="glyphicon glyphicon-resize-vertical"></span></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="sortBarTable">
-                <tbody>
-                    <tr>
-                        <td><input type="text" placeholder="" class="sortBarPrice beginPrice"></td>
-                        <td class="grayColum priceMiddleColum">-</td>
-                        <td><input type="text" placeholder="" class="sortBarPrice endPrice"></td>
-                    </tr>
-                </tbody>
-            </table> --%>
+       
+       
         </div>
         <!-- 数を制限する -->
         <c:if test="${empty param.categoryCount}">
@@ -260,10 +236,10 @@
                                 <a href="foreproduct?pid=${p.id}"><img width="100px" src="img/productSingle_middle/${p.firstProductImage.id}.jpg" alt="" class="unitImg"></a>
                                 <span class="unitPrice">${p.promotePrice}</span>
                                 <a href="foreproduct?pid=${p.id}" class="unitLink">${fn:substring(p.name,0,50)}</a>
-                                <a href="foreproduct?pid=${p.id}" class="unitTM">天猫专卖</a>
+                                <a href="foreproduct?pid=${p.id}" class="unitTM">Tmall独占</a>
                                 <div class="unitInfo">
-                                    <span class="monthDeal">月成交<span class="monthDealNumber">${p.saleCount}笔</span></span>
-                                    <span class="productReview">评价<span class="productReviewNumber">${p.reviewCount}</span></span>
+                                    <span class="monthDeal">月取引<span class="monthDealNumber">${p.saleCount}回</span></span>
+                                    <span class="productReview">評価<span class="productReviewNumber">${p.reviewCount}</span></span>
                                     <span class="wangwang">
                                         <a href=""><img src="img/site/wangwang.png" alt="" "></a>
                                     </span>
@@ -273,7 +249,7 @@
                 </c:if>
             </c:forEach>
             <c:if test="${empty ps}">
-           		</span style="font-size:20px">該当する商品が見つかりません</span>
+           		<div class="serachMessage">該当する商品が見つかりません</div>
             </c:if>
          </div>
        </div>

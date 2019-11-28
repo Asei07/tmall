@@ -63,27 +63,27 @@
         <table class="registerTB">
             <tbody>
                 <tr>
-                    <td class="registerText">设置会员名</td>
+                    <td class="registerText">ユーザ名設置</td>
                 </tr>
                 <tr>
-                    <td class="registerRightText">登录名</td>
+                    <td class="registerRightText">ログイン名</td>
                     <td><input type="text" name="name" id="name"></td>
                 </tr>
                 <tr>
-                    <td class="registerText">设置登陆密码</td>
-                    <td>登陆时验证，保护账号信息</td>
+                    <td class="registerText">パスワード設置</td>
+                    <td>情報を保護するためのログイン時の認証</td>
                 </tr>
                 <tr>
-                    <td class="registerRightText">登陆密码</td>
+                    <td class="registerRightText">ログインパスワード</td>
                     <td><input type="password" name="password" id="password"></td>
                 </tr>
                 <tr>
-                    <td class="registerRightText">密码确认</td>
+                    <td class="registerRightText">パスワード確認</td>
                     <td><input type="password" id="confirmPassword"></td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <button class="registerButton">提交</button>
+                        <button class="registerButton">登録</button>
                     </td>
                 </tr>
             </tbody>

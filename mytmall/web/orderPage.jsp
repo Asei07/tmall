@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 
 <head>
+	
     <script src="js/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap/3.3.6/bootstrap.min.css">
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
@@ -282,20 +283,26 @@
                             </div>
                         </td>
                         <td width="100px">
-                            <span class="orderOriginalPrice">￥${oi.product.orignalPrice}</span>
-                            <span class="orderPromotePrice">￥${oi.product.promotePrice}</span>
+                            <span class="orderOriginalPrice">￥
+                            	<fmt:formatNumber type="number" value="${oi.product.orignalPrice}" minFractionDigits="2"/>
+                            </span>
+                            <span class="orderPromotePrice">￥
+                            	<fmt:formatNumber type="number" value="${oi.product.promotePrice}" minFractionDigits="2"/>
+                            </span>
                         </td>
                         <c:if test="${st.count == 1}">
                         <td width="100px" class="orderItemTD"  rowspan="10" >
                             <span class="orderItemNumber">${o.totalNum}</span>
                         </td>
                         <td width="120px" class="orderItemTD" rowspan="10">
-                            <span class="orderTotalPrice">￥${o.totalPrice}</span>
-                            <span>(含运费：￥0.00)</span>
+                            <span class="orderTotalPrice">￥
+                            	<fmt:formatNumber type="number" value="${o.totalPrice}" minFractionDigits="2"/>
+                            </span>
+                            <span>(送料：￥0.00)</span>
                         </td>
                             <c:if test="${o.status == 'waitConfirm'}" >
                                 <td width="100px" class="orderItemTD"  rowspan="10"> 
-                                <a href="forereceive?oid=${o.id}"><button class="orderButtonConfirm">受取確認</button></a>
+                                <a href="foreconfirm?oid=${o.id}"><button class="orderButtonConfirm">受取確認</button></a>
                                 </td>
                             </c:if>
                             <c:if test="${o.status == 'waitPay'}">

@@ -34,7 +34,7 @@ public class ReviewDao {
 	}
 	public void add(Review bean) {
 
-		String sql = "insert into review(null,?,?,?,?)";
+		String sql = "insert into review values(null,?,?,?,?)";
 
 		try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
 

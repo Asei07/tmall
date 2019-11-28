@@ -36,7 +36,7 @@
 		<servlet-name>CategoryServlet</servlet-name>
 		<url-pattern>/categoryServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>OrderServlet</servlet-name>
 		<servlet-class>tmall.servlet.OrderServlet</servlet-class>
@@ -45,7 +45,7 @@
 		<servlet-name>OrderServlet</servlet-name>
 		<url-pattern>/orderServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>UserServlet</servlet-name>
 		<servlet-class>tmall.servlet.UserServlet</servlet-class>
@@ -54,7 +54,7 @@
 		<servlet-name>UserServlet</servlet-name>
 		<url-pattern>/userServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>foreServlet</servlet-name>
 		<servlet-class>tmall.servlet.ForeServlet</servlet-class>
@@ -64,12 +64,13 @@
 		<url-pattern>/foreServlet</url-pattern>
 	</servlet-mapping>
 
+
 	<filter>
-		<filter-name>BackServletFilter</filter-name>
-		<filter-class>tmall.filter.BackServletFilter</filter-class>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>tmall.filter.EncodingFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>BackServletFilter</filter-name>
+		<filter-name>EncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
@@ -83,6 +84,15 @@
 	</filter-mapping>
 
 	<filter>
+		<filter-name>BackServletFilter</filter-name>
+		<filter-class>tmall.filter.BackServletFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackServletFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
 		<filter-name>ForeServletFilter</filter-name>
 		<filter-class>tmall.filter.ForeServletFilter</filter-class>
 	</filter>
@@ -91,15 +101,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<filter>
-		<filter-name>EncodingFilter</filter-name>
-		<filter-class>tmall.filter.EncodingFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>EncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
 	<session-config>
 		<session-timeout>600</session-timeout>
 	</session-config>

@@ -329,7 +329,7 @@
                 num = parseInt(num);
                 if (num > stock) {
                     num = stock;
-                    alert("超出库存");
+                    alert("在庫切れ");
                 }
                 if (num < 1 || isNaN(num))
                     num = 1;
@@ -411,8 +411,12 @@
                             </div>
                         </td>
                         <td>
-                            <span class="cartOriginalPrice">￥${oi.product.orignalPrice}</span>
-                            <span class="cartPromotePrice">￥${oi.product.promotePrice}</span>
+                            <span class="cartOriginalPrice">￥
+                            <fmt:formatNumber value="${oi.product.orignalPrice}"  minFractionDigits="2"/>
+                            </span>
+                            <span class="cartPromotePrice">￥
+                            <fmt:formatNumber value="${oi.product.promotePrice}"  minFractionDigits="2"/>
+                            </span>
                         </td>
                         <td>
                             <div class="cartChangeNumber">
@@ -425,7 +429,7 @@
                         </td>
                         <td>
                             <span class="cartItemPrice" oiid="${oi.id}" pid="${oi.product.id}">￥
-                            	<fmt:formatNumber value="${oi.product.promotePrice * oi.number}"  minIntegerDigits="0"/>
+                            	<fmt:formatNumber value="${oi.product.promotePrice * oi.number}"  minFractionDigits="2"/>
                             </span>
                         </td>
                         <td>

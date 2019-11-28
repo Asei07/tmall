@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Document</title>
+    <title>ホームページ</title>
     <script src="js/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap/3.3.6/bootstrap.min.css">
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
@@ -100,7 +100,9 @@
 		    							[热销]${fn:substring(p.name,0,20) }
 		    						</span>
 		    					</a>
-		    					<span class="productItemPrice">${p.promotePrice }</span>
+		    					<span class="productItemPrice">
+		    					 <fmt:formatNumber value="${p.promotePrice }"  minFractionDigits="2"/>
+		    					</span>
 		    				</div>
 	    				</c:if>
     				</c:forEach>

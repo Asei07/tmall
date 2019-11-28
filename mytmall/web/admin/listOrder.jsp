@@ -83,8 +83,9 @@ $(function(){
 												<span class="text-muted">${oi.number}个</span>												
 											</td>
 											<td align="right">
-											
-												<span class="text-muted">単価：￥${oi.product.promotePrice}</span>												
+												<span class="text-muted">単価：￥
+													<fmt:formatNumber type="number" value="${oi.product.promotePrice}" minFractionDigits="2"/>
+												</span>												
 											</td>
 
 										</tr>

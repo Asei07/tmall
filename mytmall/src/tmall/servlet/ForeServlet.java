@@ -151,7 +151,7 @@ public class ForeServlet extends BaseForeServlet {
 				Collections.sort(c.getProducts(), new Comparator<Product>() {
 					@Override
 					public int compare(Product p1, Product p2) {
-						return (int) (p2.getPromotePrice() - p1.getPromotePrice());
+						return (int) (p1.getPromotePrice() - p2.getPromotePrice());
 					}
 				});
 				break;
@@ -168,53 +168,7 @@ public class ForeServlet extends BaseForeServlet {
 		List<Product> ps = productDao.search(keyword, 0, 20);
 		productDao.setSaleAndReviewNumber(ps);
 
-		String sort = req.getParameter("sort");
-		if (sort != null) {
-			switch (sort) {
-			case "all":
-				Collections.sort(ps, new Comparator<Product>() {
-					@Override
-					public int compare(Product p1, Product p2) {
-						return p2.getReviewCount() * p2.getSaleCount() - p1.getReviewCount() * p1.getSaleCount();
-					}
-				});
-				break;
-			case "review":
-				Collections.sort(ps, new Comparator<Product>() {
-					@Override
-					public int compare(Product p1, Product p2) {
-						return p2.getReviewCount() - p1.getReviewCount();
-					}
-				});
-				break;
-			case "date":
-				Collections.sort(ps, new Comparator<Product>() {
-					@Override
-					public int compare(Product p1, Product p2) {
-						return p2.getCreateDate().compareTo(p1.getCreateDate());
-					}
-				});
-				break;
-			case "saleCount":
-				Collections.sort(ps, new Comparator<Product>() {
-					@Override
-					public int compare(Product p1, Product p2) {
-						return p2.getSaleCount() - p1.getSaleCount();
-					}
-				});
-				break;
-			case "price":
-				Collections.sort(ps, new Comparator<Product>() {
-					@Override
-					public int compare(Product p1, Product p2) {
-						return (int) (p2.getPromotePrice() - p1.getPromotePrice());
-					}
-				});
-				break;
-			}
-		}
 		req.setAttribute("ps", ps);
-
 		return "searchPage.jsp";
 	}
 
@@ -407,5 +361,66 @@ public class ForeServlet extends BaseForeServlet {
 
 		req.setAttribute("os",os);
 		return "orderPage.jsp";
+	}
+	
+	public String confirm(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parseInt(req.getParameter("oid"));
+		Order o = orderDao.get(oid);
+		orderItemDao.fill(o);
+		
+		req.setAttribute("o", o);
+		return "confirmReceive.jsp";
+	}
+	
+	public String orderFinish(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parseInt(req.getParameter("oid"));
+		Order o = orderDao.get(oid);
+		o.setStatus(orderDao.waitReview);
+		o.setConfirmDate(new Date());
+		orderDao.update(o);
+		
+		return "orderFinish.jsp";
+	}
+	
+	public String review(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parseInt(req.getParameter("oid"));
+		Order o = orderDao.get(oid);
+		orderItemDao.fill(o);
+		Product p = o.getOrderItems().get(0).getProduct();
+		List<Review> reviews = reviewDao.list(p.getId());
+		productDao.setSaleAndReviewNumber(p);
+		
+		req.setAttribute("o", o);
+		req.setAttribute("p", p);
+		req.setAttribute("reveiws", reviews);
+		return "reviewPage.jsp";
+	}
+	
+	public String doReview(HttpServletRequest req,HttpServletResponse resp){
+		
+		int oid = Integer.parseInt(req.getParameter("oid"));
+		int pid = Integer.parseInt(req.getParameter("pid"));
+		String reviewContent = req.getParameter("reviewContent");
+		
+		Order o = orderDao.get(oid);
+		o.setStatus(orderDao.finish);
+		orderDao.update(o);
+		
+		User u = (User) req.getSession().getAttribute("user");
+		if(u == null)
+			return "login.jsp";
+		Product p = productDao.get(pid);
+		Review review = new Review();
+		review.setContent(reviewContent);
+		review.setCreateDate(new Date());
+		review.setProduct(p);
+		review.setUser(u);
+		reviewDao.add(review);
+		
+		return "@forereview?oid=" + o.getId() + "&showonly=true";
+		
 	}
 }

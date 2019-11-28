@@ -69,26 +69,26 @@
     <div class="payedDiv">
         <div class="payedTextInfo">
             <img src="img/site/paySuccess.png" alt="">
-            <span class="payedText">您已成功付款</span>
+            <span class="payedText">支払いが完了しました</span>
         </div>
         <div class="payedAddressInfo">
             <ul class="payedAddress">
-                <li>收货地址： ${o.address} ${o.receiver} ${o.mobile}</li>
-                <li>实付款：<span class="payedPrice">￥${total}</span></li>
-                <li>预计08月08日送达</li>
+                <li>配送先： ${o.address} ${o.receiver} ${o.mobile}</li>
+                <li>支払金額：<span class="payedPrice">￥${total}</span></li>
+                <li>一週間以内に到着する予定です</li>
             </ul>
             <div class="payedLink">
-                <span>您可以</span>
-                <a href="forebought">查看已买到的宝贝</a>
-                <a href="forebought">查看交易详情</a>
+                <span>表示</span>
+                <a href="forebought">購入した物を見ます</a>
+                <a href="forebought">取引詳細を見ます</a>
             </div>
         </div>
         <div class="payedSplitLine"></div>
         <div class="payedWarnInfo">
             <img src="img/site/warning.png" alt="">
-            <b>安全提醒:</b>
+            <b>セキュリティリマインダー:</b>
             <span>
-                下单后，<span class="payedWarn">用QQ给您发送链接办理退款的都是骗子！</span> 天猫不存在系统升级，订单异常等问题，谨防假冒客服电话诈骗！
+                ご注文後，<span class="payedWarn">Lineを使用して払い戻しのリンクを送信する人は詐欺師です！</span> Tmallには、システムのアップグレードや異常な注文などの問題はありません。偽のカスタマーサービス電話詐欺に注意してください。
             </span>
         </div>
     </div>

@@ -295,22 +295,24 @@
                                         <td class="confirmImgTd orderFirstTd"><img src="img/productSingle_middle/${oi.product.firstProductImage.id}.jpg" alt=""
                                                 class="confirmOrderImg"></td>
                                         <td class="confirmOrderItem">
-                                            <a href="" class="orderItemLink">${oi.product.name}</a>
+                                            <a href="foreproduct?pid=${oi.product.id }" class="orderItemLink">${oi.product.name}</a>
                                             <img src="img/site/creditcard.png" alt="">
                                             <img src="img/site/7day.png" alt="">
                                             <img src="img/site/promise.png" alt="">
                                         </td>
-                                        <td>${oi.product.promotePrice}</td>
+                                        <td>
+                                        <fmt:formatNumber type="number" value="${oi.product.promotePrice}" minFractionDigits="2"/>
+                                        </td>
                                         <td>${oi.number}</td>
                                         <td class="confirmItemPrice">
-                                        	<fmt:formatNumber type="number"  value="${oi.product.promotePrice * oi.number}"  minIntegerDigits="0"/>
+                                        	￥<fmt:formatNumber type="number"  value="${oi.product.promotePrice * oi.number}"  minFractionDigits="2"/>
                                         </td>
                                         <c:if test="${st.count == 1}">
                                         <td rowspan="10" class="orderLastTd">
                                             <input type="radio" checked>
-                                            普通配送
+                                           普通配送
                                             <select class="distributionMethod">
-                                                <option value="">快递 免邮费</option>
+                                                <option value="">送料無料</option>
                                             </select>
                                         </td>
                                         </c:if>
@@ -321,24 +323,26 @@
             </div>
             <div class="confirmOrderFoot">
                 <div class="pull-left">
-                    <span class="leaveMessageText">给卖家留言:</span>
+                    <span class="leaveMessageText">売店へのメッセージ:</span>
                     <span class="leaveMessageImg"><img src="img/site/leaveMessage.png" alt=""></span>
                     <span class="leaveMessage" style="display: none;">
                         <textarea name="" id=""  class="leaveMessageTextArea"></textarea>
-                        <div class="typeText">还可输入200字符</div>
+                        <div class="typeText">200文字を入力することもできます</div>
                     </span>
                 </div>
-                <div class="pull-right"> <span>店铺合计(含运费): ￥${total}</span></div>
+                <div class="pull-right"> <span>店舗合計（送料を含む）: ￥
+                <fmt:formatNumber type="number" value="${total}" minFractionDigits="2"/></span></div>
                 <div style="clear: both"></div>
             </div>
             <div class="confirmPrice">
                 <div class="pull-right">
-                    <span>实付款：</span>
-                    <span class="confirmPriceDigit">￥${total} </span>
+                    <span>実際払い：</span>
+                    <span class="confirmPriceDigit">￥
+                    <fmt:formatNumber type="number" value="${total }" minFractionDigits="2"/> </span>
                 </div>
             </div>
             <div style="clear: both"></div>
-            <div><button class="confirmButton pull-right">提交订单</button></div>
+            <div><button class="confirmButton pull-right">注文を送信</button></div>
         </div>
         </form>
     </div>
