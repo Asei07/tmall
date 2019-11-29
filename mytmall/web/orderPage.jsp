@@ -203,6 +203,7 @@
                     function(result){
                         if(result == "success"){
                             $(".orderListItemTB[oid="+oid+"]").remove();
+                            location.href = "forebought";
                         }else{
                             location.href = "login.jsp";
                         }
@@ -319,6 +320,11 @@
                             <c:if test="${o.status == 'waitReview'}">
                                 <td width="100px" class="orderItemTD" rowspan="10">
                                 <a href="forereview?oid=${o.id}"><button class="orderButtonConfirm">評価</button></a>
+                                </td>
+                            </c:if>
+                            <c:if test="${o.status == 'finish'}">
+                                <td width="100px" class="orderItemTD" rowspan="10">
+                                評価済み
                                 </td>
                             </c:if>
                         </c:if>

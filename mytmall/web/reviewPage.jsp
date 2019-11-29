@@ -185,6 +185,37 @@
             font-weight: bold;
             font-size: 12px;
         }
+        
+                .reviewContents {
+            /* border: 1px solid red; */
+            margin-top: 40px;
+        }
+
+        .reviewItem {
+            border-bottom: 1px solid #dfdfdf;
+            /* border: 1px solid; */
+        }
+
+        .reviewContent {
+            margin-top: 10px;
+            margin-right: 30px;
+            margin-left: 20px;
+            /* border: 1px solid; */
+            width: 80%;
+            float: left;
+        }
+
+        .reviewName {
+            padding-top: 20px;
+            margin-left: px;
+            /* border: 1px solid red; */
+
+        }
+
+        .reviewData {
+            margin-top: 15px;
+            color: #cccccc;
+        }
     </style>
 </head>
 
@@ -264,7 +295,9 @@
         		<div class="reviewItem">
                 <div class="reviewContent">
                    	${r.content }
-                    <div class="reviewData">${r.createDate }</div>
+                    <div class="reviewData">
+                    	<fmt:formatDate value="${r.createDate }" pattern="yyyy-MM-dd HH:ss:mm"/>
+                    </div>
                 </div>
                 <div class="reviewName">${r.user.anonymousName }<span class="nameGray">（匿名）</span></div>
                 <div style="clear: both"></div>

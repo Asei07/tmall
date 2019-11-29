@@ -193,7 +193,7 @@ public class ForeServlet extends BaseForeServlet {
 		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
 		boolean found = false;
 		for (OrderItem oi : ois) {
-			if (pid == oi.getProduct().getId()) {
+			if (pid == oi.getProduct().getId() ) {
 				oi.setNumber(oi.getNumber() + num);
 				oiid = oi.getId();
 				orderItemDao.update(oi);
@@ -288,7 +288,7 @@ public class ForeServlet extends BaseForeServlet {
 		List<OrderItem> ois = orderItemDao.listByUser(u.getId());
 		boolean found = false;
 		for (OrderItem oi : ois) {
-			if (pid == oi.getProduct().getId()) {
+			if (pid == oi.getProduct().getId()  ) {
 				oi.setNumber(oi.getNumber() + num);
 				orderItemDao.update(oi);
 				found = true;
@@ -395,7 +395,7 @@ public class ForeServlet extends BaseForeServlet {
 		
 		req.setAttribute("o", o);
 		req.setAttribute("p", p);
-		req.setAttribute("reveiws", reviews);
+		req.setAttribute("reviews", reviews);
 		return "reviewPage.jsp";
 	}
 	

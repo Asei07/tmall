@@ -95,7 +95,7 @@
 		    					<a href="foreproduct?pid=${p.id }">
 		    						<img alt="" src="img/productSingle_middle/${p.firstProductImage.id}.jpg" width="100px" class="productItemImg">
 		    					</a>
-		    					<a href="foreproduct?pid=${p.id }">
+		    					<a href="foreproduct?pid=${p.id }"  class="productItemInfoHref">
 		    						<span class="productItemInfo">
 		    							[热销]${fn:substring(p.name,0,20) }
 		    						</span>

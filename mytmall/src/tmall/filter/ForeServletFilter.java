@@ -46,7 +46,9 @@ public class ForeServletFilter implements Filter {
 				List<OrderItem> ois = new OrderItemDao().listByUser(u.getId());
 				int itemNum = 0;
 				for(OrderItem oi : ois){
+					if(oi.getOrder().getId() == 0){
 					itemNum += oi.getNumber();
+					}
 				}
 				request.setAttribute("itemNum", itemNum);
 			}

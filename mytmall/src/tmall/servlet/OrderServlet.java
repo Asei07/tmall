@@ -1,5 +1,6 @@
 package tmall.servlet;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ public class OrderServlet  extends BaseBackServlet{
 		int oid = Integer.parseInt(req.getParameter("oid"));
 		Order o = orderDao.get(oid);
 		o.setStatus(orderDao.waitConfirm);
+		o.setDeliveryDate(new Date());
 		orderDao.update(o);
 		
 		return "@admin_order_list";

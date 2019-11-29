@@ -151,12 +151,12 @@ public class OrderDao {
 	 public List<Order> list(int uid, String statu){
 
 	        List<Order> os = new ArrayList();
-	        String sql = "select * from order_ where uid = ? and status != ? and status != ?";
+	        String sql = "select * from order_ where uid = ? and status != ? ";
 	        try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
 
 	            ps.setInt(1,uid);
 	            ps.setString(2,statu);
-	            ps.setString(3, OrderDao.finish);
+//	            ps.setString(3, OrderDao.finish);
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next()){
 	                Order o = new Order();

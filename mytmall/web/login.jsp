@@ -113,7 +113,7 @@
 <body>
     <div class="loginDiv">
         <div class="simpleLogo">
-            <img src="img/site/simpleLogo.png" alt="">
+            <a href="forehome"><img src="img/site/simpleLogo.png" alt=""></a>
         </div>
         <img src="img/site/loginBackground.png" alt="" class="loginBackgroundImg">
         <form action="forelogin" method="post" class="loginForm">

@@ -394,6 +394,7 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${ois}" var="oi" >
+                    <c:if test="${oi.order.id == 0 }">
                     <tr class="eachCartItem"  oiid=${oi.id }>
                         <td>
                             <img src="img/site/cartNotSelected.png" alt="" select="false" class="cartItemSelect"
@@ -436,6 +437,7 @@
                             <a href="#nowhere" class="cartItemDelete" oiid="${oi.id}">削除</a>
                         </td>
                     </tr>
+                    </c:if>
                 </c:forEach>
                 </tbody>
             </table>

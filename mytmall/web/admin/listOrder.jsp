@@ -80,7 +80,7 @@ $(function(){
 											</td>
 											<td align="right">
 											
-												<span class="text-muted">${oi.number}个</span>												
+												<span class="text-muted">${oi.number}個</span>												
 											</td>
 											<td align="right">
 												<span class="text-muted">単価：￥
