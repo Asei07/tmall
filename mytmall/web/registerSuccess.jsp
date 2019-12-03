@@ -3,19 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="js/jquery/2.0.0/jquery.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap/3.3.6/bootstrap.min.css">
-<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/fore/footer.css">
-<link rel="stylesheet" href="css/fore/topWithSimpleSearch.css">
+    <script src="js/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/fore/footer.css">
+    <link rel="stylesheet" href="css/fore/topWithSimpleSearch.css">
+
+    <title>Document</title>
 <style>
 .registerSuccessDiv {
 	background-color: #F3FDF6;
 	border: 1px solid #DEF3E6;
 	padding: 20px 130px;
 	font-size: 14px;
+	margin: 100px auto 0px auto;
+    max-width: 1100px;
 }
 
 .registerSuccessDiv img {

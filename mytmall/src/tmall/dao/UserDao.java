@@ -96,6 +96,29 @@ public class UserDao {
 
 		return user;
 	}
+	
+	public User get(String name,String password) {
+
+		User user = null;
+		String sql = "select * from user where name = ? and password = ?";
+
+		try (Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			
+			ps.setString(1, name);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				user = new User();
+				user.setId(rs.getInt(1));
+				user.setName(rs.getString(2));
+				user.setPassword(rs.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
 
 	public List<User> list() {
 		return list(0, Short.MAX_VALUE);

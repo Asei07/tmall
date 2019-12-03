@@ -42,9 +42,9 @@
                     <button class="" type="submit" value="搜索">検索</button>
                     <div class="smallSearchBelow">
                     	<c:forEach items="${cs }" var="c" varStatus="st">
-                    		<c:if test="${st.count >= 8 and st.count <= 11 }">
+                    		<c:if test="${st.count >= 7 and st.count <= 9}">
                     			<a href="forecategory?cid=${c.id}">${c.name }</a>
-              					<c:if test="${st.count != 11}">
+              					<c:if test="${st.count != 9}">
               						<span>|</span>
               					</c:if>
                     		</c:if>

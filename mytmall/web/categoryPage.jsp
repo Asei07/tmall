@@ -81,7 +81,7 @@
         .productUnit {
             float: left;
             width: 225px;
-            height: 330px;
+            height: 350px;
             margin: 12px 5px;
             /* 鼠标悬停时候增加了边框 若不事先添加边框改变大小会影响布局且画面抖动 */
             border: 1px solid #fff;
@@ -117,6 +117,7 @@
             color: #333333;
             margin-top: 10px;
             text-decoration: none;
+            height:50px;
         }
 
         .unitLink:hover {

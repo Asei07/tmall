@@ -10,6 +10,7 @@
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/fore/footer.css">
     <link rel="stylesheet" href="css/fore/topWithSimpleSearch.css">
+    <link rel="stylesheet" href="css/fore/style.css">
 
     <style>
         body {
@@ -321,10 +322,10 @@
 
         .prameList span {
             /* display: block; */
-            width: 220px;
+            width: 225px;
             /* border: 1px solid red; */
             float: left;
-            padding: 8px 0px;
+            padding: 8px 1px;
             color: #666666;
         }
 
@@ -422,6 +423,7 @@
             color: #c40000;
             text-decoration: none;
         }
+      
     </style>
     <script>
         $(function () {
@@ -530,7 +532,38 @@
                             }
                         }
                 );     
-                return false; 
+             return false;
+            });
+            /*model login  */
+		    
+            $("button.loginSubmitButton").click(function(){
+            	var name = $("#name").val();
+            	var password = $("#password").val();
+            	if(name.length==0){
+            		$("span.errorMessage").html("ユーザ名を入力してください");
+            		$("div.loginErrorMessageDiv").show();			
+            		return false;
+            	}
+            	if(password.length==0){
+            		$("span.errorMessage").html("パスワードを入力してください");
+            		$("div.loginErrorMessageDiv").show();	
+            		return false;
+            	}
+            	var page = "foreloginAjax";
+            	$.get(
+                        page,
+                        {"name":name,"password":password},
+                        function(result){
+                        	if(result=="success"){
+                        		location.reload();
+                        	}
+                        	else{
+                        		$("span.errorMessage").html("ユーザ名かパスワードが見つかりません");
+                        		$("div.loginErrorMessageDiv").show();	            		
+                        	}
+                        }
+            	);			
+            	return true;
             });
         });
     </script>
@@ -555,13 +588,14 @@
             <div class="productSubtitle">${p.subTitle }</div>
             <div class="productPrice">
                 <div class="juhuasuanDiv">
-                    <span class="juhuasuan">聚划算</span><span>此商品即将参加聚划算,</span>
-                    <span class="juhuasuanTime">1天19小时</span><span>后开始</span>
+                    <span class="juhuasuan">
+	激安通販</span><span>この製品はもうすぐ激安通販開始</span>
+                    <span class="juhuasuanTime">1日1時間</span><span>後開始</span>
                 </div>
                 <div class="productPriceDiv">
                     <div class="gouwujuanDiv">
                         <img src="img/site/gouwujuan.png" alt="" height="16px">
-                        <span>全天猫实物商品通用</span>
+                        <span>すべてのTmall商品に通用</span>
                     </div>
                     <div class="originalPriceDiv">
                         <span class="originalPriceDesc">価格</span>
@@ -571,7 +605,7 @@
                         </span>
                     </div>
                     <div class="promotePriceDiv">
-                        <span class="promotePriceDesc">促销价</span>
+                        <span class="promotePriceDesc">割引価格</span>
                         <span class="promotePriceYuan">¥</span>
                         <span class="promotePrice">
                         	<fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>
@@ -580,9 +614,9 @@
                 </div>
             </div>
             <div class="saleAndReviewNumber">
-                <span class="sale">销量<span class="saleNumber">${p.saleCount }</span></span>
+                <span class="sale">売上<span class="saleNumber">${p.saleCount }</span></span>
                 <span class="middleOfSaleAndReview">|</span>
-                <span class="review">累计评价<span class="reviewNumber">${p.reviewCount }</span></span>
+                <span class="review">累計評価<span class="reviewNumber">${p.reviewCount }</span></span>
             </div>
             <div class="buyNumber">
                 <span>数量</span>
@@ -598,32 +632,32 @@
                     </a>
                 </span>件
                 </span>
-                <span class="stockNumber">库存${p.stock }件</span>
+                <span class="stockNumber">在庫${p.stock }件</span>
             </div>
             <div class="serviceCommit">
-                <span class="commitDesc">服务承诺</span>
+                <span class="commitDesc">サービス誓約</span>
                 <span class="commitLink">
-                    <a href="">正品保证</a>
-                    <a href="">极速退款</a>
-                    <a href="">赠运费险</a>
-                    <a href="">七天无理由退换</a>
+                    <a href="">本物保証</a>
+                    <a href="">迅速な払戻し</a>
+                    <a href="">無料貨物保険</a>
+                    <a href="">7日以内に自由返品</a>
                 </span>
             </div>
             <div class="buyDiv">
-                <a href="forebuyOne?pid=${p.id}" class="buyLink"><button class="buyButton">立即购买</button></a>
+                <a href="forebuyOne?pid=${p.id}" class="buyLink"><button class="buyButton">すぐ購入</button></a>
                 <a href="" class="addLink"><button class="addButton"><span
-                            class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
+                            class="glyphicon glyphicon-shopping-cart"></span>カートに追加</button></a>
             </div>
         </div>
         <div style="clear: both"></div>
     </div>
     <div class="productDetailDiv">
         <div class="productDetailTop">
-            <a href="#nowhere" class="detailLink">商品详情</a>
-            <a href="#nowhere" class="reviewLink">累计评价<span class="detailReviewNumber">${p.reviewCount }</span></a>
+            <a href="#nowhere" class="detailLink">商品詳細</a>
+            <a href="#nowhere" class="reviewLink">累計評価<span class="detailReviewNumber">${p.reviewCount }</span></a>
         </div>
         <div class="productDetailPrame">
-            <div class="detailPrame">产品参数：</div>
+            <div class="detailPrame">製品パラメーター：</div>
             <div class="prameList">
             	<c:forEach items="${pvs }" var="pv">
             		<span>${pv.property.name }:${fn:substring(pv.value,0,10) }</span>
@@ -640,8 +674,8 @@
     </div>
     <div class="productReviewDiv" style="display: none;">
         <div class="reviewTop">
-            <a href="#nowhere" class="reviewDetailLink">商品详情</a>
-            <a href="#nowhere" class="reviewSelected">累计评价<span class="reviewSelectedNumber"></span></a>
+            <a href="#nowhere" class="reviewDetailLink">商品詳細</a>
+            <a href="#nowhere" class="reviewSelected">累計評価<span class="reviewSelectedNumber"></span></a>
         </div>
         <div class="reviewContents">
         	<c:forEach items="${reviews }" var="r">
@@ -658,7 +692,47 @@
         	</c:forEach>
         </div>
     </div>
+    
   	<%@include file="include/footer.jsp" %>
+  
+  	<div class="modal " id="loginModal" tabindex="-1" role="dialog" >
+	<div class="modal-dialog loginDivInProductPageModalDiv">
+	        <div class="modal-content">
+					<div class="loginDivInProductPage">
+						<div class="loginErrorMessageDiv">
+							<div class="alert alert-danger" >
+							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+							  	<span class="errorMessage"></span>
+							</div>
+						</div>
+						<div class="login_acount_text">ユーザログイン</div>
+						<div class="loginInput " >
+							<span class="loginInputIcon ">
+								<span class=" glyphicon glyphicon-user"></span>
+							</span>
+							<input id="name" name="name" placeholder="携帯/ユーザ名/メールアドレス" type="text">			
+						</div>
+						
+						<div class="loginInput " >
+							<span class="loginInputIcon ">
+								<span class=" glyphicon glyphicon-lock"></span>
+							</span>
+							<input id="password" name="password"  type="password" placeholder="パスワード" type="text">			
+						</div>
+								
+						<div>
+							<a href="#nowhere">パスワードを忘れました</a> 
+							<a href="register.jsp" class="pull-right">無料登録</a> 
+						</div>
+						<div style="margin-top:20px">
+							<button class="btn btn-block redButton loginSubmitButton" type="submit">ログイン</button>
+						</div>
+					</div>	
+	      </div>
+	</div>
+</div>
+
+</div>
 </body>
 
 </html>

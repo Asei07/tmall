@@ -423,4 +423,17 @@ public class ForeServlet extends BaseForeServlet {
 		return "@forereview?oid=" + o.getId() + "&showonly=true";
 		
 	}
-}
+	
+	public String loginAjax(HttpServletRequest req,HttpServletResponse resp){
+		System.out.println(111);
+		String name = req.getParameter("name");
+		String password =req.getParameter("password");
+		
+		User user = userDao.get(name,password);
+		if(user != null){
+			req.getSession().setAttribute("user", user);
+			return "%success";
+		}
+		return "%fail";
+	}
+} 

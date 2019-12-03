@@ -34,7 +34,7 @@ public class ForeAutoFilter implements Filter{
         HttpServletResponse resp = (HttpServletResponse) arg1;
         
         String[] noNeedAutoPage = new String[]{
-        		"home","register","product","category","checkLogin","search","login"
+        		"home","register","product","category","checkLogin","search","login","loginAjax"
         };
         
         String contextPath = req.getServletContext().getContextPath();

@@ -342,7 +342,7 @@
                 </div>
             </div>
             <div style="clear: both"></div>
-            <div><button class="confirmButton pull-right">注文を送信</button></div>
+            <div><button class="confirmButton pull-right">オーダーを送信</button></div>
         </div>
         </form>
     </div>

@@ -104,6 +104,8 @@ public class CategoryServlet extends BaseBackServlet {
 
 		//写真保存
 		File folderPath = new File(request.getSession().getServletContext().getRealPath("img/category"));
+		System.out.println("realPath of ServletContext:" + request.getSession().getServletContext());
+		System.out.println("realPath of ServletContext:" + request.getSession().getServletContext().getRealPath("img/category"));
 		File file = new File(folderPath, c.getId() + ".jpg");
 
 		if(!folderPath.exists()) {

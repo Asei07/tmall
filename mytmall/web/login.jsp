@@ -123,25 +123,25 @@
         			<span class="errorMessage"></span>
         		</div>
        		 </div>
-            <div class="loginText">账户登陆</div>
+            <div class="loginText">ユーザログイン</div>
             <div class="loginInput">
                 <span class="loginIcon">
                     <span class="glyphicon glyphicon-user"></span>
                 </span>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name"　placeholder="携帯/ユーザ名/メールアドレス">
             </div>
             <div class="loginInput">
                 <span class="loginIcon">
                     <span class="glyphicon glyphicon-lock"></span>
                 </span>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password"　placeholder="パスワード">
             </div>
             <div>
-            <a href="#nowhere">忘记登陆密码</a>
-            <a href="register.jsp" class="pull-right">免费注册</a>
+            <a href="#nowhere">パスワードを忘れました</a>
+            <a href="register.jsp" class="pull-right">無料登録</a>
             </div>
             <div>
-            <button class="loginButton">登陆</button>
+            <button class="loginButton">登録</button>
             </div>
         </div>
         </form>
