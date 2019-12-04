@@ -25,10 +25,10 @@
 			<li><a href="admin_property_list?cid=${c.id }">${c.name }</a></li>
 			<li></li>
 		</ol>
-		<div class="list">
-			<table class="table">
-				<thead class="thead">
-					<tr>
+		<div class="workingArea">
+			<table class="table table-striped table-bordered table-hover  table-condensed">
+				<thead >
+					<tr class="success">
 						<th>ID</th>
 						<th>属性名</th>
 						<th>編集</th>
@@ -61,16 +61,18 @@
 				<form action="admin_property_add" id="addForm" method="post">
 							<!-- original -->
 					<table class="addTable">
+						<tbody>
 						<tr>
 							<td>属性名</td>
 							<td><input type="text" name="name" id="name" class="form-control"></td>
 						</tr>
-						<tr class="">
+						<tr class="submitTR">
 							<td colspan="2" align="center">
 								<input type="hidden" name="cid" value="${c.id }">
 								<input type="submit" class="btn btn-success" value="確定">
 							</td>
 						</tr>
+						</tbody>
 					</table>
 				</form>
 			</div>

@@ -14,27 +14,30 @@
 </head>
 <body>
 <div>
-	<div class="">
+	<div class="workingArea">
+
 		<ol class="breadcrumb">
 			<li><a href="admin_category_list">分類リスト</a></li>
 			<li><a href="admin_product_list?cid=${c.id }">${c.name }</a></li>
 			<li class="active">商品管理</li>
 		</ol>
-	</div>
-	<div class="list">
-		<table class="table">
+	
+	<div class="listDataTableDiv">
+		<table class="table table-striped table-bordered table-hover  table-condensed">
 			<thead class="thead">
+				<tr class="success">
 				<th>ID</th>
 				<th>写真</th>
 				<th>商品名</th>
 				<th>商品タイトル</th>
-				<th>メーカー希望小売価格</th>
+				<th>小売価格</th>
 				<th>実際価格</th>
-				<th>在庫</th>
-				<th>写真管理</th>
-				<th>属性設定</th>
-				<th>編集</th>
-				<th>削除</th>
+				<th width="53px">在庫</th>
+				<th width="70px">写真管理</th>
+				<th width="70px">属性設定</th>
+				<th width="43px">編集</th>
+				<th width="43px">削除</th>
+				</tr>
 			</thead>
 			<tbody class="tbody">
 				<c:forEach items="${list }" var="p">
@@ -76,7 +79,7 @@
 						<td><input type="text" name="subTitle"></td>
 					</tr>
 					<tr>
-						<td>メーカー希望小売価格</td>
+						<td>小売価格</td>
 						<td><input type="text" name="originalPrice"></td>
 					</tr>
 					<tr>
@@ -97,6 +100,7 @@
 			</form>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

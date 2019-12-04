@@ -23,18 +23,17 @@
 		<div class="panel-heading">分類編集</div>
 		<div class="panel-body">
 			<form action="admin_category_update" method="post" id="" class="" enctype="multipart/form-data">
-				<table>
+				<table class="editTable">
 					<tr>
 						<td>分類名</td>
-						<td><input type="text" value="${category.name}" name="name" id="id"></td>
+						<td><input type="text" value="${category.name}" name="name" id="id" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>分類写真</td>
 						<td><input type="file" accept="image/*" id="" name="filePath"></td>
 					</tr>
-					<tr class="">	
-					
-						<td>
+					<tr >	
+						<td align="center" colspan="2">
 							<input type="hidden" name="id" value="${category.id}">
 							<button type="submit" class="btn btn-success">確認</button>
 						</td>

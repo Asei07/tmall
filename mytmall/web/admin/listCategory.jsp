@@ -3,10 +3,12 @@
 <%@include file="../include/admin/adminHeader.jsp" %>
 <%@include file="../include/admin/adminNavigator.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <script>
 	 $(function(){
 		$("#addForm").submit(function(){
@@ -22,12 +24,11 @@
 
 <body>
 	<!-- original -->
-	<div class="">
+	<div class="workingArea">
 	<h1 class="label label-info">分類管理</h1>
 	<br>
 	<br>
 		<!-- original -->
-		<div class="">
 			<table class="table table-striped table-bordered table-hover  table-condensed">
 				<thead>
 					<tr class = "success">
@@ -54,13 +55,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
 		<!-- original -->
 		<div class="pageDiv">
 			 <%@include file = "../include/admin/adminPage.jsp" %> 
 		</div>
 	</div>
-	<div class="workingArea">
+
 	<div class="panel panel-warning addDiv">
 		<div class="panel panel-heading">新規分類</div>
 		<div class="panel panel-body">
@@ -76,7 +76,7 @@
 						<td><input type="file" id="categoryPic" accept="image/*" name="filePath"></td>
 					</tr>
 					<!-- original -->
-					<tr class="">
+					<tr class="submitTR">
 						<td colspan="2" align="center">
 							<button type="submit" class="btn btn-success">確認</button>
 						</td>
@@ -84,7 +84,6 @@
 				</table>
 			</form>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

@@ -181,9 +181,10 @@
             if (isNaN(num))
                 num = "0";
             sign = (num == (num = Math.abs(num)));
-            num = Math.floor(num * 100 + 0.50000000001);
+         num = Math.floor(num * 100 + 0.50000000001); 
             cents = num % 100;
             num = Math.floor(num / 100).toString();
+
             if (cents < 10)
                 cents = "0" + cents;
             for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
@@ -235,7 +236,7 @@
                 var num = $(".cartNumberSet[oiid=" + oiid + "]").val();
                 totalNumber += new Number(num);
             });
-            $(".cartTopPrice").html("￥"  + formatMoney( sum));
+            $(".cartTopPrice").html("￥"  +  formatMoney(sum));
             $(".cartFootPrice").html("￥"  + formatMoney(sum));
             $(".cartProductNumber").html(totalNumber);
         }
@@ -396,7 +397,7 @@
                     <c:forEach items="${ois}" var="oi" >
                     <c:if test="${oi.order.id == 0 }">
                     <tr class="eachCartItem"  oiid=${oi.id }>
-                        <td>
+                        <td width="150px">
                             <img src="img/site/cartNotSelected.png" alt="" select="false" class="cartItemSelect"
                                 oiid="${oi.id}">
                             <img src="img/productSingle_middle/${oi.product.firstProductImage.id }.jpg" alt="" class="cartItemImg" width="40px">
@@ -411,7 +412,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td width="150px">
                             <span class="cartOriginalPrice">￥
                             <fmt:formatNumber value="${oi.product.orignalPrice}"  minFractionDigits="2"/>
                             </span>
@@ -428,12 +429,12 @@
                                 <a href="#nowhere" class="cartNumberIncrease" pid="${oi.product.id}" oiid="${oi.id }">+</a>
                             </div>
                         </td>
-                        <td>
+                        <td width="150px">
                             <span class="cartItemPrice" oiid="${oi.id}" pid="${oi.product.id}">￥
                             	<fmt:formatNumber value="${oi.product.promotePrice * oi.number}"  minFractionDigits="2"/>
                             </span>
                         </td>
-                        <td>
+                        <td width="70px">
                             <a href="#nowhere" class="cartItemDelete" oiid="${oi.id}">削除</a>
                         </td>
                     </tr>

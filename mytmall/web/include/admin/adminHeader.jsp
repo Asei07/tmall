@@ -8,10 +8,10 @@
 <script src="js/jquery/2.0.0/jquery.min.js"></script>
 <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
 <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
-<link href="css/back/style.css" rel="stylesheet">
+ <link href="css/back/style.css" rel="stylesheet">  
 
 <script>
-		function checkEmpty(id,name){
+	 	function checkEmpty(id,name){
 			var value = $("#"+id).val();
 			if(value.length == 0){
 				if(id == "name"){
@@ -22,9 +22,9 @@
 				return false;
 			}
 			return true;
-		};
+		}; 
 
-	/* 	$(function(){
+	 	$(function(){
 			$("a").click(function(){
 				var deletelink = $(this).attr("deletelink");
 				if(deletelink == "true"){
@@ -34,7 +34,7 @@
 					return false;
 				}
 			});
-		}); */
+		}); 
 </script>
 
 </head>

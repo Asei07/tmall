@@ -1,4 +1,4 @@
-package tmall.servlet;
+﻿package tmall.servlet;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -425,7 +425,7 @@ public class ForeServlet extends BaseForeServlet {
 	}
 	
 	public String loginAjax(HttpServletRequest req,HttpServletResponse resp){
-		System.out.println(111);
+	
 		String name = req.getParameter("name");
 		String password =req.getParameter("password");
 		

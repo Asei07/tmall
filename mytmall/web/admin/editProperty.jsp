@@ -6,10 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+	
+
+	
+</style>
 <meta charset="UTF-8">
 <title>属性編集</title>
 </head>
 <body>
+	<div class="workingArea">
 	<div>
 		<ol class="breadcrumb">
 			<li><a href="admin_category_list">分類リスト</a></li>
@@ -17,24 +24,27 @@
 			<li class="active">属性編集</li>
 		</ol>
 	</div>
-	<div class="panel panel-warning">
+	<div class="panel panel-warning editDiv">
 		<div class="panel-heading">属性編集</div>
 		<div class="panel-body">
 			<form action="admin_property_update" method="post">
-				<table>
+				<table class="editTable">
 					<tr>
 						<td>属性名</td>
-						<td><input type="text" name="name" value="${prop.name }"></td>
-						<td>
+						<td><input type="text" name="name" value="${prop.name }" class="form-control"></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2">
 						<input type="hidden" name="cid" value="${prop.category.id }">
 						<input type="hidden" name="id" value="${prop.id }">
-						<input type="submit" value="確定">
+						<input type="submit" value="確定"   class="btn btn-success">
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 
+	</div>
 	</div>
 </body>
 </html>

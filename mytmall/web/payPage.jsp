@@ -58,7 +58,9 @@
         </div>
         <div>
             <span class="aliPayText">スキャン払い（元）</span>
-            <span class="aliPayPrice">￥${param.total}</span>
+            <span class="aliPayPrice">￥
+            <fmt:formatNumber  value="${param.total}"  minFractionDigits="2"/>
+            </span>
         </div>
         <div>
             <img src="img/site/alipay2wei.png" alt="" class="">
