@@ -34,7 +34,7 @@ public class PropertyValueDao {
 
 	public void add(PropertyValue bean) {
 
-		String sql = "insert into propertyValue(null,?,?,?)";
+		String sql = "insert into propertyValue values(null,?,?,?)";
 
 		try(Connection c = DBUtil.getConnection();PreparedStatement ps =  c.prepareStatement(sql);){
 
@@ -100,7 +100,7 @@ public class PropertyValueDao {
 
 				Product product = new ProductDao().get(pid);
 				Property property = new PropertyDao().get(ptid);
-				pv.setId(ptid);
+				pv.setId(id);
 				pv.setProduct(product);
 				pv.setProperty(property);
 				pv.setValue(value);
@@ -140,5 +140,49 @@ public class PropertyValueDao {
 			e.printStackTrace();
 		}
 		return pvList;
+	}
+
+	public void init(Product p) {
+		
+		List<Property> ps = new PropertyDao().list(p.getCategory().getId());
+		
+		for(Property property  : ps){
+			PropertyValue pv =  this.get(p.getId(),property.getId());
+			if(pv == null){
+				pv = new PropertyValue();
+				pv.setProduct(p);
+				pv.setProperty(property);
+				this.add(pv);
+			}
+		}
+	}
+
+	public PropertyValue get(int pid, int ptid) {
+		
+		PropertyValue pv = null;
+		String sql = "select * from propertyValue where pid = ? and ptid = ?";
+		
+		try(Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
+			
+			ps.setInt(1, pid);
+			ps.setInt(2, ptid);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				pv = new PropertyValue();
+				int id = rs.getInt("id");
+				String value = rs.getString("value");
+				Product product = new ProductDao().get(pid);
+				Property property = new PropertyDao().get(ptid);
+				
+				pv.setId(id);
+				pv.setProduct(product);
+				pv.setProperty(property);
+				pv.setValue(value);
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return pv;
 	}
 }

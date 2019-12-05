@@ -48,6 +48,31 @@ public class PropertyDao {
 		return list;
 
 	}
+	
+	public List<Property> list(int cid){
+		
+		List<Property>  ps = new ArrayList();
+		String sql = "select * from property where cid =  " + cid;
+		
+		try(Connection c = DBUtil.getConnection(); Statement s = c.createStatement()){
+			
+			ResultSet rs = s.executeQuery(sql);
+			while(rs.next()){
+				Property property = new Property();
+				Category category = new CategoryDao().get(cid);
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				
+				property.setId(id);
+				property.setName(name);
+				property.setCategory(category);
+				ps.add(property);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return ps;
+	}
 
 	public int getTotal(int cid) {
 		//创建sql语句

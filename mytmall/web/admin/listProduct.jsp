@@ -54,7 +54,7 @@
 						<td>${p.promotePrice }</td>
 						<td>${p.stock }</td>
 						<td><a href="admin_productImage_list?pid=${p.id }" class="glyphicon glyphicon-picture"></a></td>
-						<td><a href=""></a></td>
+						<td><a href="admin_product_editPropertyValue?pid=${p.id }" class="glyphicon glyphicon-th-list"></a></td>
 						<td><a href="admin_product_edit?id=${p.id }" class="glyphicon glyphicon-edit"></a></td>
 						<td><a deletelink="true" href="admin_product_delete?id=${p.id }" class="glyphicon glyphicon-trash"></a></td>
 					</tr>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tmall.bean.Category;
 import tmall.bean.Product;
+import tmall.bean.PropertyValue;
 import tmall.util.Page;
 
 public class ProductServlet extends BaseBackServlet{
@@ -110,5 +111,27 @@ public class ProductServlet extends BaseBackServlet{
 		return "@admin_product_list?cid=" + cid;
 	}
 
-
+	public String editPropertyValue(HttpServletRequest request, HttpServletResponse response, Page page){
+		
+		int pid = Integer.parseInt(request.getParameter("pid"));
+		Product p = productDao.get(pid);
+		propertyValueDao.init(p);
+		
+		List<PropertyValue> pvs = propertyValueDao.list(pid);
+		
+		request.setAttribute("p", p);
+		request.setAttribute("pvs", pvs);
+		return "admin/editProductValue.jsp";
+	}
+	
+	public String updatePropertyValue(HttpServletRequest request, HttpServletResponse response, Page page){
+		
+		int pvid = Integer.parseInt(request.getParameter("pvid"));
+		String value = request.getParameter("value");
+		
+		PropertyValue pv = propertyValueDao.get(pvid);
+		pv.setValue(value);
+		propertyValueDao.update(pv);
+		return "%success";
+	}
 }

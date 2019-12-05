@@ -24,6 +24,7 @@ import tmall.dao.OrderItemDao;
 import tmall.dao.ProductDao;
 import tmall.dao.ProductImageDao;
 import tmall.dao.PropertyDao;
+import tmall.dao.PropertyValueDao;
 import tmall.dao.UserDao;
 import tmall.util.Page;
 
@@ -42,6 +43,7 @@ public abstract class BaseBackServlet extends HttpServlet {
 	OrderDao orderDao =new OrderDao();
 	OrderItemDao orderItemDao = new OrderItemDao();
 	UserDao userDao = new UserDao();
+	PropertyValueDao propertyValueDao =	 new PropertyValueDao();
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response)

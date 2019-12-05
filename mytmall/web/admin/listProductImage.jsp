@@ -10,7 +10,7 @@
 <title>商品写真管理</title>
 </head>
 <body>
-<div class="">
+<div class="workingArea">
 	<ol class="breadcrumb">
 		<li><a href="admin_category_list">分類リスト</a></li>
 		<li><a href="admin_product_list?cid=${p.category.id }">${p.category.name }</a></li>
@@ -18,35 +18,37 @@
 		<li class="active">商品写真管理</li>
 	</ol>
 
-	<table class="" align="">
+	<table class="" align="center">
 		<tr>
-			<td class="">
+			<td class="addPictureTableTD">
 				<div>
-					<div class="panel panel-warning">
+					<div class="panel panel-warning addPictureDiv">
 						<div class="panel-heading">商品イメージ写真</div>
 						<div class="panel-body">
 							<form action="admin_productImage_add" method="post" enctype="multipart/form-data" class="">
-								<table class="">
+								<table class="addTable" >
+									<tbody  align="center">
 									<tr>
 										<td>写真を選んでください</td>　
 									</tr>
 									<tr>
 										<td><input type="file" name="filePath" id="filePathSingle"></td>
 									</tr>
-									<tr class="">
-										<td>
+									<tr class="submitTR">
+										<td colspan="2" align="center">
 											<input type="hidden" name="type" value="type_single">
 											<input type="hidden" name="pid" value="${p.id }">
-											<input type="submit" value="確定">
+											<input type="submit" value="確定" class="btn btn-success">
 										</td>
 									</tr>
+									</tbody>
 								</table>
 							</form>
 						</div>
 					</div>
-					<table class="">
+					<table class="table table-striped table-bordered table-hover  table-condensed">
 						<thead>
-							<tr>
+							<tr class="success">
 								<th>ID</th>
 								<th>写真サムネイル</th>
 								<th>削除</th>
@@ -71,13 +73,14 @@
 					</table>
 				</div>
 			</td>
-			<td class="">
+			<td class="addPictureTableTD" >
 				<div>
-					<div class="panel panel-warning">
+					<div class="panel panel-warning addPictureDiv">
 						<div class="panel-heading">商品詳細写真</div>
-						<div class="pane-body">
+						<div class="panel-body">
 							<form action="admin_productImage_add" method="post" enctype="multipart/form-data" class="">
-								<table>
+								<table class="addTable" align="center">
+								<tbody align="center">
 									<tr>
 										<td>写真を選んでください</td>
 									</tr>
@@ -85,19 +88,20 @@
 										<td><input type="file" name="filePath" ></td>
 									</tr>
 									<tr>
-										<td>
+										<td colspan="2" align="center">
 											<input type="hidden" name="type" value="type_detail">
 											<input type="hidden" name="pid" value="${p.id }">
-											<input type="submit" value="確定">
+											<input type="submit" value="確定" class="btn btn-success">
 										</td>
 									</tr>
+									</tbody>
 								</table>
 							</form>
 						</div>
 					</div>
-					<table>
+					<table class="table table-striped table-bordered table-hover  table-condensed">
 						<thead>
-							<tr>
+							<tr class="success">
 								<td>ID</td>
 								<td>写真サムネイル</td>
 								<td>削除</td>
