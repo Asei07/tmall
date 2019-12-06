@@ -50,7 +50,7 @@ public abstract class BaseBackServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		//获取分页条件，默认0 5
+		//  paging condition, default 0,5
 		int start = 0;
 		int count = 5;
 
@@ -64,7 +64,7 @@ public abstract class BaseBackServlet extends HttpServlet {
 		}
 
 		Page page = new Page(start, count);
-		//通过反射调用方法
+		// invoke method via reflection
 		try {
 			String method = (String) request.getAttribute("method");
 			Method m = this.getClass().getMethod(method, HttpServletRequest.class, HttpServletResponse.class,
@@ -72,7 +72,7 @@ public abstract class BaseBackServlet extends HttpServlet {
 			try {
 
 				String redirect = m.invoke(this, request, response, page).toString();
-				//根据返回的方法进行相应的跳转
+				//  make page change according the returned string
 				if (redirect.startsWith("@")) {
 					response.sendRedirect(redirect.substring(1));
 				} else if (redirect.startsWith("%")) {
@@ -94,20 +94,22 @@ public abstract class BaseBackServlet extends HttpServlet {
 		InputStream is = null;
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
-
+		// sets size threshold beyond which files are written directly to disk
 		factory.setSizeThreshold(1024 * 1024);
 
 		try {
+			
 			List items = upload.parseRequest(request);
 			Iterator iterator = items.iterator();
 			while (iterator.hasNext()) {
-				FileItem item = (FileItem) iterator.next();
+				FileItem item =  (FileItem) iterator.next();
 				System.out.println(item);
 				if (!item.isFormField()) {
 					is = item.getInputStream();
 				} else {
 					String paramName = item.getFieldName();
 					String paramValue = item.getString();
+					// both encode ASCll exactly the same way
 					paramValue = new String(paramValue.getBytes("ISO-8859-1"),"UTF-8");
 					params.put(paramName, paramValue);
 				}
